@@ -1,0 +1,40 @@
+## The problem
+
+A route handler accepts a request and immediately writes to a database. Soon it also contains validation, permission checks, email, and payment logic. One file becomes hard to test because every concern is mixed together.
+
+## Concept
+
+A request passes through boundaries. Routing selects the operation. Validation checks its shape. Authentication identifies the caller. Authorization checks whether the caller may act. A service applies the product rule. Data access persists it. The route returns an appropriate response. Each boundary exists because a different kind of failure belongs there.
+
+## Example
+
+```text
+Browser -> HTTP request -> Route
+Route -> validate input -> check permission
+Route -> service -> database
+Route <- result or error <- service
+Browser <- HTTP response <- Route
+```
+
+## How it works
+
+Consider changing a task title. The route should reject a missing title, reject a caller who does not own the task, then ask a service to update it. A useful response distinguishes invalid input from forbidden access and unexpected server failure. Logs may record operational context, but must not expose passwords or secret tokens.
+
+## Common mistakes
+
+- Trusting browser validation as if it protects the server.
+- Checking permission only when rendering the interface.
+- Returning `200` for every failure and making the client guess what happened.
+- Splitting code into layers with no real responsibility difference.
+
+## Practice
+
+Write a request contract for `PATCH /api/tasks/:id`: required fields, success response, invalid-input response, and forbidden response. List the exact point where ownership is checked. Test changing another user's task ID.
+
+## Build
+
+Add CRUD routes to the authentication project. Start with one vertical slice from page to database, prove it works and fails correctly, then repeat the pattern.
+
+## Checkpoint
+
+Trace one request aloud. For each step, state what it knows, what it checks, and what it returns if the check fails.

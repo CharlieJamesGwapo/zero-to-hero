@@ -1,0 +1,42 @@
+## The problem
+
+An entire page is sent as client JavaScript because one small button needs an event handler. The page may still work, but the browser now receives code that could have stayed on the server.
+
+## Concept
+
+In the App Router, pages and layouts are Server Components by default. Use them for content, data access, and work that can remain on the server. Add a Client Component only where state, event handlers, effects, or browser APIs are needed. A server boundary can protect secrets, but every server action still needs input validation and authorization.
+
+## Example
+
+```tsx
+// Server page: fetches data and renders the stable shell.
+export default async function ProjectsPage() {
+  const projects = await loadPublicProjects();
+  return <ProjectList projects={projects} />;
+}
+
+// ProjectFilter is a separate Client Component for browser interaction.
+```
+
+## How it works
+
+The server prepares public project data and markup. The filter can receive only the data and callbacks it needs. This split keeps browser code small and makes the data boundary explicit. It does not mean every request is automatically cached or safe; those policies must be chosen for the data involved.
+
+## Common mistakes
+
+- Marking a high-level layout `use client` because one nested control is interactive.
+- Reading private environment variables in a Client Component.
+- Assuming a hidden button is authorization. The server must enforce permission.
+- Adding caching to user-specific content without considering who may receive it.
+
+## Practice
+
+Draw your task manager page. Circle only the parts that need browser state or events. Move a presentational heading and static explanation outside the client boundary. Compare the resulting component tree.
+
+## Build
+
+Create a routed application with a server-rendered project index and a client-side filter. Add metadata and a loading or error state where a request can be delayed or fail.
+
+## Checkpoint
+
+Explain why each Client Component needs to be a Client Component. Identify where a protected record is validated and where authorization is checked.

@@ -1,0 +1,41 @@
+## The problem
+
+A page appears in your browser, but the visible result hides several steps. When a site fails, knowing those steps tells you whether to inspect a file path, a network request, or browser code.
+
+## Concept
+
+A URL identifies a resource. The browser resolves its domain through DNS, connects to a server, and sends an HTTP request. The server returns a response with a status and often HTML. The browser parses that HTML, requests linked CSS, JavaScript, and images, then renders the page. JavaScript may request more data later. HTTPS adds a protected connection using TLS.
+
+## Example
+
+```text
+Browser -> DNS -> Server
+Browser -- GET /places --> Server
+Browser <-- 200 + HTML --- Server
+Browser -- GET /styles.css --> Server
+Browser <-- CSS ------------ Server
+```
+
+Open Developer Tools and watch the Network panel while reloading a page. The request list is a record of this exchange, not a list of arbitrary files.
+
+## How it works
+
+HTML gives content structure. CSS describes presentation. JavaScript responds to events and may change the document. A server can also return JSON through an API; JSON is data, not a page. The browser decides how to present it.
+
+## Common mistakes
+
+- Treating a `404` as a JavaScript syntax error. It usually means the requested path is wrong or unavailable.
+- Assuming a successful page request means every image or API request also succeeded.
+- Putting a secret in browser JavaScript. Visitors can inspect code sent to their device.
+
+## Practice
+
+Create `index.html`, `styles.css`, and `script.js`. Link the last two from HTML. Reload with Network open. Find each request and its status. Deliberately misspell the CSS path, observe the failed request, then fix it.
+
+## Build
+
+Start a three-page personal site. Write the home page's real heading and one paragraph that tells a visitor what the site is for. Commit the files before adding design.
+
+## Checkpoint
+
+Draw the path from a typed URL to a rendered heading. Name where you would investigate a missing stylesheet, a JavaScript error, and a server response with status `500`.

@@ -1,0 +1,40 @@
+## The problem
+
+Two components show the same task count but disagree after an update. Each copied the data into its own state. Duplicated state creates synchronization work that usually belongs in one place.
+
+## Concept
+
+A component renders from props and its state. Place shared state at the nearest common owner, then pass the data and event callbacks to children. Keep a calculated value—such as the number of open tasks—derived from the task list rather than stored as a second independent state value.
+
+## Example
+
+```tsx
+type Task = { id: string; title: string; done: boolean };
+
+function TaskSummary({ tasks }: { tasks: Task[] }) {
+  const open = tasks.filter((task) => !task.done).length;
+  return <p>{open} open tasks</p>;
+}
+```
+
+## How it works
+
+`TaskSummary` has no local task copy. Its parent owns the array and passes the current value. A task action updates the parent's state, causing the summary and list to render from the same source. This makes the interface easier to reason about and test.
+
+## Common mistakes
+
+- Copying props into state without a reason and then trying to keep both synchronized.
+- Using an effect to calculate data that can be calculated during render.
+- Putting every state value in a global store before the component relationships require it.
+
+## Practice
+
+Sketch the task manager's component tree: form, list, item, filters, summary. Mark where the task array lives. Implement add and complete actions, then confirm list and count update together.
+
+## Build
+
+Rebuild the task manager in React and TypeScript. Preserve the accessibility and error behavior of the plain JavaScript version. Compare the two implementations in your README.
+
+## Checkpoint
+
+For every state value, name its owner and the components that consume it. Remove any stored value that can be calculated from another state value.

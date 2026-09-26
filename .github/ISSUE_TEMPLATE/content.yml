@@ -1,0 +1,24 @@
+name: Content correction
+description: Report an unclear or inaccurate lesson, term, or project brief
+labels: [content]
+body:
+  - type: input
+    id: page
+    attributes:
+      label: Page or file
+      placeholder: /learn/html/semantic-page
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What is unclear or incorrect?
+      description: Include the exact sentence or step when possible.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Suggested correction
+    validations:
+      required: false

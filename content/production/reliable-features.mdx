@@ -1,0 +1,41 @@
+## The problem
+
+A feature works in a demo but fails for a real user when a network call times out, a webhook arrives twice, or a required service is unavailable. Production work includes the failure path.
+
+## Concept
+
+Define a feature as a user-observable contract. Test its main path, edge inputs, and likely failures. Record enough information to diagnose a failure without exposing private data. Choose monitoring that tells you whether the user flow is healthy, not merely whether a server process is running.
+
+## Example
+
+For an order checkout, a useful contract is: a paid order has exactly one confirmed payment reference. The browser never decides that an order is paid. A verified server webhook updates the order, and duplicate delivery does not create duplicate effects.
+
+```text
+Test: valid checkout -> confirmed order
+Test: declined payment -> order remains unpaid
+Test: duplicate webhook -> one confirmation
+Observe: payment errors and checkout completion rate
+```
+
+## How it works
+
+Unit tests protect a small rule. Integration tests verify boundaries such as an API and database. End-to-end tests verify a critical user journey. Logs explain individual failures; metrics reveal patterns. A rollback path limits damage when a release is wrong.
+
+## Common mistakes
+
+- Testing only the successful path.
+- Logging a secret token or a full private request body.
+- Using retries without considering duplicate work.
+- Adding a queue or cache before the need and failure behavior are understood.
+
+## Practice
+
+Choose one action in your capstone. Write a success case, two failure cases, and one signal you would watch after deployment. Make the error message truthful and useful to a user.
+
+## Build
+
+Add tests for one high-value flow. Add structured logging around its failures and document what an on-call developer should inspect first.
+
+## Checkpoint
+
+Demonstrate both a passing flow and a deliberate failure. Explain how you would notice and investigate the failure after release.

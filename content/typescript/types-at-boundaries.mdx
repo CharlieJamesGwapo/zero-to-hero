@@ -1,0 +1,45 @@
+## The problem
+
+A JavaScript function may assume an API returned a task with a string title. If the data differs, the error appears later and may be difficult to trace. Types can expose assumptions while code is written, but they do not verify external data at runtime.
+
+## Concept
+
+TypeScript describes shapes and relationships in code. A union expresses alternatives. Narrowing proves which alternative is present. A generic function can preserve a type relationship across inputs and outputs. External data still needs runtime validation because the network and users do not obey TypeScript annotations.
+
+## Example
+
+```ts
+type Task = { id: string; title: string; done: boolean };
+
+function isTask(value: unknown): value is Task {
+  if (typeof value !== "object" || value === null) return false;
+  const item = value as Record<string, unknown>;
+  return (
+    typeof item.id === "string" &&
+    typeof item.title === "string" &&
+    typeof item.done === "boolean"
+  );
+}
+```
+
+## How it works
+
+`unknown` forces the caller to check before using the value. The predicate verifies the three properties the app needs. After `isTask(value)` succeeds, TypeScript can treat `value` as a `Task`. A larger app may use a validation library to express and reuse richer rules.
+
+## Common mistakes
+
+- Writing `as Task` for an API response without checking its actual shape.
+- Using `any` to silence an error instead of identifying the missing assumption.
+- Creating very complex types for an unstable feature before the user flow is clear.
+
+## Practice
+
+Write a type for a place with an ID, name, and optional description. Parse a JSON value as `unknown`, validate it, and show a useful error when it is malformed. Try missing and wrong-type fields.
+
+## Build
+
+Create a typed API client for the task manager. Keep the transport, validation, and UI state separate enough that each can be tested.
+
+## Checkpoint
+
+Explain the difference between a compile-time type error and a runtime validation error. Demonstrate both using a deliberately malformed response.

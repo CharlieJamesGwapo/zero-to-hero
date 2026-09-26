@@ -1,0 +1,38 @@
+## The problem
+
+Code is merged but no one knows whether it was tested, deployed, or safe to roll back. A professional workflow makes each transition visible.
+
+## Concept
+
+A change begins with a clear issue and branch. A pull request shows the implementation and how it was tested. CI runs repeatable checks. A preview deployment lets reviewers try the change. After merge, the production release is observed through logs and a core user flow. Rollback means returning to a known working revision when the new one causes harm.
+
+## Example
+
+```text
+Issue -> Branch -> Code -> Commit -> Pull request
+      -> Review -> CI -> Preview -> Merge -> Deploy
+      -> Monitor -> Iterate or roll back
+```
+
+## How it works
+
+The workflow protects communication as much as code. Reviewers should know the user problem, affected routes, risk, and manual test steps. CI gives a consistent baseline; it cannot prove that the feature is useful. A preview catches integration and content issues before production. Vercel is one deployment example, but these concepts apply to other hosts.
+
+## Common mistakes
+
+- Merging with a failing build because a local page looked correct.
+- Treating a deployed URL as proof that every user flow works.
+- Storing production credentials in repository files or PR descriptions.
+- Making a rollback plan only after an incident starts.
+
+## Practice
+
+Open a pull request for one capstone feature. Include the goal, screenshots or a preview, test steps, and known risks. Ask a reviewer to complete the main flow. Record how you would revert the release.
+
+## Build
+
+Add lint, typecheck, build, and a meaningful test to CI. Deploy a preview and verify mobile, keyboard, and content. After production release, inspect logs and the primary flow.
+
+## Checkpoint
+
+Show the exact revision in production, the checks it passed, the issue and PR that explain it, and the route to recover if it fails.

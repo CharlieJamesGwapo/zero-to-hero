@@ -1,0 +1,58 @@
+## The problem
+
+A layout may work at one width and fail as soon as content grows or the browser narrows. Adding more fixed pixel sizes often makes the next failure harder to fix.
+
+## Concept
+
+The box model describes content, padding, border, and margin. Flexbox arranges items along one primary direction. Grid handles rows and columns. Start with a narrow, readable layout and add columns when the content has room—not because a particular phone model exists.
+
+## Example
+
+```css
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+.container {
+  width: min(100% - 2rem, 70rem);
+  margin-inline: auto;
+}
+.cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+@media (min-width: 44rem) {
+  .cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+```
+
+## How it works
+
+The container keeps a comfortable measure without exceeding the viewport. Cards begin in one column. At enough width, Grid creates two flexible columns. `minmax(0, 1fr)` lets long content shrink within a track rather than forcing overflow. Images respect their container.
+
+## Common mistakes
+
+- Hiding horizontal overflow instead of finding the element that is too wide.
+- Using margins to separate Grid items when `gap` describes the relationship better.
+- Removing focus outlines without a visible replacement.
+- Testing only at one “mobile” and one “desktop” width.
+
+## Practice
+
+Style three portfolio project cards. Slowly resize the browser and note the first width where the layout feels cramped. Move the breakpoint to that point. Test long project names and 200% zoom.
+
+## Build
+
+Finish the responsive portfolio. Use a small set of colors and spacing values; keep text readable and focus visible. Put your design choices in the README.
+
+## Checkpoint
+
+No horizontal scroll appears at narrow widths. Keyboard focus is visible. You can identify whether an unwanted gap comes from margin, padding, or `gap` using DevTools.

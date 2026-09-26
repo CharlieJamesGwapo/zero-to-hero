@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ZERO → HERO
 
-## Getting Started
+**Learn. Build. Ship.** A practical, open-source path from a first web page to the architecture and workflow behind a production application.
 
-First, run the development server:
+[Explore the curriculum](https://zero-to-hero.vercel.app/curriculum) · [Project briefs](https://zero-to-hero.vercel.app/projects) · [Contributing guide](CONTRIBUTING.md)
+
+## What is here
+
+- Twelve connected levels, from foundations and HTML to databases, production, DevOps, and architecture
+- Twelve focused MDX lessons with a problem, explanation, example, practice task, build step, and checkpoint
+- Five project briefs that grow from a portfolio to an organization-based SaaS application
+- Clickable architecture diagrams, a real-world workflow guide, and a glossary
+- Local progress and bookmarks, a deterministic starting recommendation, and `Cmd/Ctrl + K` search
+
+The path is designed to be extended. A level currently has one anchor lesson; the topic list names the broader skills that future lessons and contributions should cover. Project work is essential to completing a level.
+
+## Run locally
+
+Requirements: Node.js 20.9 or newer and npm.
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open `http://localhost:3000`. No account, API key, database, or environment file is required.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run lint
+npx tsc --noEmit
+npm run build
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## How it is built
 
-## Learn More
+Next.js App Router renders pages and MDX content statically where possible. TypeScript indexes curriculum, projects, and glossary entries. Tailwind CSS 4 is installed; the current visual system uses explicit CSS tokens and component styles in `src/app/globals.css` for a small, inspectable design layer. Browser-only code is limited to search, progress, and the start chooser. Progress is stored on the current device in `localStorage`, so clearing browser data removes it.
 
-To learn more about Next.js, take a look at the following resources:
+| Location                | Purpose                                             |
+| ----------------------- | --------------------------------------------------- |
+| `content/`              | Editable MDX lessons                                |
+| `src/lib/curriculum.ts` | Level and lesson metadata                           |
+| `src/lib/projects.ts`   | Project briefs and review criteria                  |
+| `src/lib/glossary.ts`   | Developer terms and related lessons                 |
+| `src/app/`              | Routes and page layouts                             |
+| `src/components/`       | Search, progress, navigation, and recommendation UI |
+| `docs/architecture.md`  | Product architecture and route map                  |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Add content
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Read [CONTRIBUTING.md](CONTRIBUTING.md) for a short contribution workflow. New lessons need an MDX file, an entry in the curriculum index, and a static import in `src/lib/lesson-content.tsx`. Keep examples runnable and checkpoints observable.
 
-## Deploy on Vercel
+## License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT. See [LICENSE](LICENSE).

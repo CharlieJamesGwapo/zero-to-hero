@@ -1,0 +1,46 @@
+## The problem
+
+An application lets one organization see another organization's records because the data model did not represent ownership clearly. Interface filters cannot repair a missing data boundary.
+
+## Concept
+
+Relational databases store records in tables. Primary keys identify rows. Foreign keys express relationships. Constraints reject invalid states. Transactions group operations that must succeed or fail together. Indexes help particular queries, but add write and storage costs. An ORM can express queries in application code; it cannot replace understanding the resulting SQL and schema.
+
+## Example
+
+```sql
+CREATE TABLE organizations (
+  id UUID PRIMARY KEY,
+  name TEXT NOT NULL
+);
+
+CREATE TABLE tasks (
+  id UUID PRIMARY KEY,
+  organization_id UUID NOT NULL REFERENCES organizations(id),
+  title TEXT NOT NULL CHECK (length(title) > 0),
+  completed BOOLEAN NOT NULL DEFAULT false
+);
+```
+
+## How it works
+
+Every task has an organization. The foreign key prevents a task from referring to a nonexistent organization. The title constraint rejects an empty title even if application validation is accidentally skipped. A query for an organization's tasks must include the organization boundary; the server still checks that the caller belongs to that organization.
+
+## Common mistakes
+
+- Adding a foreign key but omitting authorization in the API.
+- Creating indexes for every column without measuring actual queries.
+- Treating an ORM model as the whole database design.
+- Changing production tables without a reviewed migration and rollback plan.
+
+## Practice
+
+Draw users, organizations, memberships, and tasks. Identify primary and foreign keys, then write the query that returns only one organization's tasks. Explain how a transaction would protect a two-step operation.
+
+## Build
+
+Design and migrate the database for your SaaS capstone before adding billing or background jobs. Test constraints by intentionally submitting invalid records.
+
+## Checkpoint
+
+Explain one-to-many and many-to-many relationships in your schema. Show a query and the authorization check that prevent cross-organization access.

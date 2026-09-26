@@ -1,0 +1,52 @@
+## The problem
+
+A page can look correct while being difficult to navigate with a keyboard or assistive technology. Visual styling cannot repair content that has no meaningful structure.
+
+## Concept
+
+HTML elements describe roles. A heading starts a section; a link changes location; a button performs an action. `header`, `nav`, `main`, and `footer` identify page regions. Forms connect visible labels to controls. Good source order makes sense even when CSS is disabled.
+
+## Example
+
+```html
+<header>
+  <nav aria-label="Main navigation">
+    <a href="/">Home</a>
+    <a href="/projects">Projects</a>
+  </nav>
+</header>
+<main>
+  <h1>Projects by Mina</h1>
+  <section aria-labelledby="work-title">
+    <h2 id="work-title">Selected work</h2>
+    <article>
+      <h3>Community directory</h3>
+      <p>A searchable list of local resources.</p>
+      <a href="/projects/directory">Read the case study</a>
+    </article>
+  </section>
+</main>
+```
+
+## How it works
+
+The heading levels form a readable outline. The navigation has a name. The project is an article because it stands on its own. The link text describes its destination. These decisions help readers and tools understand the page without guessing from its appearance.
+
+## Common mistakes
+
+- Using a clickable `div` when a button or link already provides keyboard behavior.
+- Choosing a heading level for its size instead of its place in the outline.
+- Writing “click here” without describing the destination.
+- Adding an input without a visible label connected through `for` and `id`.
+
+## Practice
+
+Write a home, projects, and contact page. Navigate among them using only links. Add a contact form with labels, required fields, and a clear note if it does not yet send anything. Hide CSS and read the page from top to bottom.
+
+## Build
+
+Complete the content and structure of your portfolio before visual polish. Ask a reader to locate your strongest project and contact method without instructions.
+
+## Checkpoint
+
+Explain why each major element is an element of that type. All links work; heading order is logical; every form control has a label; keyboard navigation reaches each action.

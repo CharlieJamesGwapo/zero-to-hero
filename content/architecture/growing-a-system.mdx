@@ -1,0 +1,39 @@
+## The problem
+
+A team adds a queue, cache, and several services before it can explain the user's main action. Extra components create new failure modes without automatically improving the product.
+
+## Concept
+
+Architecture is a set of boundaries and tradeoffs. Start with the simplest shape that supports the current user flow. Add a component when you can name the problem it solves, the data it owns, and the failure it introduces. A diagram should be explainable from a user action to a result.
+
+## Example
+
+```text
+Static page: Browser -> HTML/CSS/JS
+Frontend app: Browser -> React -> API
+Full stack: Browser -> Next.js -> Service -> Database
+At scale: Users -> CDN -> App -> Services -> Database
+                                      -> Cache / Queue / Storage
+```
+
+## How it works
+
+A CDN may bring static content closer to users. A cache avoids repeated expensive reads but risks stale data. A queue moves slow work outside a request but requires retry and duplicate handling. Storage holds files separately from a relational database. None belongs in a system merely because it appears in a diagram.
+
+## Common mistakes
+
+- Copying a production architecture before the project needs it.
+- Drawing boxes without naming who owns data or handles failure.
+- Splitting a service when a well-organized module would be easier to deploy and debug.
+
+## Practice
+
+Draw the current capstone flow for one user action. Label every request and data store. For each box, ask what would break if it were removed. Remove boxes that do not solve a current problem.
+
+## Build
+
+Publish an architecture note beside the capstone README. Include the current diagram, two rejected alternatives, one scaling concern, and a measured trigger for changing the design later.
+
+## Checkpoint
+
+Explain the complete request and response path without reading labels. Name one tradeoff in your current architecture and one failure it must handle.

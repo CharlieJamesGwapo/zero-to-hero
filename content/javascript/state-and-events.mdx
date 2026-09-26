@@ -1,0 +1,48 @@
+## The problem
+
+A button click is easy to handle. Keeping the interface correct after many clicks, filters, and reloads is harder. Problems often begin when the visible page and the underlying data disagree.
+
+## Concept
+
+State is the data describing the current interface. An event is an input such as a click or form submission. The reliable sequence is: read the event, validate input, update state, then render the new state. Keep data transformation separate from DOM creation where possible.
+
+## Example
+
+```js
+let tasks = [];
+
+function addTask(title) {
+  const clean = title.trim();
+  if (!clean) return;
+  tasks = [...tasks, { id: crypto.randomUUID(), title: clean, done: false }];
+  renderTasks();
+}
+
+document.querySelector("#task-form").addEventListener("submit", (event) => {
+  event.preventDefault();
+  addTask(document.querySelector("#task-title").value);
+});
+```
+
+## How it works
+
+The form event does not navigate away because `preventDefault()` runs. The title is trimmed and rejected if empty. A new task is added to the array, and the page is rendered from the updated array. `renderTasks()` is intentionally separate so it can run after other actions too.
+
+## Common mistakes
+
+- Updating the DOM but not the task data, so the next render erases the change.
+- Using an array position as an ID; positions change after deletion or sorting.
+- Treating user input as safe HTML. Create elements and set `textContent` instead.
+- Saving to local storage but forgetting to load it on startup or after a change.
+
+## Practice
+
+Implement `renderTasks()`, then add complete and delete actions. Test blank text, repeated clicks, and an empty list. Save a JSON copy to local storage and handle malformed saved data gracefully.
+
+## Build
+
+Finish the task manager's plain JavaScript version before rebuilding it with a framework. Ask another person to add, complete, filter, and remove a task without instructions.
+
+## Checkpoint
+
+Explain exactly what happens between submitting the form and seeing a new item. Reload the page and show that data persists on this browser, while acknowledging it is not a shared database.
