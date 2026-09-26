@@ -21,7 +21,8 @@ export const metadata: Metadata = {
   description:
     "A practical, open-source path from your first line of code to building and shipping full-stack applications.",
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
+    process.env.NEXT_PUBLIC_SITE_URL ??
+      "https://zero-to-hero-omega-one.vercel.app",
   ),
 };
 

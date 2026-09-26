@@ -2,7 +2,7 @@
 
 **Learn. Build. Ship.** A practical, open-source path from a first web page to the architecture and workflow behind a production application.
 
-[Explore the curriculum](https://zero-to-hero.vercel.app/curriculum) · [Project briefs](https://zero-to-hero.vercel.app/projects) · [Contributing guide](CONTRIBUTING.md)
+[Explore the curriculum](https://zero-to-hero-omega-one.vercel.app/curriculum) · [Project briefs](https://zero-to-hero-omega-one.vercel.app/projects) · [Contributing guide](CONTRIBUTING.md)
 
 ## What is here
 

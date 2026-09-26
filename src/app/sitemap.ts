@@ -4,7 +4,8 @@ import { projects } from "@/lib/projects";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const origin =
-    process.env.NEXT_PUBLIC_SITE_URL ?? "https://zero-to-hero.vercel.app";
+    process.env.NEXT_PUBLIC_SITE_URL ??
+    "https://zero-to-hero-omega-one.vercel.app";
   const paths = [
     "/",
     "/curriculum",
