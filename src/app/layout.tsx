@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { SiteFooter, SiteHeader } from "@/components/site-header";
+import { MotionController } from "@/components/motion-controller";
+import { Suspense } from "react";
 import "./globals.css";
+import "./motion.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -47,6 +50,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <SiteHeader />
         <main id="main-content">{children}</main>
         <SiteFooter />
+        <Suspense fallback={null}>
+          <MotionController />
+        </Suspense>
       </body>
     </html>
   );

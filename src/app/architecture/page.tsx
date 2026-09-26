@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ArchitectureTrace } from "@/components/architecture-trace";
 
 export const metadata: Metadata = {
   title: "Architecture",
@@ -137,6 +138,7 @@ export default function ArchitecturePage() {
           does, where its boundary sits, and when it becomes useful.
         </p>
       </div>
+      <ArchitectureTrace />
       <div className="architecture-stages">
         {stages.map((stage) => (
           <section className="architecture-stage" key={stage.number}>

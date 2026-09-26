@@ -23,7 +23,9 @@ npm ci
 npm run dev
 ```
 
-Open `http://localhost:3000`. The app uses the Next.js App Router, TypeScript, MDX, and Tailwind CSS 4. The visible design system is in `src/app/globals.css`.
+Open `http://localhost:3000`. The app uses the Next.js App Router, TypeScript, MDX, and Tailwind CSS 4. The visual system is in `src/app/globals.css`; shared motion tokens and reduced-motion rules are in `src/app/motion.css`.
+
+Motion is progressive: page content is rendered before JavaScript runs. `src/components/motion-controller.tsx` adds section reveals and progress indicators after hydration. Keep new interactions usable by keyboard, and provide a clear state change when motion is reduced or unavailable.
 
 ## Verify a change
 
@@ -47,6 +49,7 @@ The same core checks run in GitHub Actions for pushes and pull requests. A passi
 | `src/lib/lesson-content.tsx` and `src/lib/open-source-content.tsx` | Static MDX import maps                                    |
 | `src/lib/projects.ts` and `src/lib/glossary.ts`                    | Project briefs and term definitions                       |
 | `src/components/lesson-reader.tsx`                                 | Shared lesson layout                                      |
+| `src/components/code-block.tsx` and `mdx-components.tsx`           | Lesson code controls and MDX component mapping            |
 | `src/app/`                                                         | Public routes and metadata                                |
 | `tests/`                                                           | Content integrity and progress checks                     |
 | `docs/architecture.md`                                             | App architecture and route map                            |

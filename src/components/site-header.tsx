@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { SearchDialog } from "./search-dialog";
 import { MobileMenu } from "./mobile-menu";
+import { RouteLink } from "./route-link";
 
 const navigation = [
   { href: "/curriculum", label: "Curriculum" },
@@ -24,9 +25,7 @@ export function SiteHeader() {
         </Link>
         <nav className="desktop-nav" aria-label="Main navigation">
           {navigation.map((item) => (
-            <Link key={item.href} href={item.href}>
-              {item.label}
-            </Link>
+            <RouteLink key={item.href} href={item.href} label={item.label} />
           ))}
         </nav>
         <div className="header-actions">

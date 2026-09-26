@@ -16,8 +16,7 @@ export default function Home() {
               <span>· 2026</span>
             </div>
             <h1>
-              Build software
-              <br />
+              <span className="hero-line">Build software</span>
               <em>you can explain.</em>
             </h1>
             <p className="hero-lead">

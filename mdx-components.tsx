@@ -1,7 +1,12 @@
 import type { MDXComponents } from "mdx/types";
+import { CodeBlock, Terminal } from "@/components/code-block";
+import { GlossaryTerm } from "@/components/glossary-term";
 
 export function useMDXComponents(): MDXComponents {
   return {
+    pre: (props) => <CodeBlock {...props} />,
+    Terminal,
+    GlossaryTerm,
     h2: ({ children, ...props }) => {
       const id = String(children)
         .toLowerCase()

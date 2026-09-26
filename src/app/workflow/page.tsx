@@ -78,6 +78,22 @@ const stages = [
     "Use feedback and production evidence to decide the next small change.",
   ],
 ] as const;
+const stageLinks = [
+  "/learn/foundations/how-the-web-works",
+  "/projects/saas",
+  "/projects/portfolio",
+  "/learn/css/layout-with-intent",
+  "/learn/architecture/growing-a-system",
+  "/learn/databases/modeling-data",
+  "/learn/javascript/state-and-events",
+  "/learn/production/reliable-features",
+  "/open-source/code-review",
+  "/open-source/first-pull-request",
+  "/open-source/ci",
+  "/learn/devops/from-pr-to-production",
+  "/learn/production/reliable-features",
+  "/open-source/maintaining",
+] as const;
 const git = [
   [
     "Issue",
@@ -96,6 +112,16 @@ const git = [
   ],
   ["Merge", "Integrate only after the checks and review required by the team."],
   ["Deploy", "Promote the tested revision and verify the main flow."],
+] as const;
+const gitLinks = [
+  "/open-source/github/issues",
+  "/open-source/git/branches",
+  "/open-source/git/working-tree",
+  "/open-source/git/commits",
+  "/open-source/first-pull-request",
+  "/open-source/code-review",
+  "/open-source/git/merge",
+  "/open-source/releases",
 ] as const;
 export default function WorkflowPage() {
   return (
@@ -122,12 +148,18 @@ export default function WorkflowPage() {
             </div>
           </div>
           <ol className="workflow-list">
-            {stages.map(([number, title, description]) => (
+            {stages.map(([number, title, description], index) => (
               <li key={number}>
                 <span>{number}</span>
                 <div>
-                  <h3>{title}</h3>
-                  <p>{description}</p>
+                  <Link
+                    className="workflow-stage-link"
+                    href={stageLinks[index]}
+                  >
+                    <h3>{title}</h3>
+                    <p>{description}</p>
+                    <span aria-hidden="true">↗</span>
+                  </Link>
                 </div>
               </li>
             ))}
@@ -141,7 +173,9 @@ export default function WorkflowPage() {
               <li key={title}>
                 <span>{String(i + 1).padStart(2, "0")}</span>
                 <div>
-                  <strong>{title}</strong>
+                  <Link href={gitLinks[i]}>
+                    <strong>{title}</strong> <span aria-hidden="true">↗</span>
+                  </Link>
                   <p>{description}</p>
                 </div>
               </li>

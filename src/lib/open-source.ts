@@ -284,18 +284,66 @@ export const openSourceStages = [
 ];
 
 export const openSourceWorkflow = [
-  { title: "Idea", path: "/open-source/github/discussions" },
-  { title: "Issue", path: "/open-source/github/issues" },
-  { title: "Branch", path: "/open-source/git/branches" },
-  { title: "Code", path: "/open-source/git/working-tree" },
-  { title: "Commit", path: "/open-source/git/commits" },
-  { title: "Push", path: "/open-source/git/remote" },
-  { title: "Pull request", path: "/open-source/first-pull-request" },
-  { title: "CI checks", path: "/open-source/ci" },
-  { title: "Review", path: "/open-source/code-review" },
-  { title: "Merge", path: "/open-source/git/merge" },
-  { title: "Release", path: "/open-source/releases" },
-  { title: "Maintain", path: "/open-source/maintaining" },
+  {
+    title: "Idea",
+    path: "/open-source/github/discussions",
+    detail: "Discuss the need before changing code.",
+  },
+  {
+    title: "Issue",
+    path: "/open-source/github/issues",
+    detail: "Define a problem and acceptance criteria.",
+  },
+  {
+    title: "Branch",
+    path: "/open-source/git/branches",
+    detail: "Isolate one reviewable change.",
+  },
+  {
+    title: "Code",
+    path: "/open-source/git/working-tree",
+    detail: "Make the smallest useful edit.",
+  },
+  {
+    title: "Commit",
+    path: "/open-source/git/commits",
+    detail: "Record a coherent revision.",
+  },
+  {
+    title: "Push",
+    path: "/open-source/git/remote",
+    detail: "Share the branch with the remote.",
+  },
+  {
+    title: "Pull request",
+    path: "/open-source/first-pull-request",
+    detail: "Explain intent and invite review.",
+  },
+  {
+    title: "CI checks",
+    path: "/open-source/ci",
+    detail: "Run repeatable automated checks.",
+  },
+  {
+    title: "Review",
+    path: "/open-source/code-review",
+    detail: "Improve correctness and clarity together.",
+  },
+  {
+    title: "Merge",
+    path: "/open-source/git/merge",
+    detail: "Integrate the reviewed change.",
+  },
+  {
+    title: "Release",
+    path: "/open-source/releases",
+    detail: "Ship a known revision to users.",
+  },
+  {
+    title: "Maintain",
+    path: "/open-source/maintaining",
+    detail: "Respond to feedback and keep it healthy.",
+  },
 ];
 
 export const openSourceChecklist = [

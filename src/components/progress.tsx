@@ -1,6 +1,6 @@
 "use client";
 
-import { useSyncExternalStore } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import { openSourceChecklist, openSourceLessons } from "@/lib/open-source";
 import {
@@ -92,13 +92,26 @@ export function LessonActions({ id }: { id: string }) {
   const progress = useProgress();
   const complete = progress.completed.includes(id);
   const bookmarked = progress.bookmarks.includes(id);
+  const [announcement, setAnnouncement] = useState("");
+  const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  useEffect(
+    () => () => {
+      if (timer.current) clearTimeout(timer.current);
+    },
+    [],
+  );
   return (
     <div className="lesson-actions">
       <button
         className={`button button-primary ${complete ? "button-done" : ""}`}
         type="button"
         aria-pressed={complete}
-        onClick={() => toggle("completed", id)}
+        onClick={() => {
+          toggle("completed", id);
+          setAnnouncement(complete ? "" : "Lesson complete");
+          if (timer.current) clearTimeout(timer.current);
+          timer.current = setTimeout(() => setAnnouncement(""), 1800);
+        }}
       >
         {complete ? "✓ Completed" : "Mark complete"}
       </button>
@@ -110,6 +123,9 @@ export function LessonActions({ id }: { id: string }) {
       >
         {bookmarked ? "★ Bookmarked" : "☆ Bookmark"}
       </button>
+      <span className="lesson-complete-note" role="status">
+        {announcement}
+      </span>
     </div>
   );
 }
@@ -151,6 +167,40 @@ export function OpenSourceProgress() {
       </div>
       <p>Progress stays in this browser.</p>
     </div>
+  );
+}
+
+const journey = [
+  { label: "Git", path: "/open-source/git/what-is-git" },
+  { label: "GitHub", path: "/open-source/github/what-is-github" },
+  { label: "Branches", path: "/open-source/git/branches" },
+  { label: "Pull requests", path: "/open-source/first-pull-request" },
+  { label: "Code review", path: "/open-source/code-review" },
+];
+
+export function OpenSourceJourney() {
+  const progress = useProgress();
+  const current = journey.findIndex(
+    (item) => !progress.completed.includes(item.path.slice(1)),
+  );
+  return (
+    <ol className="os-journey" aria-label="Open source milestones">
+      {journey.map((item, index) => {
+        const done = progress.completed.includes(item.path.slice(1));
+        return (
+          <li key={item.path} data-complete={done}>
+            <Link
+              href={item.path}
+              aria-current={index === current ? "step" : undefined}
+            >
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <strong>{item.label}</strong>
+              <span>{done ? "✓" : index === current ? "Current →" : "○"}</span>
+            </Link>
+          </li>
+        );
+      })}
+    </ol>
   );
 }
 

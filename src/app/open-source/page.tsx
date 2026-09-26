@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { OpenSourceChecklist, OpenSourceProgress } from "@/components/progress";
+import {
+  OpenSourceChecklist,
+  OpenSourceJourney,
+  OpenSourceProgress,
+} from "@/components/progress";
 import {
   openSourceLessons,
   openSourceStages,
@@ -115,6 +119,7 @@ export default function OpenSourcePage() {
           </ol>
           <aside className="os-path-aside">
             <OpenSourceProgress />
+            <OpenSourceJourney />
             <div className="aside-note">
               <span className="eyebrow">START SMALL</span>
               <p>
@@ -206,6 +211,7 @@ export default function OpenSourcePage() {
             <Link href={step.path} key={`${step.title}-${index}`}>
               <span>{String(index + 1).padStart(2, "0")}</span>
               <strong>{step.title}</strong>
+              <small>{step.detail}</small>
               <span aria-hidden="true">↗</span>
             </Link>
           ))}

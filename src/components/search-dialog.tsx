@@ -35,6 +35,7 @@ export function SearchDialog() {
       <button
         type="button"
         className="search-trigger"
+        data-tooltip="Search lessons"
         onClick={() => {
           dialog.current?.showModal();
           requestAnimationFrame(() => input.current?.focus());
@@ -51,6 +52,31 @@ export function SearchDialog() {
         ref={dialog}
         className="search-dialog"
         aria-label="Search Zero to Hero"
+        onKeyDown={(event) => {
+          if (event.key === "Escape") {
+            event.preventDefault();
+            dialog.current?.close();
+            return;
+          }
+          if (event.key !== "ArrowDown" && event.key !== "ArrowUp") return;
+          const links = Array.from(
+            dialog.current?.querySelectorAll<HTMLAnchorElement>(
+              ".search-result",
+            ) ?? [],
+          );
+          if (!links.length) return;
+          const current = links.indexOf(
+            document.activeElement as HTMLAnchorElement,
+          );
+          if (event.key === "ArrowDown") {
+            event.preventDefault();
+            links[Math.min(current + 1, links.length - 1)].focus();
+          } else if (current >= 0) {
+            event.preventDefault();
+            if (current === 0) input.current?.focus();
+            else links[current - 1].focus();
+          }
+        }}
         onClick={(event) => {
           if (event.target === dialog.current) dialog.current?.close();
         }}
