@@ -1,0 +1,42 @@
+## The problem
+
+You have a useful edit, but a maintainer cannot merge an unexplained file change safely. They need the reason, the diff, checks, and a chance to review.
+
+## Concept
+
+A pull request (PR) proposes commits from your branch for integration into another branch. It is both a code comparison and a discussion. Opening one does not mean the change is accepted; maintainers may request revisions or decline it.
+
+## Example
+
+```text
+Issue → fork → clone → branch → edit → check → commit → push
+  → pull request → review → revise → merge
+```
+
+For ZERO → HERO, start with the [Issues page](https://github.com/CharlieJamesGwapo/zero-to-hero/issues) or a small correction you can demonstrate. Read [CONTRIBUTING.md](https://github.com/CharlieJamesGwapo/zero-to-hero/blob/main/CONTRIBUTING.md) before editing.
+
+## How it works
+
+1. Find a bounded issue or document a clear correction. Check for duplicates and confirm the work is welcome.
+2. Fork the repository on GitHub, clone **your fork**, and add the original as `upstream` if needed.
+3. Create a branch such as `docs/clarify-fetch-errors` from current `main`.
+4. Make one focused change. Run `npm install`, `npm run dev` to preview, then `npm run lint`, `npm run typecheck`, `npm test`, and `npm run build`.
+5. Inspect `git diff` and `git status`, stage only intended files, and commit with a precise message.
+6. Push your branch to your fork. Open a PR targeting the original repository's `main` branch. Link the issue, describe the change, and list your checks.
+7. Respond to review with questions or edits. Push further commits to the same branch; the PR updates automatically.
+8. After approval and passing checks, a maintainer may merge. Verify the result and thank reviewers. Acceptance is a maintainer decision, not a guaranteed outcome.
+
+## Common mistakes
+
+- Opening the PR against your own fork instead of the original repository.
+- Claiming tests passed without running them.
+- Mixing a style rewrite with a small documentation issue.
+- Taking review comments personally instead of asking what behavior or constraint they protect.
+
+## Practice
+
+Draft a PR description for a one-sentence correction: problem, changed file, why the explanation is clearer, checks run, and a screenshot only if the page appearance changed. Compare it with the repository's PR template.
+
+## Checkpoint
+
+Walk through all steps from issue to merge and name the point where you can still revise your branch without opening a new PR.

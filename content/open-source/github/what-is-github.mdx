@@ -1,0 +1,35 @@
+## The problem
+
+Git records history locally. A team also needs a shared place to discuss work, review proposed changes, and publish releases.
+
+## Concept
+
+GitHub hosts Git repositories and adds collaboration tools: issues, pull requests, reviews, automation, and access controls. **Git is the version-control system; GitHub is one platform built around it.** Other hosts exist, and Git itself does not depend on GitHub.
+
+## Example
+
+```text
+Your computer: Git commits and branches
+       ↕ fetch / push
+GitHub: repository, issues, pull requests, Actions
+```
+
+A commit made locally does not appear on GitHub until you push the branch.
+
+## How it works
+
+A GitHub repository stores a remote copy of commits. Its web interface lets collaborators propose changes through pull requests instead of editing the default branch directly. Issues record tasks; Actions can run checks; releases describe versions users can adopt.
+
+## Common mistakes
+
+- Calling every Git operation “a GitHub command.” `git commit` works offline.
+- Assuming a public repository automatically has a useful contribution process.
+- Publishing secrets in a public repository. Deleting them in a later commit does not remove their earlier exposure.
+
+## Practice
+
+Open the [ZERO → HERO repository](https://github.com/CharlieJamesGwapo/zero-to-hero). Find its README, Issues tab, pull requests, license, and latest commits. Which parts are Git history, and which are GitHub collaboration features?
+
+## Checkpoint
+
+Explain how you would keep working if GitHub were temporarily unavailable and which collaboration tasks would have to wait.

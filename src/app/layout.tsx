@@ -24,6 +24,20 @@ export const metadata: Metadata = {
     process.env.NEXT_PUBLIC_SITE_URL ??
       "https://zero-to-hero-omega-one.vercel.app",
   ),
+  openGraph: {
+    title: "ZERO → HERO — Learn. Build. Ship.",
+    description:
+      "A practical, open-source path from web fundamentals to building, shipping, and contributing to software.",
+    images: [
+      {
+        url: "/zero-to-hero-logo.png",
+        width: 1254,
+        height: 1254,
+        alt: "ZERO → HERO logo",
+      },
+    ],
+  },
+  icons: { icon: "/brand-icon.svg" },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

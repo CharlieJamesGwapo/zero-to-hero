@@ -1,11 +1,13 @@
 import Link from "next/link";
 import { SearchDialog } from "./search-dialog";
+import { MobileMenu } from "./mobile-menu";
 
 const navigation = [
   { href: "/curriculum", label: "Curriculum" },
   { href: "/projects", label: "Projects" },
   { href: "/architecture", label: "Architecture" },
   { href: "/workflow", label: "Workflow" },
+  { href: "/open-source", label: "Open Source" },
 ];
 
 export function SiteHeader() {
@@ -16,9 +18,6 @@ export function SiteHeader() {
     <header className="site-header">
       <div className="site-header-inner">
         <Link href="/" className="brand" aria-label="Zero to Hero home">
-          <span className="brand-mark">
-            0<span>→</span>H
-          </span>
           <span className="brand-name">
             ZERO <span>→</span> HERO
           </span>
@@ -32,35 +31,16 @@ export function SiteHeader() {
         </nav>
         <div className="header-actions">
           <SearchDialog />
-          {repository ? (
-            <a
-              className="header-source"
-              href={repository}
-              target="_blank"
-              rel="noreferrer"
-            >
-              GitHub <span aria-hidden="true">↗</span>
-            </a>
-          ) : (
-            <Link className="header-source" href="/contribute">
-              Open source <span aria-hidden="true">↗</span>
-            </Link>
-          )}
+          <a
+            className="header-source"
+            href={repository}
+            target="_blank"
+            rel="noreferrer"
+          >
+            GitHub <span aria-hidden="true">↗</span>
+          </a>
         </div>
-        <details className="mobile-menu">
-          <summary aria-label="Open navigation">
-            Menu <span aria-hidden="true">☰</span>
-          </summary>
-          <nav aria-label="Mobile navigation">
-            {navigation.map((item) => (
-              <Link key={item.href} href={item.href}>
-                {item.label}
-              </Link>
-            ))}
-            <Link href="/glossary">Glossary</Link>
-            <Link href="/contribute">Contribute</Link>
-          </nav>
-        </details>
+        <MobileMenu navigation={navigation} repository={repository} />
       </div>
     </header>
   );
@@ -85,6 +65,7 @@ export function SiteFooter() {
           <Link href="/projects">Projects</Link>
           <Link href="/architecture">Architecture</Link>
           <Link href="/workflow">Workflow</Link>
+          <Link href="/open-source">Open Source</Link>
           <Link href="/glossary">Glossary</Link>
           <Link href="/contribute">Contribute</Link>
         </nav>

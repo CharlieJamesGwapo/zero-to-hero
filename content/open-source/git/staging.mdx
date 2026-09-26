@@ -1,0 +1,35 @@
+## The problem
+
+You fixed a typo and started an unrelated feature. Both changes are in your working tree, but they should not become one hard-to-review commit.
+
+## Concept
+
+The staging area is the proposed content of the next commit. `git add <path>` copies the current file version into that area. It does not create a commit or send anything to GitHub.
+
+## Example
+
+```bash
+git add README.md
+git diff --staged
+git status
+```
+
+Review `git diff --staged` before committing. It shows the exact staged change, which may differ from your latest working-tree edit if you edited the file again after staging.
+
+## How it works
+
+Git keeps a working copy, an index (the staging area), and the last commit. A file may have both staged and unstaged changes. `git add -p` can stage selected hunks when one file contains more than one idea.
+
+## Common mistakes
+
+- Using `git add .` without checking for secrets or generated files.
+- Assuming every later edit is automatically staged.
+- Confusing `git restore --staged README.md` with deleting the README. It only removes it from the proposed commit.
+
+## Practice
+
+Change the README, stage it, then change it again. Compare `git diff` with `git diff --staged`. Unstage it with `git restore --staged README.md` and confirm that the working edit remains.
+
+## Checkpoint
+
+Describe which version a commit would record when a file has both staged and unstaged changes.

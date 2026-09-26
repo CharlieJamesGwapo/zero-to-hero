@@ -31,6 +31,12 @@ export default function ContributePage() {
         >
           View on GitHub ↗
         </a>
+        <Link
+          className="button button-secondary contribute-tutorial"
+          href="/open-source"
+        >
+          Learn the open-source workflow →
+        </Link>
       </div>
       <div className="contribute-grid">
         <section>
@@ -64,16 +70,19 @@ export default function ContributePage() {
           <span className="eyebrow">04 / SHARE YOUR CHANGE</span>
           <h2>Open a clear pull request.</h2>
           <p>
-            Run lint, TypeScript, and build checks. Describe the change and
-            include screenshots for visual work. The repository contains a short
-            pull request template.
+            Run lint, typecheck, tests, and build checks. Describe the change
+            and include screenshots for visual work. The repository contains a
+            short pull request template.
           </p>
         </section>
       </div>
       <div className="section-tail">
-        <p>New to Git and pull requests? Follow the delivery workflow first.</p>
-        <Link className="text-link" href="/workflow">
-          Learn the workflow →
+        <p>
+          New to Git and pull requests? Practice the full path before making a
+          contribution.
+        </p>
+        <Link className="text-link" href="/open-source/first-contribution">
+          Start the first contribution guide →
         </Link>
       </div>
     </div>

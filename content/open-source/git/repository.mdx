@@ -1,0 +1,37 @@
+## The problem
+
+You want a trustworthy history for a project, but a plain folder has no record of what changed between yesterday and today.
+
+## Concept
+
+A Git repository is a project directory whose hidden `.git` folder stores history, references, and configuration. Run `git init` inside a new folder to create one, or `git clone` to copy an existing repository with its history.
+
+## Example
+
+```bash
+mkdir first-site
+cd first-site
+git init
+printf '# First site\n' > README.md
+git status
+```
+
+`git status` should say the README is untracked. No commit exists yet; Git knows the repository but has not recorded that file.
+
+## How it works
+
+The working files remain ordinary files. The `.git` directory holds the database of snapshots and pointers such as `main`. A repository may be local only, or connected to one or more remotes later.
+
+## Common mistakes
+
+- Running `git init` one directory too high and accidentally tracking unrelated files.
+- Adding a generated `node_modules/` directory rather than ignoring it.
+- Editing or deleting `.git` to “fix” a branch problem. Inspect status and history first.
+
+## Practice
+
+Create a throwaway folder, initialize Git, add a README, stage it with `git add README.md`, then commit with `git commit -m "Add project README"`. Use `git log --oneline` to confirm the result. If Git asks for identity, configure your own name and email with `git config --global user.name` and `git config --global user.email`.
+
+## Checkpoint
+
+Point to the working files and the Git history in your folder. Explain why `git init` alone does not create a file snapshot.

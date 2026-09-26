@@ -1,0 +1,37 @@
+## The problem
+
+A repository page exists on GitHub, but you need a local copy to edit and test. Later, a reviewer needs your branch on GitHub.
+
+## Concept
+
+Clone to obtain the repository and its history. Inspect remotes to see where fetch and push go. In a fork workflow, `origin` usually points to your fork; you can name the original project `upstream` so you can fetch its changes.
+
+## Example
+
+```bash
+git clone https://github.com/YOUR-USERNAME/zero-to-hero.git
+cd zero-to-hero
+git remote -v
+git remote add upstream https://github.com/CharlieJamesGwapo/zero-to-hero.git
+git fetch upstream
+```
+
+Replace `YOUR-USERNAME` with your actual GitHub username. Do not run `remote add upstream` if that name already exists.
+
+## How it works
+
+Cloning copies commits, branches reachable from the remote, and the working files at the default branch. Fetch updates remote-tracking references. Pushing publishes your commits to the remote you name; GitHub can then compare your fork branch with the original repository in a pull request.
+
+## Common mistakes
+
+- Copying the example URL without replacing `YOUR-USERNAME`.
+- Pushing to `upstream` when you only have write access to your fork.
+- Running `git pull` without checking which branch and remote it will integrate.
+
+## Practice
+
+Use `git remote -v` in a repository you own. Write down the fetch and push address for each remote. Then run `git branch -vv` and identify what the current branch tracks.
+
+## Checkpoint
+
+Explain the roles of `origin`, `upstream`, `fetch`, and `push` in a fork contribution.

@@ -1,12 +1,14 @@
 import { lessons, levels } from "./curriculum";
 import { projects } from "./projects";
 import { glossary } from "./glossary";
+import { openSourceLessons } from "./open-source";
 
 export type SearchItem = {
   title: string;
   description: string;
   href: string;
-  category: "Lesson" | "Level" | "Project" | "Glossary" | "Guide";
+  category:
+    "Lesson" | "Level" | "Project" | "Glossary" | "Guide" | "Open Source";
 };
 
 export const searchItems: SearchItem[] = [
@@ -15,6 +17,12 @@ export const searchItems: SearchItem[] = [
     description: lesson.summary,
     href: `/learn/${lesson.levelSlug}/${lesson.slug}`,
     category: "Lesson" as const,
+  })),
+  ...openSourceLessons.map((lesson) => ({
+    title: lesson.title,
+    description: `${lesson.category} · ${lesson.summary}`,
+    href: lesson.path,
+    category: "Open Source" as const,
   })),
   ...levels.map((level) => ({
     title: level.title,
@@ -34,6 +42,13 @@ export const searchItems: SearchItem[] = [
     href: `/glossary#${term.slug}`,
     category: "Glossary" as const,
   })),
+  {
+    title: "Open Source Development",
+    description:
+      "Git, GitHub, issues, pull requests, reviews, CI, licenses, and contributing.",
+    href: "/open-source",
+    category: "Guide",
+  },
   {
     title: "Software architecture",
     description: "Four system shapes and the reasons to use them.",

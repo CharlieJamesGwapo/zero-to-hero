@@ -1,0 +1,40 @@
+## The problem
+
+A shared `main` branch represents work other people may deploy. An unfinished feature should not be mixed into that line of history.
+
+## Concept
+
+A branch is a movable name for a commit. Create one for a focused change, work there, then propose its commits for review. Teams commonly protect `main` so changes arrive through pull requests and checks.
+
+## Example
+
+```text
+main ── A ── B
+             ├── feature/auth ── C
+             ├── feature/dashboard ── D
+             └── fix/navigation ── E
+```
+
+```bash
+git switch -c docs/fetch-errors
+# edit, stage, commit
+git push -u origin docs/fetch-errors
+```
+
+## How it works
+
+Creating a branch at commit B creates another pointer to B. Your next commit moves only the checked-out branch. Switching branches changes the working files to match that branch, so commit or intentionally set aside changes before switching.
+
+## Common mistakes
+
+- Making every change directly on `main`, leaving no review boundary.
+- Keeping a branch open for many unrelated changes.
+- Running `git checkout -b` without knowing that `git switch -c` is the clearer branch command in modern Git.
+
+## Practice
+
+Draw your current branch history with `git log --oneline --graph --decorate --all`. Create a branch, change a README, commit it, then switch back to `main`. Observe which branch contains the new commit.
+
+## Checkpoint
+
+Explain why the new commit is visible on your feature branch but not yet part of `main`.

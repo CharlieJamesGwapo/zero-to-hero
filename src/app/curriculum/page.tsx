@@ -28,6 +28,7 @@ export default function CurriculumPage() {
           <span>{levels.length} levels</span>
           <span>{lessons.length} focused lessons</span>
           <span>5 project briefs</span>
+          <span>Open-source track</span>
         </div>
       </div>
       <div className="curriculum-layout">
@@ -94,6 +95,21 @@ export default function CurriculumPage() {
                       </Link>
                     )}
                   </div>
+                  {index === 0 && (
+                    <div className="curriculum-os-bridge">
+                      <span className="eyebrow">
+                        GO DEEPER / GIT & OPEN SOURCE
+                      </span>
+                      <h3>Learn how work becomes a contribution.</h3>
+                      <p>
+                        Start Git here, then return to branches, pull requests,
+                        reviews, CI, and releases as your projects grow.
+                      </p>
+                      <Link href="/open-source">
+                        Explore the Open Source track ↗
+                      </Link>
+                    </div>
+                  )}
                 </div>
               </section>
             ))}

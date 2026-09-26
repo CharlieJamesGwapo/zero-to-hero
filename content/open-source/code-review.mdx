@@ -1,0 +1,33 @@
+## The problem
+
+A change can work on one machine but still be unclear, unsafe, inaccessible, or difficult to maintain. Review catches problems while the context is available.
+
+## Concept
+
+Code review is a focused check of correctness, readability, security, performance, testing, maintainability, and accessibility. It improves the change and shares knowledge. Comments should discuss behavior and tradeoffs, not the person who wrote the code.
+
+## Example
+
+Weak: “This is wrong. Fix it.”
+
+Better: “Could we move this validation into the service layer? Both the API route and background job need the same rule, so one shared check would prevent them from diverging.”
+
+The second comment gives a reason and a specific alternative. It invites a design discussion.
+
+## How it works
+
+Read the PR's intent and test evidence first. Trace the main user flow through changed files, then inspect edge cases and risk boundaries. Mark blocking concerns clearly; distinguish them from preferences. An author can answer with evidence, revise code, or explain a tradeoff. Review is complete when the team can state why the change is safe enough to merge.
+
+## Common mistakes
+
+- Reviewing only formatting while missing incorrect behavior.
+- Saying “works for me” without testing failure paths.
+- Adding unrelated requirements after a contributor has completed the stated issue.
+
+## Practice
+
+Review a small change in a practice branch. Write one comment about a behavior risk and one about clarity. Each should name the affected line, the reason, and a question or concrete next step.
+
+## Checkpoint
+
+Why should a reviewer separate a blocking defect from a style preference? Write an example of each.

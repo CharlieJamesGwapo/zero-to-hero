@@ -1,0 +1,37 @@
+## The problem
+
+Two contributors edit the same lines for different reasons. Git cannot safely decide which final text the product needs.
+
+## Concept
+
+A merge conflict is a pause for a human choice. Conflict markers show the current side and the incoming side. You must understand both, write the intended result, remove every marker, then run the relevant checks.
+
+## Example
+
+```text
+<<<<<<< HEAD
+Show an error when response.ok is false.
+=======
+Show the status code when the request fails.
+>>>>>>> feature/status-message
+```
+
+A useful resolution might combine both: “When `response.ok` is false, show the status code and a helpful error.” The right result depends on the feature requirements, not on which side appears first.
+
+## How it works
+
+Git compares each branch with a common ancestor. If both changed the same region incompatibly, it writes markers into the working file and stops. After editing the result, stage the resolved file and complete the merge or rebase using Git's instructions.
+
+## Common mistakes
+
+- Keeping `<<<<<<<`, `=======`, or `>>>>>>>` in the final file.
+- Choosing “ours” or “theirs” without understanding either change.
+- Resolving text but skipping tests that could reveal a behavior conflict.
+
+## Practice
+
+In a disposable repository, create two branches that edit the same README line. Merge one into the other, read the markers, write a combined sentence, stage it, and complete the merge. Run `git status` until the working tree is clean.
+
+## Checkpoint
+
+Explain what the three marker lines mean and what evidence you need before deciding the final text.

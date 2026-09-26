@@ -9,6 +9,11 @@ export type Project = {
   requirements: string[];
   milestones: string[];
   review: string[];
+  architecture: string;
+  issues: string[];
+  testing: string[];
+  deployment: string;
+  contribution: string;
 };
 
 export const projects: Project[] = [
@@ -40,6 +45,22 @@ export const projects: Project[] = [
       "Are project links and images working?",
       "Does every control work with a keyboard?",
     ],
+    architecture:
+      "Static pages and assets served directly to the browser. Add JavaScript only for an interaction a visitor actually needs.",
+    issues: [
+      "Write a real project summary",
+      "Fix keyboard focus in navigation",
+      "Check image descriptions and broken links",
+    ],
+    testing: [
+      "Use the site with only a keyboard",
+      "Check 320px width and 200% zoom",
+      "Ask another person to find your contact method",
+    ],
+    deployment:
+      "Publish the static site, then verify every link on the live URL.",
+    contribution:
+      "Invite a documentation or accessibility PR; review it with specific, kind feedback.",
   },
   {
     slug: "task-manager",
@@ -70,6 +91,23 @@ export const projects: Project[] = [
       "Does refresh preserve data?",
       "Can a keyboard user finish the main flow?",
     ],
+    architecture:
+      "A React UI owns task state, an adapter reads and writes localStorage, and components receive typed actions through props.",
+    issues: [
+      "Build task creation",
+      "Add filters and empty states",
+      "Handle malformed stored data",
+      "Add an accessible completion announcement",
+    ],
+    testing: [
+      "Test create, edit, complete, and delete",
+      "Reload with saved and corrupted storage",
+      "Verify keyboard operation and empty states",
+    ],
+    deployment:
+      "Deploy a static build and disclose that tasks remain on the current device.",
+    contribution:
+      "Turn each phase into a small issue, then review one change through a PR before adding the next feature.",
   },
   {
     slug: "auth-app",
@@ -100,6 +138,23 @@ export const projects: Project[] = [
       "Are secrets absent from source and client bundles?",
       "Are errors safe and understandable?",
     ],
+    architecture:
+      "Browser → Next.js route → authentication and authorization checks → service → PostgreSQL. The server owns permissions.",
+    issues: [
+      "Define notes table and ownership rule",
+      "Add sign-in flow",
+      "Reject cross-user note access",
+      "Document secret configuration",
+    ],
+    testing: [
+      "Test signed-out access",
+      "Test one user cannot read another user's notes",
+      "Validate malformed input on the server",
+    ],
+    deployment:
+      "Set server secrets in the host, run migrations deliberately, and test private routes after release.",
+    contribution:
+      "Separate auth, validation, and UI issues so reviewers can inspect each security boundary.",
   },
   {
     slug: "commerce",
@@ -131,6 +186,23 @@ export const projects: Project[] = [
       "Do duplicate webhooks create duplicate orders?",
       "Is an unpaid order ever labeled paid?",
     ],
+    architecture:
+      "Browser → application → payment provider; verified webhooks update an order in PostgreSQL. The database stores the order truth.",
+    issues: [
+      "Model products and prices",
+      "Build cart behavior",
+      "Use hosted test checkout",
+      "Verify and deduplicate payment webhooks",
+    ],
+    testing: [
+      "Reject client-edited prices",
+      "Replay a webhook safely",
+      "Exercise failed and refunded payment states",
+    ],
+    deployment:
+      "Use provider test mode until the full order lifecycle is verified; keep webhook secrets on the server.",
+    contribution:
+      "Write issues with testable payment-state outcomes and ask for focused review of price and webhook rules.",
   },
   {
     slug: "saas",
@@ -164,6 +236,24 @@ export const projects: Project[] = [
       "Can one organization access another's data?",
       "What signal reveals a broken core flow?",
     ],
+    architecture:
+      "Draw the browser, application, API, service, database, and any queue, storage, or billing provider that a real flow requires.",
+    issues: [
+      "Define the smallest useful release",
+      "Model organization ownership",
+      "Build one vertical slice",
+      "Add role checks",
+      "Record deployment and rollback steps",
+    ],
+    testing: [
+      "Test organization isolation",
+      "Test billing and job failure paths",
+      "Run the critical user flow after deployment",
+    ],
+    deployment:
+      "Release through CI and a preview, document migrations and rollback, then monitor one signal tied to the core flow.",
+    contribution:
+      "Publish small issues for docs, tests, accessibility, and operations; review external changes against the product rules.",
   },
 ];
 

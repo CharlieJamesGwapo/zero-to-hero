@@ -1,0 +1,35 @@
+## The problem
+
+You want to improve a public project but do not have permission to push branches to its repository.
+
+## Concept
+
+A fork is a GitHub copy of a repository under your account. You can push to your fork and open a pull request back to the original. The original repository is often called **upstream**; your fork is commonly `origin` in your local clone.
+
+## Example
+
+```text
+ZERO → HERO (upstream) → your GitHub fork (origin)
+                                 ↓ clone
+                            local branch
+                                 ↓ push
+                         pull request to upstream
+```
+
+## How it works
+
+A fork starts from the original project's history, then diverges as you make commits. GitHub compares your fork branch with the target branch when you open a pull request. You can fetch new commits from upstream to keep your fork current.
+
+## Common mistakes
+
+- Expecting a fork to automatically stay synchronized with upstream.
+- Cloning the original, then wondering why you cannot push to it.
+- Treating a fork as a license to ignore the original project's contribution rules.
+
+## Practice
+
+Draw the three locations involved in a fork workflow: upstream on GitHub, your fork on GitHub, and your local clone. Label where `fetch`, `push`, and a pull request move information.
+
+## Checkpoint
+
+Why is a fork useful even though a local branch can also hold your change?

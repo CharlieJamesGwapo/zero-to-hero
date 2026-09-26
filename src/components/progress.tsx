@@ -1,6 +1,8 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
+import Link from "next/link";
+import { openSourceChecklist, openSourceLessons } from "@/lib/open-source";
 import {
   PROGRESS_EVENT,
   PROGRESS_KEY,
@@ -25,12 +27,15 @@ function getSnapshot() {
   }
 }
 
-function useProgress() {
+export function useProgress() {
   const snapshot = useSyncExternalStore(subscribe, getSnapshot, () => "");
   return parseProgress(snapshot);
 }
 
-function toggle(kind: "completed" | "bookmarks" | "projects", id: string) {
+function toggle(
+  kind: "completed" | "bookmarks" | "projects" | "openSourceChecks",
+  id: string,
+) {
   try {
     const next = updateProgress(
       parseProgress(localStorage.getItem(PROGRESS_KEY)),
@@ -46,7 +51,10 @@ function toggle(kind: "completed" | "bookmarks" | "projects", id: string) {
 
 export function ProgressSummary({ total }: { total: number }) {
   const progress = useProgress();
-  const count = Math.min(progress.completed.length, total);
+  const count = Math.min(
+    progress.completed.filter((id) => !id.startsWith("open-source/")).length,
+    total,
+  );
   const percent = total ? Math.round((count / total) * 100) : 0;
   return (
     <div
@@ -118,5 +126,71 @@ export function ProjectAction({ id }: { id: string }) {
     >
       {complete ? "✓ Project complete" : "Mark project complete"}
     </button>
+  );
+}
+
+export function OpenSourceProgress() {
+  const progress = useProgress();
+  const count = openSourceLessons.filter((item) =>
+    progress.completed.includes(item.path.slice(1)),
+  ).length;
+  const percent = Math.round((count / openSourceLessons.length) * 100);
+  return (
+    <div
+      className="progress-summary"
+      aria-label={`${count} of ${openSourceLessons.length} open-source lessons complete`}
+    >
+      <div className="progress-summary-top">
+        <span>Open-source track</span>
+        <strong>
+          {count} / {openSourceLessons.length}
+        </strong>
+      </div>
+      <div className="progress-track">
+        <span style={{ width: `${percent}%` }} />
+      </div>
+      <p>Progress stays in this browser.</p>
+    </div>
+  );
+}
+
+export function OpenSourceChecklist() {
+  const progress = useProgress();
+  return (
+    <section className="os-checklist" aria-labelledby="os-checklist-title">
+      <div className="os-checklist-head">
+        <div>
+          <span className="eyebrow">A PRACTICAL CHECK</span>
+          <h2 id="os-checklist-title">Can you do it?</h2>
+        </div>
+        <strong>
+          {progress.openSourceChecks.length} / {openSourceChecklist.length}
+        </strong>
+      </div>
+      <ol>
+        {openSourceChecklist.map((item) => (
+          <li key={item.id}>
+            <button
+              type="button"
+              aria-pressed={progress.openSourceChecks.includes(item.id)}
+              onClick={() => toggle("openSourceChecks", item.id)}
+              aria-label={`${progress.openSourceChecks.includes(item.id) ? "Uncheck" : "Check"}: ${item.label}`}
+            >
+              <span aria-hidden="true">
+                {progress.openSourceChecks.includes(item.id) ? "✓" : ""}
+              </span>
+            </button>
+            <span>{item.label}</span>
+            <Link href={item.path} aria-label={`Learn: ${item.label}`}>
+              Read lesson ↗
+            </Link>
+          </li>
+        ))}
+      </ol>
+      <p>
+        Check each item when you can demonstrate it. These notes are saved only
+        on this device.
+      </p>
+    </section>
   );
 }

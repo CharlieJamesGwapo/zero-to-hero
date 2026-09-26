@@ -1,0 +1,34 @@
+## The problem
+
+You change a file and immediately want to know whether that change is already part of project history. It is not: an edit and a commit are different states.
+
+## Concept
+
+The working tree is the set of files you can edit. Git compares it with the most recent commit and the staging area. `git status` reports untracked, modified, staged, and clean files.
+
+## Example
+
+```bash
+git status
+git diff
+```
+
+After changing a tracked README, `git diff` shows the unstaged lines. `git status` says it is modified. Neither command changes a file.
+
+## How it works
+
+A tracked file already exists in history. An untracked file does not. Git can see an edit but will not include it in a commit until you stage it. That separation lets you experiment and then select a coherent change.
+
+## Common mistakes
+
+- Assuming `git status` means all changes are backed up.
+- Ignoring untracked files when checking what a commit contains.
+- Running `git restore .` without understanding that it discards unstaged tracked edits.
+
+## Practice
+
+In the repository from the previous lesson, edit the README and create `notes.txt`. Compare the output of `git status`, `git diff`, and `git diff --stat`. Record which file is tracked and which is untracked.
+
+## Checkpoint
+
+What would Git preserve if your computer failed before you staged or committed the two files? Explain why.

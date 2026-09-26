@@ -2,16 +2,23 @@ export type Progress = {
   completed: string[];
   bookmarks: string[];
   projects: string[];
+  openSourceChecks: string[];
 };
 export const PROGRESS_KEY = "zero-to-hero-progress-v1";
 export const PROGRESS_EVENT = "zero-to-hero-progress-update";
 
 export function parseProgress(value: string | null): Progress {
-  if (!value) return { completed: [], bookmarks: [], projects: [] };
+  if (!value)
+    return { completed: [], bookmarks: [], projects: [], openSourceChecks: [] };
   try {
     const data: unknown = JSON.parse(value);
     if (!data || typeof data !== "object")
-      return { completed: [], bookmarks: [], projects: [] };
+      return {
+        completed: [],
+        bookmarks: [],
+        projects: [],
+        openSourceChecks: [],
+      };
     const record = data as Record<string, unknown>;
     const strings = (input: unknown) =>
       Array.isArray(input)
@@ -25,9 +32,10 @@ export function parseProgress(value: string | null): Progress {
       completed: strings(record.completed),
       bookmarks: strings(record.bookmarks),
       projects: strings(record.projects),
+      openSourceChecks: strings(record.openSourceChecks),
     };
   } catch {
-    return { completed: [], bookmarks: [], projects: [] };
+    return { completed: [], bookmarks: [], projects: [], openSourceChecks: [] };
   }
 }
 

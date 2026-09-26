@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { lessons } from "@/lib/curriculum";
 import { projects } from "@/lib/projects";
+import { openSourceLessons } from "@/lib/open-source";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const origin =
@@ -14,6 +15,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/workflow",
     "/glossary",
     "/contribute",
+    "/open-source",
+    ...openSourceLessons.map((lesson) => lesson.path),
     ...lessons.map((lesson) => `/learn/${lesson.levelSlug}/${lesson.slug}`),
     ...projects.map((project) => `/projects/${project.slug}`),
   ];

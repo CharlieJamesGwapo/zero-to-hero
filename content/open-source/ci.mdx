@@ -1,0 +1,35 @@
+## The problem
+
+A change passes on one laptop but fails to compile or breaks another page. Reviewers need repeatable evidence on every proposed revision.
+
+## Concept
+
+Continuous integration (CI) runs automated checks when code changes, usually on a pull request. GitHub Actions is one way to run CI; the principle is independent of the provider. Checks should be fast enough to run routinely and meaningful enough to catch real failures.
+
+## Example
+
+```text
+Pull request → GitHub Actions → lint → typecheck → tests → build
+                                      ↓
+                              review and merge
+```
+
+ZERO → HERO runs these checks for pushes and pull requests. A green check means those checks passed; it does not prove that every user flow is correct.
+
+## How it works
+
+A workflow file in `.github/workflows/` selects events and jobs. The runner checks out the proposed revision, installs locked dependencies, and runs the same scripts contributors run locally. A failing step blocks or informs review according to repository settings. Logs help identify the failed command.
+
+## Common mistakes
+
+- Treating CI as a substitute for reviewing behavior and content.
+- Adding a test that only mirrors the implementation without checking user-visible behavior.
+- Assuming a preview deployment uses the same secrets or data as production.
+
+## Practice
+
+Open this repository's CI workflow and identify its trigger, Node version, install command, and four checks. Intentionally create a TypeScript error in a disposable branch and observe which local command catches it first.
+
+## Checkpoint
+
+What can a passing build prove, and what can it not prove about a lesson's accuracy?

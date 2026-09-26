@@ -1,0 +1,35 @@
+## The problem
+
+Two branches contain useful work. The team needs one line of history that includes both changes without losing either.
+
+## Concept
+
+A merge combines branch histories. If the histories do not conflict, Git can often do it automatically. A pull request may use a merge commit, squash merge, or rebase workflow according to the repository's rules; the purpose is to integrate reviewed changes.
+
+## Example
+
+```bash
+git switch main
+git merge docs/fetch-errors
+git log --oneline --graph --decorate -5
+```
+
+Try this only in a practice repository you control. On a shared repository, follow its pull request and branch-protection process.
+
+## How it works
+
+Git finds a common ancestor, compares both branches to it, and combines compatible edits. If one branch is simply ahead, Git may fast-forward the pointer. If both edited the same region differently, the merge pauses for a human decision.
+
+## Common mistakes
+
+- Merging without reading the resulting diff.
+- Assuming the branch disappears automatically after merge.
+- Treating a successful automatic merge as proof the feature still works. Run checks afterward.
+
+## Practice
+
+Create two branches from the same commit. Edit different files, commit each, then merge both into a practice `main`. Inspect the graph and final files.
+
+## Checkpoint
+
+Describe the common ancestor and why Git needs it to combine changes.

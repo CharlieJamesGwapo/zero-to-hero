@@ -1,0 +1,34 @@
+## The problem
+
+A folder changes while you work. A file gets overwritten, an experiment fails, or two people edit the same code. Copies named `final-v2-really-final` do not explain what changed or why.
+
+## Concept
+
+Git is version control. It records snapshots of selected files as **commits**, connects those commits into a history, and lets you move between lines of work called branches. Git runs on your computer; GitHub is a separate service that can host a copy and support collaboration.
+
+## Example
+
+```text
+Working tree → staging area → commit → branch → remote → GitHub
+     edit       choose files     record    organize   sync     collaborate
+```
+
+A repository can be entirely local. You can commit without an internet connection.
+
+## How it works
+
+Each commit identifies its parent and the project state it records. Git can compare states, find where a change began, and combine compatible histories. It does not automatically save every edit: you choose what to stage and commit.
+
+## Common mistakes
+
+- Treating Git and GitHub as synonyms. Losing access to GitHub does not erase a local repository.
+- Treating a commit as a backup for uncommitted work. Git only records what you commit.
+- Adding secrets, then assuming a later deletion removes them from history.
+
+## Practice
+
+Open an existing project and run `git status` and `git log --oneline -3`. Identify the current branch, any uncommitted changes, and the latest recorded change. If you have no repository yet, use the next lesson to create one.
+
+## Checkpoint
+
+Explain the difference between an edited file, a staged file, a commit, a branch, a remote, and GitHub without using the word “save” for all six.

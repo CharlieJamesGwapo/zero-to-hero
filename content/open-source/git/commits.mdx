@@ -1,0 +1,36 @@
+## The problem
+
+A reviewer can see changed lines, but needs to know which changes belong together and why they were made.
+
+## Concept
+
+A commit records the staged project state, an author, a message, and a link to its parent commit. Good commits contain one coherent change. The message should describe the result, such as `Explain HTTP error handling in Fetch lesson`.
+
+## Example
+
+```bash
+git status
+git diff --staged
+git commit -m "Explain HTTP error handling"
+git log --oneline -3
+```
+
+The log now shows a new commit. A commit is local until you push it to a remote.
+
+## How it works
+
+Git identifies a commit by a hash. Branch names point to commits; making a new commit moves the current branch pointer forward. History becomes a trace of decisions that other contributors can inspect.
+
+## Common mistakes
+
+- Writing `updates` or `fix stuff`, which gives no useful context.
+- Including unrelated formatting, feature, and documentation changes in one commit.
+- Committing a secret. Removing it in a later commit does not erase the earlier copy.
+
+## Practice
+
+Make two small, unrelated improvements in a practice repository. Stage and commit them separately. Run `git show --stat HEAD` to inspect the latest one, then `git log --oneline` to see both in order.
+
+## Checkpoint
+
+Explain why a branch can be thought of as a movable name for a commit, and why a commit message is part of maintainability.

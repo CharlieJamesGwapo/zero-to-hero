@@ -76,6 +76,46 @@ export default async function ProjectPage({ params }: Props) {
               ))}
             </ul>
           </section>
+          <section className="detail-section project-delivery">
+            <span className="eyebrow">05 / ENGINEERING PLAN</span>
+            <h2>Make the work reviewable.</h2>
+            <div className="project-delivery-grid">
+              <div>
+                <h3>Architecture</h3>
+                <p>{project.architecture}</p>
+              </div>
+              <div>
+                <h3>Possible issues</h3>
+                <ul>
+                  {project.issues.map((issue) => (
+                    <li key={issue}>{issue}</li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <h3>Testing</h3>
+                <ul>
+                  {project.testing.map((check) => (
+                    <li key={check}>{check}</li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <h3>Deployment</h3>
+                <p>{project.deployment}</p>
+              </div>
+            </div>
+            <div className="project-contribution">
+              <h3>Open-source practice</h3>
+              <p>{project.contribution}</p>
+              <Link
+                href="/open-source/first-pull-request"
+                className="text-link"
+              >
+                Learn the pull request workflow →
+              </Link>
+            </div>
+          </section>
           {slug === "saas" && <CapstoneTemplates />}
           {next && (
             <Link className="next-project" href={`/projects/${next.slug}`}>

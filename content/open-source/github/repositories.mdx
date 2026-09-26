@@ -1,0 +1,42 @@
+## The problem
+
+A repository can look like a wall of folders to a new contributor. You need to find the app, the instructions, and the project rules before changing a file.
+
+## Concept
+
+Most repositories separate source, public assets, tests, and documentation. Files at the root tell you how to install, run, contribute, and reuse the code. Structure varies by project; read the README before assuming a folder means the same thing everywhere.
+
+## Example
+
+```text
+my-project/
+├── src/              application code
+├── public/           static assets
+├── tests/            automated checks
+├── docs/             design and operations notes
+├── package.json      scripts and dependencies
+├── README.md         overview and setup
+├── CONTRIBUTING.md   contribution process
+├── LICENSE           reuse terms
+└── .gitignore        files Git should not track
+```
+
+ZERO → HERO uses `content/` for MDX lessons, `src/app/` for routes, `src/lib/` for content indexes, and `src/components/` for shared UI.
+
+## How it works
+
+The README is the entry point. `package.json` defines commands such as `npm run dev`, `npm run lint`, and `npm run build`. `CONTRIBUTING.md` describes what a change should include. `.gitignore` prevents common generated or private files from being accidentally staged; it is not a security mechanism for anything already committed.
+
+## Common mistakes
+
+- Editing generated output in `.next/` instead of the source file.
+- Assuming `public/` content is private because it lives in the repository.
+- Adding a lesson MDX file without updating the curriculum index and lesson import map.
+
+## Practice
+
+Browse the [real ZERO → HERO source](https://github.com/CharlieJamesGwapo/zero-to-hero). Find the HTML lesson, the route that renders it, the curriculum metadata, and the contribution guide. Trace how the lesson appears in navigation.
+
+## Checkpoint
+
+Name the first three files you would read before contributing to an unfamiliar repository and explain why.

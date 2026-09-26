@@ -1,46 +1,52 @@
 # Contributing to ZERO → HERO
 
-Clear explanations and small corrections are valuable. You do not need to be an expert to report a confusing step.
+A useful contribution can be a clearer sentence, a tested code example, a repaired link, an accessibility fix, or a focused feature. You do not need to be an expert.
 
 ## Before you edit
 
-1. Search existing issues and pull requests.
-2. For a small correction, open a pull request directly. For a new level or large architecture change, open an issue first and describe the learner problem.
-3. Keep one change focused enough to review.
+1. Search [issues](https://github.com/CharlieJamesGwapo/zero-to-hero/issues) and pull requests for the same problem.
+2. For a small correction, open a pull request directly. For a new lesson group or large architecture change, open an issue first and describe the learner problem.
+3. Keep the proposal small enough to review and verify.
 
 ## Local setup
 
 ```bash
-npm install
+git clone https://github.com/YOUR-USERNAME/zero-to-hero.git
+cd zero-to-hero
+npm ci
 npm run dev
 ```
+
+Replace `YOUR-USERNAME` with your GitHub username after forking. Open `http://localhost:3000` and navigate to the page you plan to change. No secrets or external services are required for the site itself.
 
 Before opening a pull request, run:
 
 ```bash
 npm run lint
-npx tsc --noEmit
+npm run typecheck
+npm test
 npm run build
+npm run format:check
 ```
 
-## Add or improve a lesson
+## Improve a lesson
 
-1. Edit or create `content/<level>/<lesson>.mdx`.
-2. Use the focused sequence: problem, concept, example, how it works, common mistakes, practice, build, checkpoint.
-3. For a new lesson, add its metadata and order to `src/lib/curriculum.ts` and import it in `src/lib/lesson-content.tsx`.
-4. Verify code examples, lesson links, headings, and the adjacent lesson navigation.
-5. Prefer a concrete example over general advice. Explain why the concept exists and where it appears in a real project.
+- Main web-development lessons live in `content/<level>/<lesson>.mdx`, with metadata in `src/lib/curriculum.ts` and a static import in `src/lib/lesson-content.tsx`.
+- Open Source lessons live in `content/open-source/`, with route and summary metadata in `src/lib/open-source.ts` and imports in `src/lib/open-source-content.tsx`.
+- Keep the explanation focused: problem, concept, example, how it works, common mistakes, practice, and checkpoint. The Open Source reader uses those headings for its contents navigation.
+- Verify commands in a disposable repository. Do not show destructive Git commands without explaining their effect. Link real GitHub pages instead of inventing issue numbers or statistics.
+- A new Open Source route must also be included in the stage or workflow map when it belongs there. Run the content tests to catch missing files and links.
 
 ## Improve a project or guide
 
-Project briefs live in `src/lib/projects.ts`. Requirements should describe behavior a user or reviewer can observe. Include failure cases and a check that proves a milestone works. Architecture and workflow pages live under `src/app/`; every diagram node should link to a useful explanation.
+Project briefs live in `src/lib/projects.ts`. State behavior a user can observe, a failure case, and how to verify it. Architecture and workflow pages live under `src/app/`; every diagram node should lead to a relevant lesson.
 
 ## Improve the interface
 
-Use semantic HTML, visible keyboard focus, readable contrast, and a narrow-screen layout. Check with a keyboard and at least one mobile viewport. Avoid adding a dependency when the platform or a small component will do.
+Use semantic HTML, keyboard navigation, visible focus, readable contrast, and a narrow-screen layout. Check the homepage, curriculum, lesson reader, search, and mobile navigation when a shared style changes. Avoid adding a dependency when a small component or browser feature solves the problem.
 
 ## Pull requests
 
-Describe what changed and why, link the issue if there is one, list checks run, and include screenshots for visual changes. Do not include secrets, personal data, or copyrighted third-party course material.
+Describe what changed, why it helps learners, and what you checked. Link an issue if there is one. Include before and after screenshots for visual changes. Do not include secrets, personal data, or third-party course material you cannot license.
 
-By participating, you agree to the [Code of Conduct](CODE_OF_CONDUCT.md). Contributions are licensed under the repository's MIT license.
+Security concerns should use the private path in [SECURITY.md](SECURITY.md), not a public issue. By participating, you agree to the [Code of Conduct](CODE_OF_CONDUCT.md). Contributions are licensed under the repository's MIT license.

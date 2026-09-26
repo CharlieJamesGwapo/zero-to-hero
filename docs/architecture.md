@@ -6,6 +6,8 @@ Zero → Hero is a content-first Next.js application. The App Router renders pub
 
 - `src/lib/curriculum.ts` is the canonical level and lesson index.
 - `content/<level>/<lesson>.mdx` contains editorial lesson content, separated from UI.
+- `src/lib/open-source.ts` is the Open Source lesson, stage, workflow, and checklist index. `content/open-source/` contains its MDX lessons.
+- `src/components/lesson-reader.tsx` renders both curriculum and Open Source lessons through one reader layout.
 - `src/lib/projects.ts` holds project briefs and acceptance criteria.
 - `src/lib/glossary.ts` holds short definitions and deeper lesson links.
 - Routes derive from those indexes so navigation, search, and static params share one source of truth.
@@ -22,14 +24,16 @@ Zero → Hero is a content-first Next.js application. The App Router renders pub
 | `/workflow`                        | Product and Git delivery workflow                            |
 | `/glossary`                        | Searchable term index                                        |
 | `/contribute`                      | Open-source participation guide                              |
+| `/open-source`                     | Open Source curriculum, exercise, workflow, and checklist    |
+| `/open-source/[...slug]`           | Git, GitHub, collaboration, reference, and practice lessons  |
 
 ## Client state
 
-`zero-to-hero-progress-v1` in localStorage stores arrays of completed and bookmarked lesson IDs and completed project slugs. The UI works when storage is unavailable; progress stays on the current device and is not an account or cloud backup. Local state is parsed defensively and updates subscribers in the same tab.
+`zero-to-hero-progress-v1` in localStorage stores arrays of completed and bookmarked lesson IDs, completed project slugs, and Open Source checklist IDs. Existing progress records are parsed with empty defaults for new fields. The UI works when storage is unavailable; progress stays on the current device and is not an account or cloud backup. Local state is parsed defensively and updates subscribers in the same tab.
 
 ## Visual system
 
-Editorial developer documentation: off-white background, ink text, restrained green actions, muted borders, Geist Sans and Mono. Components use semantic HTML, visible focus, short motion with reduced-motion support, and content-first mobile layouts.
+Editorial developer documentation: off-white background, ink text, restrained green actions, a blue secondary accent for Open Source, muted borders, Geist Sans and Mono. The supplied ZERO → HERO logo appears on dark surfaces and in social metadata; the navigation uses a compact wordmark. Components use semantic HTML, visible focus, short motion with reduced-motion support, and content-first mobile layouts.
 
 ## Deployment
 

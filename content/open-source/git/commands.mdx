@@ -1,0 +1,73 @@
+## The problem
+
+A pasted command may appear to work without telling you which Git state it changed. Use a command only after you can name its input and intended result.
+
+## Concept
+
+Read `git status` before changing state, `git diff` before committing, and `git log` when the question concerns history. The commands below are tools for moving between working tree, stage, commit, branch, and remote.
+
+## Example
+
+```text
+Edit → git diff → git add → git diff --staged → git commit → git push
+```
+
+This sequence exposes what changed before recording and sharing it. You can stop after any step to inspect the repository.
+
+## How it works
+
+### Create or copy
+
+**`git init`** — Creates Git history in the current folder. Use for a new local project: `git init`. Common mistake: running it in a parent folder containing unrelated work.
+
+**`git clone`** — Copies an existing repository and its history. Use when joining a project: `git clone https://github.com/CharlieJamesGwapo/zero-to-hero.git`. Common mistake: cloning a fork but assuming `origin` points to the upstream project.
+
+### Inspect
+
+**`git status`** — Reports branch and file states. Use before staging, switching, or pushing: `git status`. Common mistake: assuming a clean status proves a deployed site works.
+
+**`git diff`** — Shows unstaged changes. Use to review edits: `git diff -- README.md`. Common mistake: forgetting that staged changes require `git diff --staged`.
+
+**`git log`** — Reads commit history. Use to understand recent decisions: `git log --oneline --graph -8`. Common mistake: treating the latest local commit as the latest remote release.
+
+### Record work
+
+**`git add`** — Copies selected changes into the staging area. Use after reviewing a file: `git add README.md`. Common mistake: running `git add .` without checking for secrets or generated files.
+
+**`git commit`** — Records staged content as a new commit. Use for one coherent change: `git commit -m "Clarify Git staging example"`. Common mistake: vague messages or committing unrelated work together.
+
+### Organize branches
+
+**`git branch`** — Lists, creates, or deletes branch names. Use to inspect: `git branch -vv`. Common mistake: believing this switches branches; it does not.
+
+**`git switch`** — Changes the checked-out branch. Use `git switch -c docs/staging` to create and enter a new branch. Common mistake: switching with uncommitted work whose destination is unclear.
+
+**`git checkout`** — Older multi-purpose command that can switch branches or restore paths. You may see `git checkout main` in existing guides. Prefer `git switch` for branches and `git restore` for files. Common mistake: using a checkout form that overwrites work without reading its effect.
+
+**`git merge`** — Integrates another branch into the current branch. Use in a practice repository or per the project's workflow: `git merge docs/staging`. Common mistake: merging into the wrong checked-out branch.
+
+### Synchronize
+
+**`git fetch`** — Downloads remote references and objects without changing your working files. Use to inspect upstream changes: `git fetch origin`. Common mistake: expecting your local `main` to move automatically.
+
+**`git pull`** — Fetches, then integrates the tracked remote branch. Use after checking status and the team's merge/rebase policy: `git pull origin main`. Common mistake: pulling into an unfinished working tree and then losing track of what changed.
+
+**`git push`** — Sends local commits to a remote branch. Use after review: `git push -u origin docs/staging`. Common mistake: force-pushing over another contributor's work to bypass a rejection.
+
+### Recover deliberately
+
+**`git restore`** — Copies content from the index or a commit into your working files, or removes content from the stage with `--staged`. Use `git restore --staged README.md` to unstage without deleting the edit. Common mistake: `git restore README.md` discards unstaged tracked edits.
+
+**`git stash`** — Temporarily records working changes outside your current branch. Use to set aside a short-lived interruption: `git stash push -m "WIP notes"`, then inspect with `git stash list`. Common mistake: treating a stash as a durable, shared backup or forgetting to reapply it.
+
+## Common mistakes
+
+A command reference is not a script. Check your current directory, branch, status, and destination before commands that change state. In particular, never copy `restore`, `reset`, `clean`, or force-push commands from an error message without understanding what they would discard.
+
+## Practice
+
+In a disposable repository, edit a README and run `status`, `diff`, `add`, `diff --staged`, `commit`, and `log` in that order. For each command, write down what state it reads or changes. Then create a branch with `switch -c` and compare `branch -vv` with `status`.
+
+## Checkpoint
+
+Choose one command for each task: inspect unstaged lines, inspect the proposed commit, fetch remote history without integrating it, unstage a file without deleting the edit, and publish a new branch.

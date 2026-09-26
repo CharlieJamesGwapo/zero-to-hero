@@ -1,0 +1,29 @@
+## The problem
+
+A security flaw needs attention, but posting exploit details in a public issue can expose users before maintainers can respond.
+
+## Concept
+
+`SECURITY.md` tells people which versions are supported and where to report vulnerabilities privately. Responsible disclosure gives maintainers enough detail to reproduce and fix a problem without broadcasting a working exploit prematurely.
+
+## Example
+
+For ZERO → HERO, use the private reporting path described in [SECURITY.md](https://github.com/CharlieJamesGwapo/zero-to-hero/blob/main/SECURITY.md). A useful report includes the affected route, conditions, impact, a minimal reproduction, and a safe way to contact you. Do not include another person's private data.
+
+## How it works
+
+Keep API keys and credentials in environment variables or a secret manager, not in Git. Review dependencies and update vulnerable packages deliberately. If a secret was committed, remove it from use and rotate it; deleting the line from the latest commit is not enough because earlier history may still contain it.
+
+## Common mistakes
+
+- Filing a public issue with steps that enable exploitation.
+- Publishing production tokens in screenshots or CI logs.
+- Assuming `.gitignore` protects a secret that has already been committed.
+
+## Practice
+
+Inspect a practice repository's `git status` and `.gitignore`. Confirm a local `.env` file is ignored before staging. Read the project security policy and identify the private reporting destination.
+
+## Checkpoint
+
+If a production API key appears in a pushed commit, what must happen besides editing the file? Explain why.

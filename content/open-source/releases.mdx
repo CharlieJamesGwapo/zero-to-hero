@@ -1,0 +1,35 @@
+## The problem
+
+A merged change exists in the repository, but users need to know which version contains it and whether they should update.
+
+## Concept
+
+A release packages a known revision with a version and notes. A Git tag names a commit; a changelog records notable changes over time. Semantic versioning commonly uses `MAJOR.MINOR.PATCH`, but each project should document its own release convention.
+
+## Example
+
+```text
+1.4.2  PATCH: compatible bug fix
+1.5.0  MINOR: compatible new feature
+2.0.0  MAJOR: change requiring migration
+```
+
+A deployment can happen without a numbered release, and a tagged release can exist without a hosted website deployment. Keep the distinction clear.
+
+## How it works
+
+Maintainers decide the release boundary, verify the revision, write notes that describe user-visible changes, tag the commit if that is the project's practice, and publish or deploy the artifact. They then monitor errors and document a rollback or fix when needed.
+
+## Common mistakes
+
+- Assuming every Git tag follows semantic versioning.
+- Writing release notes that list internal commits but hide what changed for users.
+- Publishing a version without knowing how to restore the previous working release.
+
+## Practice
+
+Draft release notes for a fictional `1.1.0`: one new feature, one fixed bug, and one known limitation. Link each item to a change you could verify.
+
+## Checkpoint
+
+Explain how a commit, a tag, a release note, and a deployment relate without treating them as the same event.

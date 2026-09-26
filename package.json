@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "format:check": "prettier --check 'src/**/*.{ts,tsx,css}' 'content/**/*.mdx' 'mdx-components.tsx' 'next.config.ts' 'README.md' 'CONTRIBUTING.md' 'CODE_OF_CONDUCT.md' 'docs/**/*.md' '.github/**/*.{md,yml}'"
+    "typecheck": "tsc --noEmit",
+    "test": "node --import tsx --test tests/*.test.ts",
+    "format:check": "prettier --check 'src/**/*.{ts,tsx,css}' 'content/**/*.mdx' 'tests/**/*.ts' 'mdx-components.tsx' 'next.config.ts' 'README.md' 'CONTRIBUTING.md' 'CODE_OF_CONDUCT.md' 'docs/**/*.md' '.github/**/*.{md,yml}'"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.1",
@@ -27,6 +29,7 @@
     "eslint-config-next": "16.3.6",
     "prettier": "^3.9.9",
     "tailwindcss": "^4",
+    "tsx": "^4.23.15",
     "typescript": "^5"
   }
 }

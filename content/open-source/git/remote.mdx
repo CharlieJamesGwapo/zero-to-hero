@@ -1,0 +1,36 @@
+## The problem
+
+Your commits exist on your computer. A reviewer needs access to them, and you need a way to receive other people's work.
+
+## Concept
+
+A **remote** is a named address for another Git repository. `origin` is a common name, not a special server. `git fetch` downloads remote history without changing your working files; `git pull` fetches and then integrates it; `git push` publishes local commits to a remote branch.
+
+## Example
+
+```bash
+git remote -v
+git fetch origin
+git status
+git push -u origin docs/fetch-errors
+```
+
+After `-u`, your local branch tracks the remote branch so later `git push` can infer its destination.
+
+## How it works
+
+Git stores remote-tracking names such as `origin/main`. Fetch updates those names. Pull may merge or rebase depending on your configuration; inspect divergence before choosing. A push can be rejected when the remote has commits you have not integrated.
+
+## Common mistakes
+
+- Running `git pull` while you have uncommitted edits you have not checked.
+- Force-pushing a shared branch to make a rejection disappear.
+- Assuming `origin` always points to the original project after a fork; it usually points to your fork.
+
+## Practice
+
+In a cloned practice repository, run `git remote -v` and `git branch -vv`. Identify where `origin` points and whether the current branch tracks a remote branch. Fetch, then inspect status before pulling.
+
+## Checkpoint
+
+Explain the difference between fetch, pull, and push, and name the direction data moves in each case.
