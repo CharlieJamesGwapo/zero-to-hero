@@ -15,8 +15,8 @@ export default function Home() {
         <div className="shell hero-grid">
           <div className="hero-copy">
             <div className="eyebrow eyebrow-rule">
-              <span className="status-dot" /> OPEN-SOURCE DEVELOPMENT PATH{" "}
-              <span>· 2026</span>
+              <span className="status-dot" /> ZERO → HERO DEV · OPEN-SOURCE
+              LEARNING
             </div>
             <h1>
               <span className="hero-line">Build software</span>
@@ -82,7 +82,7 @@ export default function Home() {
       >
         <div className="section-heading">
           <div>
-            <span className="eyebrow">01 — TRY YOUR FIRST PROGRAM</span>
+            <span className="eyebrow">TRY YOUR FIRST PROGRAM</span>
             <h2 id="quickstart-title">Your first program can run here.</h2>
           </div>
           <p>
@@ -96,7 +96,7 @@ export default function Home() {
         <div className="shell">
           <div className="section-heading">
             <div>
-              <span className="eyebrow">02 — LEARN FOR FREE</span>
+              <span className="eyebrow">LEARNING PATHS</span>
               <h2 id="paths-title">Learn without a paywall.</h2>
             </div>
             <p>
@@ -123,7 +123,7 @@ export default function Home() {
       <section className="section shell" aria-labelledby="path-title">
         <div className="section-heading">
           <div>
-            <span className="eyebrow">01 — THE PATH</span>
+            <span className="eyebrow">WEB DEVELOPMENT</span>
             <h2 id="path-title">A curriculum with a reason for every step.</h2>
           </div>
           <p>
@@ -163,7 +163,7 @@ export default function Home() {
       <section className="section shell" aria-labelledby="quests-title">
         <div className="section-heading">
           <div>
-            <span className="eyebrow">04 — QUESTS</span>
+            <span className="eyebrow">QUESTS</span>
             <h2 id="quests-title">Learn by solving problems.</h2>
           </div>
           <p>
@@ -199,7 +199,7 @@ export default function Home() {
         <div className="shell">
           <div className="section-heading">
             <div>
-              <span className="eyebrow">05 — PRACTICE</span>
+              <span className="eyebrow">PRACTICE</span>
               <h2 id="exercises-title">Make the concepts stick.</h2>
             </div>
             <p>
@@ -233,7 +233,7 @@ export default function Home() {
         <div className="shell">
           <div className="section-heading">
             <div>
-              <span className="eyebrow">02 — BUILD</span>
+              <span className="eyebrow">REAL PROJECTS</span>
               <h2>Projects make the concepts real.</h2>
             </div>
             <p>
@@ -272,7 +272,7 @@ export default function Home() {
 
       <section className="section shell home-contribute">
         <div>
-          <span className="eyebrow">03 — CONTRIBUTE</span>
+          <span className="eyebrow">CONTRIBUTE</span>
           <h2>Learn software by working on software.</h2>
           <p>
             You don’t need to wait until you’re an expert. Learn Git, open an
@@ -311,7 +311,7 @@ export default function Home() {
       <section className="section shell">
         <div className="split-feature">
           <div>
-            <span className="eyebrow">04 — UNDERSTAND THE SYSTEM</span>
+            <span className="eyebrow">UNDERSTAND THE SYSTEM</span>
             <h2>Know what happens between a click and a database write.</h2>
             <p>
               Architecture should be readable. Follow a request through the

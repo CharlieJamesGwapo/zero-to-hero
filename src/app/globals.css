@@ -46,8 +46,8 @@ a:hover {
   outline-offset: 3px;
 }
 ::selection {
-  background: #cde9d8;
-  color: #13291c;
+  background: #d9e6ff;
+  color: #142650;
 }
 .sr-only {
   position: absolute;
@@ -111,14 +111,19 @@ a:hover {
   letter-spacing: -2px;
 }
 .brand-mark span,
-.brand-name span,
-.footer-brand span span {
+.brand-arrow {
   color: #4c80ef;
 }
 .brand-name {
   font-weight: 800;
   letter-spacing: -0.055em;
   font-size: 17px;
+}
+.brand-name b,
+.footer-brand b {
+  font: 700 10px/1 var(--mono);
+  letter-spacing: 0.08em;
+  color: var(--accent-dark);
 }
 .desktop-nav {
   display: flex;
@@ -215,7 +220,37 @@ a:hover {
   font-weight: 600;
 }
 .footer-note {
-  max-width: 240px;
+  grid-column: 1 / -1;
+  border-top: 1px solid var(--line-dark);
+  padding-top: 18px;
+  margin: 5px 0 0;
+}
+.footer-creator > strong {
+  display: block;
+  margin-top: 9px;
+  font-size: 15px;
+  letter-spacing: -0.025em;
+}
+.footer-creator p {
+  margin: 3px 0 17px;
+}
+.footer-creator-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+}
+.footer-creator-links a {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent-dark);
+  border-bottom: 1px solid transparent;
+  transition:
+    border-color 160ms ease,
+    color 160ms ease;
+}
+.footer-creator-links a:hover,
+.footer-creator-links a:focus-visible {
+  border-color: currentColor;
 }
 .button {
   display: inline-flex;
@@ -240,7 +275,7 @@ a:hover {
   color: #fff;
 }
 .button-primary:hover {
-  background: #0f3928;
+  background: #173a88;
   color: white;
 }
 .button-secondary {
@@ -267,12 +302,12 @@ a:hover {
   padding-bottom: 3px;
 }
 .text-link:hover {
-  color: #0b3422;
+  color: #173a88;
 }
 .hero {
   border-bottom: 1px solid var(--line);
   background:
-    radial-gradient(circle at 77% 41%, #eaf1e8 0, transparent 36%), var(--paper);
+    radial-gradient(circle at 77% 41%, #e8efff 0, transparent 36%), var(--paper);
 }
 .hero-grid {
   min-height: 620px;
@@ -287,15 +322,11 @@ a:hover {
   align-items: center;
   gap: 10px;
 }
-.eyebrow-rule > span:last-child {
-  color: #8b968f;
-  margin-left: 10px;
-}
 .status-dot {
   display: inline-block;
   width: 7px;
   height: 7px;
-  background: #5fba83;
+  background: #4c80ef;
   border-radius: 50%;
 }
 .hero h1,
@@ -338,10 +369,10 @@ a:hover {
   color: #a8b2aa;
 }
 .hero-panel {
-  background: #18231f;
-  color: #e8f1e9;
-  border: 1px solid #233f31;
-  box-shadow: 18px 18px 0 #dce8dd;
+  background: #111a2e;
+  color: #eaf1ff;
+  border: 1px solid #2d426f;
+  box-shadow: 18px 18px 0 #dce6f8;
   padding: 22px 25px 15px;
   max-width: 465px;
   justify-self: end;
@@ -354,11 +385,11 @@ a:hover {
   gap: 10px;
   font: 10px var(--mono);
   letter-spacing: 0.08em;
-  color: #a9bcad;
+  color: #a7b7d3;
 }
 .panel-top {
   padding-bottom: 16px;
-  border-bottom: 1px solid #34483c;
+  border-bottom: 1px solid #334360;
 }
 .loop-steps {
   padding: 14px 0;
@@ -369,10 +400,10 @@ a:hover {
   gap: 12px;
   align-items: center;
   padding: 8px 11px;
-  border-bottom: 1px solid #2c3b32;
+  border-bottom: 1px solid #2c3b57;
 }
 .loop-step span {
-  color: #83998a;
+  color: #92a6c8;
   font: 11px var(--mono);
 }
 .loop-step strong {
@@ -382,19 +413,19 @@ a:hover {
   font-weight: 550;
 }
 .loop-step.active {
-  background: #e1efdf;
-  color: #173b2a;
+  background: #deebff;
+  color: #1b376e;
 }
 .loop-step.active span {
-  color: #356d4c;
+  color: #3563b4;
 }
 .panel-bottom {
-  border-top: 1px solid #34483c;
+  border-top: 1px solid #334360;
   padding-top: 15px;
 }
 .panel-cursor {
   font-size: 17px;
-  color: #9ddeae;
+  color: #91b8ff;
 }
 .section {
   padding-block: 105px;
@@ -1610,7 +1641,7 @@ a:hover {
   }
   .hero-panel {
     justify-self: start;
-    box-shadow: 9px 9px 0 #dce8dd;
+    box-shadow: 9px 9px 0 #dce6f8;
   }
   .hero-proof {
     gap: 8px 16px;
@@ -2271,8 +2302,7 @@ a:hover {
   }
 }
 
-.brand-name span,
-.footer-brand span {
+.brand-arrow {
   color: #3974e8;
 }
 .home-contribute {

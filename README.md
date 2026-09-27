@@ -1,8 +1,10 @@
-# ZERO → HERO
+# ZERO → HERO DEV
 
 **Learn. Build. Ship.** A practical, open-source path from your first web page to building, deploying, and contributing to full-stack software.
 
-[Live site](https://zero-to-hero-omega-one.vercel.app) · [Learn](https://zero-to-hero-omega-one.vercel.app/learn) · [Quests](https://zero-to-hero-omega-one.vercel.app/quests) · [Exercises](https://zero-to-hero-omega-one.vercel.app/exercises) · [Playground](https://zero-to-hero-omega-one.vercel.app/playground)
+[Live site](https://zerotoherodev.vercel.app) · [Learn](https://zerotoherodev.vercel.app/learn) · [Quests](https://zerotoherodev.vercel.app/quests) · [Exercises](https://zerotoherodev.vercel.app/exercises) · [Playground](https://zerotoherodev.vercel.app/playground)
+
+Created by **Charlie James Z. Abejo**, AI Developer · Full-Stack Engineer. [GitHub](https://github.com/CharlieJamesGwapo) · [Portfolio](https://portfoliobboy.vercel.app/) · [Email](mailto:capstonee2@gmail.com).
 
 ## Learn, build, contribute
 
@@ -14,7 +16,7 @@ The site also has a glossary, architecture diagrams, a development workflow guid
 
 Eight free learning paths now connect the existing web and open-source curriculum to new Programming Fundamentals, Python, C++, JavaScript, TypeScript, and Computer Science stages. Python and C++ each include 15 beginner stages. Quests and exercises provide visible checks, hints, and reference solutions. The code playground runs JavaScript, TypeScript, and Python in browser workers and previews HTML/CSS in an isolated frame. C++ and SQL practice requires local tools; the interface says so plainly. Python loads from a pinned Pyodide CDN only when selected. See [learning platform architecture](docs/learning-platform.md) for runtime and content details.
 
-Each major [project brief](https://zero-to-hero-omega-one.vercel.app/projects) links to public files in `starters/`. These are small starting points with explicit next steps; authentication, payment, and organization scaffolds are not finished services.
+Each major [project brief](https://zerotoherodev.vercel.app/projects) links to public files in `starters/`. These are small starting points with explicit next steps; authentication, payment, and organization scaffolds are not finished services.
 
 ## Run locally
 

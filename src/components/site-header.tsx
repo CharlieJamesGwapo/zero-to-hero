@@ -21,7 +21,7 @@ export function SiteHeader() {
   return (
     <header className="site-header">
       <div className="site-header-inner">
-        <Link href="/" className="brand" aria-label="Zero to Hero home">
+        <Link href="/" className="brand" aria-label="ZERO → HERO DEV home">
           <Image
             className="brand-logo"
             src="/logo.png"
@@ -31,7 +31,7 @@ export function SiteHeader() {
             priority
           />
           <span className="brand-name">
-            ZERO <span>→</span> HERO
+            ZERO <span className="brand-arrow">→</span> HERO <b>DEV</b>
           </span>
         </Link>
         <nav className="desktop-nav" aria-label="Main navigation">
@@ -70,7 +70,7 @@ export function SiteFooter() {
               height={52}
             />
             <span>
-              ZERO <span>→</span> HERO
+              ZERO <span className="brand-arrow">→</span> HERO <b>DEV</b>
             </span>
           </Link>
           <p>
@@ -91,6 +91,28 @@ export function SiteFooter() {
           <Link href="/glossary">Glossary</Link>
           <Link href="/contribute">Contribute</Link>
         </nav>
+        <div className="footer-creator">
+          <span className="eyebrow">CREATED BY</span>
+          <strong>Charlie James Z. Abejo</strong>
+          <p>AI Developer · Full-Stack Engineer</p>
+          <div className="footer-creator-links">
+            <a
+              href="https://github.com/CharlieJamesGwapo"
+              target="_blank"
+              rel="noreferrer"
+            >
+              GitHub ↗
+            </a>
+            <a
+              href="https://portfoliobboy.vercel.app/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Portfolio ↗
+            </a>
+            <a href="mailto:capstonee2@gmail.com">Email ↗</a>
+          </div>
+        </div>
         <p className="footer-note">
           Content and code are openly licensed. Progress stays in your browser.
         </p>

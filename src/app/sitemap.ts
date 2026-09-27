@@ -7,8 +7,7 @@ import { exercises, quests } from "@/lib/challenges";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const origin =
-    process.env.NEXT_PUBLIC_SITE_URL ??
-    "https://zero-to-hero-omega-one.vercel.app";
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://zerotoherodev.vercel.app";
   const paths = [
     "/",
     "/curriculum",

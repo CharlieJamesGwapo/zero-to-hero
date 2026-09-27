@@ -18,17 +18,23 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "ZERO → HERO — Learn. Build. Ship.",
-    template: "%s | ZERO → HERO",
+    default: "ZERO → HERO DEV — Learn. Build. Ship.",
+    template: "%s | ZERO → HERO DEV",
   },
   description:
     "A practical, open-source path from your first line of code to building and shipping full-stack applications.",
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL ??
-      "https://zero-to-hero-omega-one.vercel.app",
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://zerotoherodev.vercel.app",
   ),
+  authors: [
+    {
+      name: "Charlie James Z. Abejo",
+      url: "https://portfoliobboy.vercel.app/",
+    },
+  ],
+  creator: "Charlie James Z. Abejo",
   openGraph: {
-    title: "ZERO → HERO — Learn. Build. Ship.",
+    title: "ZERO → HERO DEV — Learn. Build. Ship.",
     description:
       "A practical, open-source path from web fundamentals to building, shipping, and contributing to software.",
     images: [

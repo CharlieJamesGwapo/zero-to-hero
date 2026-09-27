@@ -17,7 +17,7 @@
 .site-header[data-scrolled="true"] {
   background: rgb(248 248 245 / 97%);
   border-bottom-color: var(--line);
-  box-shadow: 0 8px 24px rgb(19 39 26 / 5%);
+  box-shadow: 0 8px 24px rgb(20 44 94 / 7%);
 }
 .desktop-nav a {
   position: relative;
@@ -100,8 +100,8 @@
   z-index: -1;
   pointer-events: none;
   background-image:
-    linear-gradient(rgb(43 88 62 / 7%) 1px, transparent 1px),
-    linear-gradient(90deg, rgb(43 88 62 / 7%) 1px, transparent 1px);
+    linear-gradient(rgb(51 95 176 / 7%) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(51 95 176 / 7%) 1px, transparent 1px);
   background-size: 40px 40px;
   mask-image: linear-gradient(90deg, transparent 33%, black 85%);
 }

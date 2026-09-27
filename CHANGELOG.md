@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+### Identity and presentation
+
+- Renamed the public brand to ZERO → HERO DEV, keeping ZERO → HERO as its short form.
+- Added the creator's name, role, GitHub, portfolio, and email to the site footer and metadata.
+- Updated production URLs, refined the homepage labels, and aligned the hero colors with the existing blue logo.
+
 ### Learning platform
 
 - Added eight free learning paths and a local learning dashboard. Python and C++ each have 15 beginner stages.
