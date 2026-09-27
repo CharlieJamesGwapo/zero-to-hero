@@ -24,7 +24,7 @@ export function SiteHeader() {
         <Link href="/" className="brand" aria-label="ZERO → HERO DEV home">
           <Image
             className="brand-logo"
-            src="/logo.png"
+            src="/icon.png"
             alt=""
             width={44}
             height={44}
@@ -64,7 +64,7 @@ export function SiteFooter() {
           <Link href="/" className="footer-brand">
             <Image
               className="brand-logo"
-              src="/logo.png"
+              src="/icon.png"
               alt=""
               width={52}
               height={52}
