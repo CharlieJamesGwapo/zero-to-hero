@@ -21,8 +21,8 @@ export default async function ResourcesPage({
         </h1>
         <p>
           Original lessons here, with carefully selected guides and free videos
-          when you want another explanation. Watch tutorials here or open them
-          on YouTube, and save useful links on this device.
+          when you want another explanation. Preview each resource, watch videos
+          here, and save useful links on this device.
         </p>
         <div className="hero-actions">
           <Link className="button button-secondary" href="/learn/html">

@@ -12,6 +12,24 @@ const nextConfig: NextConfig = {
         pathname: "/vi/*/hqdefault.jpg",
         search: "",
       },
+      {
+        protocol: "https",
+        hostname: "web.dev",
+        pathname: "/learn/*/card.png",
+        search: "",
+      },
+      {
+        protocol: "https",
+        hostname: "docs.python.org",
+        pathname: "/3.14/_images/social_previews/*.png",
+        search: "",
+      },
+      {
+        protocol: "https",
+        hostname: "react.dev",
+        pathname: "/images/og/learn.png",
+        search: "",
+      },
     ],
   },
 };

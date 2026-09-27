@@ -4,6 +4,53 @@ import { useMemo, useRef, useState } from "react";
 import { resources, resourceTopics, type Resource } from "@/lib/resources";
 import { toggleProgress, useProgress } from "./progress";
 
+function GuidePreview({
+  item,
+}: {
+  item: Extract<Resource, { format: "Guide" | "Course" }>;
+}) {
+  const [imageFailed, setImageFailed] = useState(false);
+  const domain = new URL(item.url).hostname.replace(/^www\./, "");
+
+  return (
+    <a
+      className="resource-guide-preview"
+      data-topic={item.topic}
+      href={item.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={`Open ${item.title} on ${item.publisher} in a new tab`}
+    >
+      {item.previewImage && !imageFailed ? (
+        <Image
+          src={item.previewImage}
+          alt=""
+          width={600}
+          height={338}
+          sizes="(max-width: 500px) calc(100vw - 76px), (max-width: 960px) 45vw, 360px"
+          onError={() => setImageFailed(true)}
+        />
+      ) : (
+        <span className="resource-guide-art" aria-hidden="true">
+          <span className="resource-guide-window">
+            <span className="resource-guide-browser">{domain}</span>
+            <span className="resource-guide-publisher">{item.publisher}</span>
+            <span className="resource-guide-title">{item.title}</span>
+            <span className="resource-guide-lines">
+              <i />
+              <i />
+              <i />
+            </span>
+          </span>
+        </span>
+      )}
+      <span className="resource-guide-open" aria-hidden="true">
+        ↗
+      </span>
+    </a>
+  );
+}
+
 export function ResourceExplorer({ initialTopic }: { initialTopic?: string }) {
   const player = useRef<HTMLDialogElement>(null);
   const [selectedVideo, setSelectedVideo] = useState<
@@ -18,6 +65,17 @@ export function ResourceExplorer({ initialTopic }: { initialTopic?: string }) {
   );
   const [format, setFormat] = useState("All formats");
   const [savedOnly, setSavedOnly] = useState(false);
+  const filtersActive =
+    query.trim() !== "" ||
+    topic !== "All" ||
+    format !== "All formats" ||
+    savedOnly;
+  function clearFilters() {
+    setQuery("");
+    setTopic("All");
+    setFormat("All formats");
+    setSavedOnly(false);
+  }
   const filtered = useMemo(
     () =>
       resources.filter(
@@ -78,10 +136,17 @@ export function ResourceExplorer({ initialTopic }: { initialTopic?: string }) {
           Saved only
         </label>
       </div>
-      <p className="resource-count" role="status">
-        {filtered.length} resources shown · External links open the
-        publisher&apos;s site.
-      </p>
+      <div className="resource-results-bar">
+        <p className="resource-count" role="status">
+          {filtered.length} of {resources.length} resources shown · Guides and
+          courses open on the publisher&apos;s site.
+        </p>
+        {filtersActive && (
+          <button type="button" onClick={clearFilters}>
+            Clear filters
+          </button>
+        )}
+      </div>
       <div className="resource-grid">
         {filtered.map((item) => {
           const saved = progress.resources.includes(item.id);
@@ -122,11 +187,14 @@ export function ResourceExplorer({ initialTopic }: { initialTopic?: string }) {
                   </span>
                 </button>
               )}
+              {item.format !== "Video" && <GuidePreview item={item} />}
               <h2>{item.title}</h2>
               <p>{item.summary}</p>
-              <small>
-                {item.publisher} · {item.useFor}
-              </small>
+              <small className="resource-publisher">{item.publisher}</small>
+              <p className="resource-use-for">
+                <span>How to use it</span>
+                {item.useFor}
+              </p>
               {item.format === "Video" ? (
                 <div className="resource-video-actions">
                   <button type="button" onClick={() => playVideo(item)}>
@@ -162,12 +230,7 @@ export function ResourceExplorer({ initialTopic }: { initialTopic?: string }) {
           <button
             className="button button-secondary"
             type="button"
-            onClick={() => {
-              setQuery("");
-              setTopic("All");
-              setFormat("All formats");
-              setSavedOnly(false);
-            }}
+            onClick={clearFilters}
           >
             Clear filters
           </button>

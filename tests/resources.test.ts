@@ -11,3 +11,18 @@ test("every video has a valid YouTube ID matching its external link", () => {
     assert.equal(new URL(video.url).hostname, "www.youtube.com");
   }
 });
+
+test("resource previews use secure publisher images and unique resource IDs", () => {
+  assert.equal(
+    new Set(resources.map((item) => item.id)).size,
+    resources.length,
+  );
+  for (const resource of resources) {
+    assert.equal(new URL(resource.url).protocol, "https:");
+    if (resource.format === "Video" || !resource.previewImage) continue;
+    const source = new URL(resource.url);
+    const preview = new URL(resource.previewImage);
+    assert.equal(preview.protocol, "https:");
+    assert.equal(preview.hostname, source.hostname);
+  }
+});

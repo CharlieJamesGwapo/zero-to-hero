@@ -10,7 +10,7 @@ type ResourceBase = {
 export type Resource = ResourceBase &
   (
     | { format: "Video"; videoId: string }
-    | { format: "Guide" | "Course"; videoId?: never }
+    | { format: "Guide" | "Course"; previewImage?: string; videoId?: never }
   );
 export const resources: Resource[] = [
   {
@@ -30,6 +30,7 @@ export const resources: Resource[] = [
     format: "Course",
     publisher: "web.dev",
     url: "https://web.dev/learn/html",
+    previewImage: "https://web.dev/learn/html/card.png",
     summary: "A structured course through HTML features and semantics.",
     useFor: "Deepen the guided HTML module",
   },
@@ -61,6 +62,7 @@ export const resources: Resource[] = [
     format: "Course",
     publisher: "web.dev",
     url: "https://web.dev/learn/css",
+    previewImage: "https://web.dev/learn/css/card.png",
     summary: "A chapter-based guide to styling and layout.",
     useFor: "Continue after the HTML portfolio",
   },
@@ -148,6 +150,8 @@ export const resources: Resource[] = [
     format: "Guide",
     publisher: "Python Software Foundation",
     url: "https://docs.python.org/3/tutorial/",
+    previewImage:
+      "https://docs.python.org/3.14/_images/social_previews/summary_tutorial_index_4224eef5.png",
     summary:
       "The official language tutorial with examples and reference links.",
     useFor: "Look up concepts while working through Python quests",
@@ -201,6 +205,7 @@ export const resources: Resource[] = [
     format: "Guide",
     publisher: "React",
     url: "https://react.dev/learn",
+    previewImage: "https://react.dev/images/og/learn.png",
     summary:
       "Official lessons on components, state, rendering, and interaction.",
     useFor: "Practice after JavaScript and TypeScript",
