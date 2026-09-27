@@ -1,13 +1,17 @@
-export type Resource = {
+type ResourceBase = {
   id: string;
   title: string;
   topic: string;
-  format: "Guide" | "Video" | "Course";
   publisher: string;
   url: string;
   summary: string;
   useFor: string;
 };
+export type Resource = ResourceBase &
+  (
+    | { format: "Video"; videoId: string }
+    | { format: "Guide" | "Course"; videoId?: never }
+  );
 export const resources: Resource[] = [
   {
     id: "mdn-html",
@@ -44,6 +48,7 @@ export const resources: Resource[] = [
     title: "HTML Full Course",
     topic: "HTML",
     format: "Video",
+    videoId: "kUMe1FH4CHE",
     publisher: "freeCodeCamp.org",
     url: "https://www.youtube.com/watch?v=kUMe1FH4CHE",
     summary: "A video walkthrough of HTML fundamentals and page building.",
@@ -64,6 +69,7 @@ export const resources: Resource[] = [
     title: "CSS Full Course",
     topic: "CSS",
     format: "Video",
+    videoId: "OXGznpKZ_sA",
     publisher: "freeCodeCamp.org",
     url: "https://www.youtube.com/watch?v=OXGznpKZ_sA",
     summary: "A long-form CSS lesson with worked examples.",
@@ -85,6 +91,7 @@ export const resources: Resource[] = [
     title: "JavaScript Tutorial for Beginners",
     topic: "JavaScript",
     format: "Video",
+    videoId: "Zi-Q0t4gMC8",
     publisher: "freeCodeCamp.org",
     url: "https://www.youtube.com/watch?v=Zi-Q0t4gMC8",
     summary: "A beginner-oriented video course for core JavaScript concepts.",
@@ -117,6 +124,7 @@ export const resources: Resource[] = [
     title: "Git and GitHub for Beginners",
     topic: "Git",
     format: "Video",
+    videoId: "RGOj5yH7evk",
     publisher: "freeCodeCamp.org",
     url: "https://www.youtube.com/watch?v=RGOj5yH7evk",
     summary: "A practical Git and GitHub walkthrough.",
@@ -149,6 +157,7 @@ export const resources: Resource[] = [
     title: "Python for Beginners — Full Course",
     topic: "Python",
     format: "Video",
+    videoId: "eWRfhZUzrAc",
     publisher: "freeCodeCamp.org",
     url: "https://www.youtube.com/watch?v=eWRfhZUzrAc",
     summary: "A beginner course covering Python syntax and core ideas.",
@@ -169,6 +178,7 @@ export const resources: Resource[] = [
     title: "C++ Tutorial for Beginners",
     topic: "C++",
     format: "Video",
+    videoId: "vLnPwxZdW4Y",
     publisher: "freeCodeCamp.org",
     url: "https://www.youtube.com/watch?v=vLnPwxZdW4Y",
     summary: "An introductory C++ video course.",

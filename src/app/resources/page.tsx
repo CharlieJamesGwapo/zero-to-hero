@@ -20,9 +20,9 @@ export default async function ResourcesPage({
           Find a good <em>next resource.</em>
         </h1>
         <p>
-          Original lessons here, with carefully selected external guides and
-          free videos when you want another explanation. Save useful links on
-          this device.
+          Original lessons here, with carefully selected guides and free videos
+          when you want another explanation. Watch tutorials here or open them
+          on YouTube, and save useful links on this device.
         </p>
         <div className="hero-actions">
           <Link className="button button-secondary" href="/learn/html">

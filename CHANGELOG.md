@@ -4,6 +4,7 @@
 
 ### Guided HTML and practical tools
 
+- Added playable video previews and an in-page YouTube player to the resource library.
 - Expanded HTML into four connected lessons and a live portfolio workshop with structural checks, local draft saving, and HTML download.
 - Added a searchable, saveable directory of official learning references and selected free video tutorials.
 - Added AI learning workflows for Codex, Claude Code, OpenRouter, and GLM, plus a local prompt builder.
