@@ -3,7 +3,14 @@
 import { useRef, useState, type ReactNode } from "react";
 import { runCode, type RunResult } from "@/lib/browser-runner";
 import { explainError, languages, type Language } from "@/lib/playground";
-import { toggleProgress, useProgress } from "./progress";
+import { MAX_CODE_DRAFT_LENGTH } from "@/lib/progress";
+import { firstFailureFeedback, type TestOutcome } from "@/lib/test-feedback";
+import {
+  clearCodeDraft,
+  saveCodeDraft,
+  toggleProgress,
+  useProgress,
+} from "./progress";
 
 export type VisibleTest = {
   label: string;
@@ -48,6 +55,7 @@ function highlight(code: string, language: Language): ReactNode[] {
 type Props = {
   language: Language;
   starter: string;
+  draftId?: string;
   title?: string;
   tests?: VisibleTest[];
   completion?: { kind: "quests" | "exercises"; id: string };
@@ -59,6 +67,7 @@ type Props = {
 export function CodeWorkbench({
   language,
   starter,
+  draftId,
   title,
   tests,
   completion,
@@ -66,14 +75,17 @@ export function CodeWorkbench({
   solution,
   explanation,
 }: Props) {
-  const [code, setCode] = useState(starter);
+  const [liveCode, setLiveCode] = useState<string | null>(null);
+  const [saveStatus, setSaveStatus] = useState<
+    "saved" | "unavailable" | "reset" | null
+  >(null);
   const [state, setState] = useState<
     "idle" | "running" | "success" | "error" | "timeout"
   >("idle");
   const [output, setOutput] = useState<string[]>([]);
   const [error, setError] = useState("");
   const [testResults, setTestResults] = useState<
-    { label: string; passed: boolean; actual: string }[]
+    (TestOutcome & { passed: boolean })[]
   >([]);
   const [attempted, setAttempted] = useState(false);
   const [copied, setCopied] = useState(false);
@@ -81,10 +93,27 @@ export function CodeWorkbench({
   const editor = useRef<HTMLTextAreaElement>(null);
   const highlightLayer = useRef<HTMLPreElement>(null);
   const progress = useProgress();
+  const savedDraft = draftId ? progress.codeDrafts[draftId] : undefined;
+  const code = liveCode ?? savedDraft?.code ?? starter;
   const complete = completion
     ? progress[completion.kind].includes(completion.id)
     : false;
   const config = languages[language];
+
+  function changeCode(value: string) {
+    setLiveCode(value);
+    setState("idle");
+    setOutput([]);
+    setError("");
+    setTestResults([]);
+    if (!draftId) return true;
+    const saved =
+      value === starter
+        ? clearCodeDraft(draftId)
+        : saveCodeDraft(draftId, value);
+    setSaveStatus(saved ? "saved" : "unavailable");
+    return saved;
+  }
 
   async function execute() {
     if (!config.available) return;
@@ -99,7 +128,7 @@ export function CodeWorkbench({
       return;
     }
     if (tests?.length) {
-      const results: { label: string; passed: boolean; actual: string }[] = [];
+      const results: (TestOutcome & { passed: boolean })[] = [];
       for (const test of tests) {
         let result: RunResult;
         try {
@@ -112,8 +141,10 @@ export function CodeWorkbench({
           : (result.error ?? "Error");
         results.push({
           label: test.label,
+          expected: test.expected,
           passed: result.ok && actual === test.expected,
           actual,
+          error: !result.ok,
         });
         if (result.timedOut) break;
       }
@@ -152,7 +183,7 @@ export function CodeWorkbench({
     const field = event.currentTarget;
     const next = `${code.slice(0, field.selectionStart)}  ${code.slice(field.selectionEnd)}`;
     const cursor = field.selectionStart + 2;
-    setCode(next);
+    changeCode(next);
     requestAnimationFrame(() => {
       field.selectionStart = cursor;
       field.selectionEnd = cursor;
@@ -189,7 +220,8 @@ export function CodeWorkbench({
                 aria-label={`${config.name} code editor`}
                 spellCheck={false}
                 value={code}
-                onChange={(event) => setCode(event.target.value)}
+                maxLength={draftId ? MAX_CODE_DRAFT_LENGTH : undefined}
+                onChange={(event) => changeCode(event.target.value)}
                 onKeyDown={insertTab}
                 onScroll={(event) => {
                   if (highlightLayer.current) {
@@ -222,11 +254,16 @@ export function CodeWorkbench({
               <button
                 type="button"
                 onClick={() => {
-                  setCode(starter);
-                  setState("idle");
-                  setOutput([]);
-                  setError("");
-                  setTestResults([]);
+                  if (
+                    draftId &&
+                    code !== starter &&
+                    !window.confirm(
+                      "Discard your saved draft and restore the starter code?",
+                    )
+                  )
+                    return;
+                  const cleared = changeCode(starter);
+                  if (draftId && cleared) setSaveStatus("reset");
                   editor.current?.focus();
                 }}
               >
@@ -321,8 +358,24 @@ export function CodeWorkbench({
               ))}
             </ol>
           )}
+          {testResults.length > 0 && firstFailureFeedback(testResults) && (
+            <p className="test-feedback" role="status">
+              <strong>Try this:</strong> {firstFailureFeedback(testResults)}
+            </p>
+          )}
         </div>
       </div>
+      {draftId && (
+        <p className="workbench-save-status" role="status">
+          {saveStatus === "unavailable"
+            ? "Draft could not be saved on this device. Copy your code before leaving."
+            : saveStatus === "reset"
+              ? "Draft cleared. You are back at the starter code."
+              : savedDraft
+                ? "Draft saved on this device. It is included in your progress backup."
+                : "Edits save automatically on this device and in your progress backup."}
+        </p>
+      )}
       {!config.available && (
         <p className="runtime-note">
           C++ execution is not available in this browser. Copy the code into{" "}

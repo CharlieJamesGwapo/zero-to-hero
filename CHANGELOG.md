@@ -4,6 +4,8 @@
 
 ### Guided HTML and practical tools
 
+- Exercise and quest editors now save code drafts on this device, restore them after reload, and offer a dashboard resume link. Progress backups include drafts and keep newer local edits during import.
+- Failed coding checks now point to the first mismatch with expected and actual output plus a next debugging step.
 - Added a local project review workspace with source and demo links, self-checked tests, engineering notes, a mentor-ready Markdown export, and dashboard resume links. Progress backups include these drafts and preserve existing project completions.
 - Added visual guide and course previews, clearer use-case labels, and quick filter reset to the resource library.
 - Added playable video previews and an in-page YouTube player to the resource library.

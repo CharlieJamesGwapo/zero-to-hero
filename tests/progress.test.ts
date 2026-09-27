@@ -1,6 +1,11 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { parseProgress, updateProgress } from "../src/lib/progress";
+import {
+  parseProgress,
+  removeCodeDraft,
+  updateCodeDraft,
+  updateProgress,
+} from "../src/lib/progress";
 
 test("existing saved progress migrates without losing lessons", () => {
   const progress = parseProgress(
@@ -21,6 +26,7 @@ test("existing saved progress migrates without losing lessons", () => {
     htmlChecks: [],
     resources: [],
     projectReviews: {},
+    codeDrafts: {},
   });
 });
 
@@ -36,6 +42,7 @@ test("invalid storage is ignored and checks toggle independently", () => {
     htmlChecks: [],
     resources: [],
     projectReviews: {},
+    codeDrafts: {},
   });
   const base = parseProgress(
     JSON.stringify({
@@ -55,4 +62,46 @@ test("invalid storage is ignored and checks toggle independently", () => {
   const questDone = updateProgress(base, "quests", "hello-world");
   assert.deepEqual(questDone.quests, ["hello-world"]);
   assert.deepEqual(questDone.completed, base.completed);
+});
+
+test("code drafts restore by challenge ID without changing completion", () => {
+  const base = parseProgress(null);
+  const saved = updateCodeDraft(
+    base,
+    "exercises:reverse-string",
+    "function reverseString(value) { return value; }",
+    "2026-09-27T10:00:00.000Z",
+  );
+  assert.equal(
+    parseProgress(JSON.stringify(saved)).codeDrafts["exercises:reverse-string"]
+      .code,
+    "function reverseString(value) { return value; }",
+  );
+  assert.deepEqual(saved.exercises, []);
+  assert.deepEqual(
+    removeCodeDraft(saved, "exercises:reverse-string").codeDrafts,
+    {},
+  );
+});
+
+test("invalid or oversized draft entries are ignored", () => {
+  const parsed = parseProgress(
+    JSON.stringify({
+      codeDrafts: {
+        "exercises:reverse-string": {
+          code: "return value;",
+          updatedAt: "2026-09-27T10:00:00.000Z",
+        },
+        "../../bad": { code: "bad", updatedAt: "2026-09-27T10:00:00.000Z" },
+        "quests:too-long": {
+          code: "x".repeat(20_001),
+          updatedAt: "2026-09-27T10:00:00.000Z",
+        },
+        "quests:bad-date": { code: "ok", updatedAt: "yesterday" },
+      },
+    }),
+  );
+  assert.deepEqual(Object.keys(parsed.codeDrafts), [
+    "exercises:reverse-string",
+  ]);
 });

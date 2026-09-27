@@ -75,3 +75,36 @@ test("foreign or malformed backups cannot alter progress", () => {
     /supported/,
   );
 });
+
+test("backup restores drafts and keeps a newer local edit", () => {
+  const saved = parseProgress(
+    JSON.stringify({
+      codeDrafts: {
+        "exercises:reverse-string": {
+          code: "older edit",
+          updatedAt: "2026-09-26T10:00:00.000Z",
+        },
+        "quests:hello-world": {
+          code: "print('hello')",
+          updatedAt: "2026-09-27T10:00:00.000Z",
+        },
+      },
+    }),
+  );
+  const current = parseProgress(
+    JSON.stringify({
+      codeDrafts: {
+        "exercises:reverse-string": {
+          code: "newer local edit",
+          updatedAt: "2026-09-27T11:00:00.000Z",
+        },
+      },
+    }),
+  );
+  const merged = importProgress(exportProgress(saved), current);
+  assert.equal(
+    merged.codeDrafts["exercises:reverse-string"].code,
+    "newer local edit",
+  );
+  assert.equal(merged.codeDrafts["quests:hello-world"].code, "print('hello')");
+});
