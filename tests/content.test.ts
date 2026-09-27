@@ -110,6 +110,21 @@ test("project briefs include engineering and contribution guidance", () => {
     assert.ok(project.testing.length >= 3);
     assert.ok(project.deployment.length > 30);
     assert.ok(project.contribution.length > 30);
+    const starter = join(root, "starters", project.slug);
+    assert.ok(
+      existsSync(join(starter, "README.md")),
+      `${project.slug} needs starter instructions`,
+    );
+    assert.ok(
+      [
+        "index.html",
+        "App.tsx",
+        "policy.ts",
+        "order.ts",
+        "authorization.ts",
+      ].some((file) => existsSync(join(starter, file))),
+      `${project.slug} needs starter code`,
+    );
   }
 });
 

@@ -9,7 +9,7 @@
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "test": "node --import tsx --test tests/*.test.ts",
-    "format:check": "prettier --check 'src/**/*.{ts,tsx,css}' 'content/**/*.{mdx,ts,tsx}' 'public/workers/**/*.mjs' 'tests/**/*.ts' 'mdx-components.tsx' 'next.config.ts' 'README.md' 'CHANGELOG.md' 'CONTRIBUTING.md' 'CODE_OF_CONDUCT.md' 'docs/**/*.md' '.github/**/*.{md,yml}'"
+    "format:check": "prettier --check 'src/**/*.{ts,tsx,css}' 'content/**/*.{mdx,ts,tsx}' 'starters/**/*.{md,ts,tsx,html,css}' 'public/workers/**/*.mjs' 'tests/**/*.ts' 'mdx-components.tsx' 'next.config.ts' 'README.md' 'CHANGELOG.md' 'CONTRIBUTING.md' 'CODE_OF_CONDUCT.md' 'docs/**/*.md' '.github/**/*.{md,yml}'"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.1",

@@ -6,6 +6,7 @@
 - `/tracks/[track]` and `/tracks/[track]/[stage]` use typed content in `content/tracks/paths.ts`. A stage has a unique slug, explanation, runnable example, and practice prompt. The existing web curriculum and open-source lessons remain in their original MDX routes.
 - `/quests` and `/exercises` use `src/lib/challenges.ts`. Each item defines objective, language, difficulty, topic, time, instructions, starter, visible checks, hints, solution, related lesson, and execution mode. `validateChallenges` checks required fields, unique slugs, and runnable checks. Add content there, then run `npm test`.
 - `/playground` uses `src/lib/playground.ts` for language configuration and `CodeWorkbench` for the editor, run state, output, and test feedback.
+- `/projects/[slug]` links to a public folder in `starters/`. The simple portfolio and task-manager files can be expanded directly. Auth, commerce, and organization files are domain scaffolds; they do not include a deployable security or payment system.
 
 ## Code execution
 

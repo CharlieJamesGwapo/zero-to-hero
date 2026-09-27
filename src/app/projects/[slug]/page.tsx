@@ -46,6 +46,14 @@ export default async function ProjectPage({ params }: Props) {
             <span className="eyebrow">01 / THE BRIEF</span>
             <h2>What must the user be able to do?</h2>
             <p>{project.brief}</p>
+            <Link
+              className="text-link project-starter-link"
+              href={`https://github.com/CharlieJamesGwapo/zero-to-hero/tree/main/starters/${project.slug}`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Open public starter files ↗
+            </Link>
           </section>
           <section className="detail-section">
             <span className="eyebrow">02 / REQUIREMENTS</span>

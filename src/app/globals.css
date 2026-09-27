@@ -3323,6 +3323,9 @@ a:hover {
   display: grid;
   border-top: 1px solid var(--line);
 }
+.project-starter-link {
+  margin-top: 15px;
+}
 .project-exercise-list a {
   display: flex;
   justify-content: space-between;

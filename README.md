@@ -14,6 +14,8 @@ The site also has a glossary, architecture diagrams, a development workflow guid
 
 Eight free learning paths now connect the existing web and open-source curriculum to new Programming Fundamentals, Python, C++, JavaScript, TypeScript, and Computer Science stages. Python and C++ each include 15 beginner stages. Quests and exercises provide visible checks, hints, and reference solutions. The code playground runs JavaScript, TypeScript, and Python in browser workers and previews HTML/CSS in an isolated frame. C++ and SQL practice requires local tools; the interface says so plainly. Python loads from a pinned Pyodide CDN only when selected. See [learning platform architecture](docs/learning-platform.md) for runtime and content details.
 
+Each major [project brief](https://zero-to-hero-omega-one.vercel.app/projects) links to public files in `starters/`. These are small starting points with explicit next steps; authentication, payment, and organization scaffolds are not finished services.
+
 ## Run locally
 
 Use Node.js 24 and npm. No account, database, API key, or environment file is required.
