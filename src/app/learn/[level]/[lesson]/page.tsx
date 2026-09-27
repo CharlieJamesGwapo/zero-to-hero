@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { levels, lessons, getLesson } from "@/lib/curriculum";
 import { lessonContent, lessonSections } from "@/lib/lesson-content";
 import { LessonReader } from "@/components/lesson-reader";
+import { lessonPractice } from "@/lib/lesson-practice";
 
 type Props = { params: Promise<{ level: string; lesson: string }> };
 
@@ -27,6 +28,7 @@ export default async function LessonPage({ params }: Props) {
   const index = lessons.findIndex((entry) => entry.id === item.id);
   const previous = lessons[index - 1];
   const next = lessons[index + 1];
+  const practice = lessonPractice[item.id];
   return (
     <LessonReader
       back={{ href: "/curriculum", title: "Curriculum" }}
@@ -37,6 +39,16 @@ export default async function LessonPage({ params }: Props) {
       id={item.id}
       content={Content}
       sections={lessonSections}
+      practice={
+        practice && {
+          playground:
+            practice.language && practice.code
+              ? `/playground?language=${practice.language}&code=${encodeURIComponent(practice.code)}`
+              : undefined,
+          exercise: practice.exercise,
+          exerciseLabel: practice.exerciseLabel,
+        }
+      }
       navigation={levels.map((entry) => ({
         href: `/learn/${entry.slug}/${entry.lessons[0].slug}`,
         number: entry.number,

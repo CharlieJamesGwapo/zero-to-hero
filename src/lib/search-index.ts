@@ -2,16 +2,54 @@ import { lessons, levels } from "./curriculum";
 import { projects } from "./projects";
 import { glossary } from "./glossary";
 import { openSourceLessons } from "./open-source";
+import { learningPaths } from "./learning-paths";
+import { tracks } from "../../content/tracks/paths";
+import { quests, exercises } from "./challenges";
 
 export type SearchItem = {
   title: string;
   description: string;
   href: string;
   category:
-    "Lesson" | "Level" | "Project" | "Glossary" | "Guide" | "Open Source";
+    | "Lesson"
+    | "Level"
+    | "Project"
+    | "Glossary"
+    | "Guide"
+    | "Open Source"
+    | "Track"
+    | "Quest"
+    | "Exercise"
+    | "Playground";
 };
 
 export const searchItems: SearchItem[] = [
+  ...learningPaths.map((path) => ({
+    title: path.title,
+    description: path.description,
+    href: path.href,
+    category: "Track" as const,
+  })),
+  ...tracks.flatMap((track) =>
+    track.stages.map((stage) => ({
+      title: stage.title,
+      description: `${track.title} · ${stage.summary}`,
+      href: `/tracks/${track.slug}/${stage.slug}`,
+      category: "Lesson" as const,
+    })),
+  ),
+  ...quests.map((quest) => ({
+    title: quest.title,
+    description: quest.objective,
+    href: `/quests/${quest.slug}`,
+    category: "Quest" as const,
+  })),
+  ...exercises.map((exercise) => ({
+    title: exercise.title,
+    description: exercise.objective,
+    href: `/exercises/${exercise.slug}`,
+    category: "Exercise" as const,
+  })),
   ...lessons.map((lesson) => ({
     title: lesson.title,
     description: lesson.summary,
@@ -42,6 +80,13 @@ export const searchItems: SearchItem[] = [
     href: `/glossary#${term.slug}`,
     category: "Glossary" as const,
   })),
+  {
+    title: "Code playground",
+    description:
+      "Run JavaScript, TypeScript, Python, or preview HTML and CSS in your browser.",
+    href: "/playground",
+    category: "Playground",
+  },
   {
     title: "Open Source Development",
     description:

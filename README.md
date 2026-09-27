@@ -2,7 +2,7 @@
 
 **Learn. Build. Ship.** A practical, open-source path from your first web page to building, deploying, and contributing to full-stack software.
 
-[Live site](https://zero-to-hero-omega-one.vercel.app) · [Curriculum](https://zero-to-hero-omega-one.vercel.app/curriculum) · [Open Source track](https://zero-to-hero-omega-one.vercel.app/open-source) · [Project briefs](https://zero-to-hero-omega-one.vercel.app/projects)
+[Live site](https://zero-to-hero-omega-one.vercel.app) · [Learn](https://zero-to-hero-omega-one.vercel.app/learn) · [Quests](https://zero-to-hero-omega-one.vercel.app/quests) · [Exercises](https://zero-to-hero-omega-one.vercel.app/exercises) · [Playground](https://zero-to-hero-omega-one.vercel.app/playground)
 
 ## Learn, build, contribute
 
@@ -11,6 +11,8 @@
 - **Contribute:** The Open Source track teaches Git, GitHub, issues, forks, pull requests, reviews, CI, releases, licenses, and a real contribution to this repository.
 
 The site also has a glossary, architecture diagrams, a development workflow guide, local progress and bookmarks, a start recommendation, and `Cmd/Ctrl + K` search. Progress stays in your browser; there is no account or cloud sync.
+
+Eight free learning paths now connect the existing web and open-source curriculum to new Programming Fundamentals, Python, C++, JavaScript, TypeScript, and Computer Science stages. Python and C++ each include 15 beginner stages. Quests and exercises provide visible checks, hints, and reference solutions. The code playground runs JavaScript, TypeScript, and Python in browser workers and previews HTML/CSS in an isolated frame. C++ and SQL practice requires local tools; the interface says so plainly. Python loads from a pinned Pyodide CDN only when selected. See [learning platform architecture](docs/learning-platform.md) for runtime and content details.
 
 ## Run locally
 
@@ -44,6 +46,9 @@ The same core checks run in GitHub Actions for pushes and pull requests. A passi
 | Location                                                           | Purpose                                                   |
 | ------------------------------------------------------------------ | --------------------------------------------------------- |
 | `content/`                                                         | MDX lessons for web development and open source           |
+| `content/tracks/paths.ts`                                          | Beginner path content and runnable examples               |
+| `src/lib/challenges.ts`                                            | Quest and exercise schemas and content                    |
+| `src/lib/browser-runner.ts` and `public/workers/python.mjs`        | Browser-only code execution                               |
 | `src/lib/curriculum.ts`                                            | Main level and lesson index                               |
 | `src/lib/open-source.ts`                                           | Open Source track routes, stages, workflow, and checklist |
 | `src/lib/lesson-content.tsx` and `src/lib/open-source-content.tsx` | Static MDX import maps                                    |
@@ -53,6 +58,7 @@ The same core checks run in GitHub Actions for pushes and pull requests. A passi
 | `src/app/`                                                         | Public routes and metadata                                |
 | `tests/`                                                           | Content integrity and progress checks                     |
 | `docs/architecture.md`                                             | App architecture and route map                            |
+| `docs/learning-platform.md`                                        | New routes, content process, and runtime boundaries       |
 
 ## Make a first contribution
 

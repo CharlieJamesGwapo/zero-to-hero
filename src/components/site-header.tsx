@@ -1,13 +1,16 @@
 import Link from "next/link";
+import Image from "next/image";
 import { SearchDialog } from "./search-dialog";
 import { MobileMenu } from "./mobile-menu";
 import { RouteLink } from "./route-link";
 
 const navigation = [
-  { href: "/curriculum", label: "Curriculum" },
+  { href: "/learn", label: "Learn" },
+  { href: "/quests", label: "Quests" },
+  { href: "/exercises", label: "Exercises" },
+  { href: "/playground", label: "Playground" },
   { href: "/projects", label: "Projects" },
   { href: "/architecture", label: "Architecture" },
-  { href: "/workflow", label: "Workflow" },
   { href: "/open-source", label: "Open Source" },
 ];
 
@@ -19,6 +22,14 @@ export function SiteHeader() {
     <header className="site-header">
       <div className="site-header-inner">
         <Link href="/" className="brand" aria-label="Zero to Hero home">
+          <Image
+            className="brand-logo"
+            src="/logo.png"
+            alt=""
+            width={44}
+            height={44}
+            priority
+          />
           <span className="brand-name">
             ZERO <span>→</span> HERO
           </span>
@@ -51,7 +62,16 @@ export function SiteFooter() {
       <div className="shell footer-grid">
         <div>
           <Link href="/" className="footer-brand">
-            ZERO <span>→</span> HERO
+            <Image
+              className="brand-logo"
+              src="/logo.png"
+              alt=""
+              width={52}
+              height={52}
+            />
+            <span>
+              ZERO <span>→</span> HERO
+            </span>
           </Link>
           <p>
             Learn. Build. Ship.
@@ -60,7 +80,10 @@ export function SiteFooter() {
           </p>
         </div>
         <nav aria-label="Footer navigation">
-          <Link href="/curriculum">Curriculum</Link>
+          <Link href="/learn">Learn</Link>
+          <Link href="/quests">Quests</Link>
+          <Link href="/exercises">Exercises</Link>
+          <Link href="/playground">Playground</Link>
           <Link href="/projects">Projects</Link>
           <Link href="/architecture">Architecture</Link>
           <Link href="/workflow">Workflow</Link>

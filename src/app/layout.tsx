@@ -33,14 +33,14 @@ export const metadata: Metadata = {
       "A practical, open-source path from web fundamentals to building, shipping, and contributing to software.",
     images: [
       {
-        url: "/zero-to-hero-logo.png",
+        url: "/logo.png",
         width: 1254,
         height: 1254,
         alt: "ZERO → HERO logo",
       },
     ],
   },
-  icons: { icon: "/brand-icon.svg" },
+  icons: { icon: "/logo.png", apple: "/logo.png" },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

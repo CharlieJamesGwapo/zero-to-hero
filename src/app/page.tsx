@@ -4,6 +4,9 @@ import { levels, lessons } from "@/lib/curriculum";
 import { projects } from "@/lib/projects";
 import { StartChooser } from "@/components/start-chooser";
 import { ProgressSummary } from "@/components/progress";
+import { PlaygroundExperience } from "@/components/playground-experience";
+import { learningPaths } from "@/lib/learning-paths";
+import { quests, exercises } from "@/lib/challenges";
 
 export default function Home() {
   return (
@@ -20,25 +23,20 @@ export default function Home() {
               <em>you can explain.</em>
             </h1>
             <p className="hero-lead">
-              From the first request a browser makes to the systems behind a
-              production release. Learn the concept, build the feature, break
-              it, debug it, and ship it.
+              A free, open-source path from your first line of code to building,
+              deploying, and contributing to real software.
             </p>
             <div className="hero-actions">
-              <Link
-                className="button button-primary"
-                href="/learn/foundations/how-the-web-works"
-              >
+              <Link className="button button-primary" href="/learn">
                 Start from zero <span aria-hidden="true">↗</span>
               </Link>
-              <Link className="button button-secondary" href="/curriculum">
-                Explore curriculum <span aria-hidden="true">→</span>
+              <Link className="button button-secondary" href="/playground">
+                Try the playground <span aria-hidden="true">→</span>
               </Link>
             </div>
             <div className="hero-proof">
-              <span>{levels.length} levels</span>
-              <span>{lessons.length} focused lessons</span>
-              <span>{projects.length} projects</span>
+              <span>Open source</span>
+              <span>Free learning</span>
               <span>No account required</span>
             </div>
           </div>
@@ -78,6 +76,50 @@ export default function Home() {
         </div>
       </section>
 
+      <section
+        className="section shell home-quickstart"
+        aria-labelledby="quickstart-title"
+      >
+        <div className="section-heading">
+          <div>
+            <span className="eyebrow">01 — TRY YOUR FIRST PROGRAM</span>
+            <h2 id="quickstart-title">Your first program can run here.</h2>
+          </div>
+          <p>
+            No setup. No account. Pick a language and run your first program.
+          </p>
+        </div>
+        <PlaygroundExperience compact initialLanguage="python" />
+      </section>
+
+      <section className="section section-tinted" aria-labelledby="paths-title">
+        <div className="shell">
+          <div className="section-heading">
+            <div>
+              <span className="eyebrow">02 — LEARN FOR FREE</span>
+              <h2 id="paths-title">Learn without a paywall.</h2>
+            </div>
+            <p>
+              Learn fundamentals, practice what you learn, build projects, and
+              experiment directly in your browser.
+            </p>
+          </div>
+          <div className="home-path-grid">
+            {learningPaths.map((path) => (
+              <Link className="home-path-card" key={path.slug} href={path.href}>
+                <span className="eyebrow">{path.label}</span>
+                <strong>{path.title}</strong>
+                <small>{path.description}</small>
+                <span aria-hidden="true">↗</span>
+              </Link>
+            ))}
+          </div>
+          <Link className="text-link home-section-link" href="/learn">
+            Explore all learning paths →
+          </Link>
+        </div>
+      </section>
+
       <section className="section shell" aria-labelledby="path-title">
         <div className="section-heading">
           <div>
@@ -114,6 +156,75 @@ export default function Home() {
           </p>
           <Link href="/curriculum" className="text-link">
             See the complete map <span aria-hidden="true">→</span>
+          </Link>
+        </div>
+      </section>
+
+      <section className="section shell" aria-labelledby="quests-title">
+        <div className="section-heading">
+          <div>
+            <span className="eyebrow">04 — QUESTS</span>
+            <h2 id="quests-title">Learn by solving problems.</h2>
+          </div>
+          <p>
+            Short missions take you from a first line of code to an application
+            you can ship.
+          </p>
+        </div>
+        <div className="home-feature-grid">
+          {quests.slice(0, 3).map((quest) => (
+            <Link
+              href={`/quests/${quest.slug}`}
+              className="home-feature-card"
+              key={quest.slug}
+            >
+              <span className="eyebrow">
+                QUEST {quest.number} · {quest.minutes} MIN
+              </span>
+              <h3>{quest.title}</h3>
+              <p>{quest.objective}</p>
+              <strong>Start quest ↗</strong>
+            </Link>
+          ))}
+        </div>
+        <Link className="text-link home-section-link" href="/quests">
+          Explore all quests →
+        </Link>
+      </section>
+
+      <section
+        className="section section-tinted"
+        aria-labelledby="exercises-title"
+      >
+        <div className="shell">
+          <div className="section-heading">
+            <div>
+              <span className="eyebrow">05 — PRACTICE</span>
+              <h2 id="exercises-title">Make the concepts stick.</h2>
+            </div>
+            <p>
+              A few focused minutes of code can show what you understand and
+              what to revisit.
+            </p>
+          </div>
+          <div className="home-feature-grid">
+            {exercises.slice(0, 3).map((exercise) => (
+              <Link
+                href={`/exercises/${exercise.slug}`}
+                className="home-feature-card"
+                key={exercise.slug}
+              >
+                <span className="eyebrow">
+                  {exercise.topic.toUpperCase()} · {exercise.minutes} MIN
+                </span>
+                <h3>{exercise.title}</h3>
+                <p>{exercise.objective}</p>
+                <strong>Practice ↗</strong>
+              </Link>
+            ))}
+          </div>
+          <Link className="text-link home-section-link" href="/exercises">
+            Explore all exercises →
           </Link>
         </div>
       </section>
@@ -182,7 +293,7 @@ export default function Home() {
         </div>
         <div className="home-contribute-art">
           <Image
-            src="/zero-to-hero-logo.png"
+            src="/logo.png"
             alt="ZERO → HERO logo"
             width={205}
             height={205}

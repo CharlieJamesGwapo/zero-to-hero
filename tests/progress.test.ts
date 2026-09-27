@@ -15,6 +15,9 @@ test("existing saved progress migrates without losing lessons", () => {
     bookmarks: ["html/semantic-page"],
     projects: ["portfolio"],
     openSourceChecks: [],
+    quests: [],
+    exercises: [],
+    tracks: [],
   });
 });
 
@@ -24,6 +27,9 @@ test("invalid storage is ignored and checks toggle independently", () => {
     bookmarks: [],
     projects: [],
     openSourceChecks: [],
+    quests: [],
+    exercises: [],
+    tracks: [],
   });
   const base = parseProgress(
     JSON.stringify({
@@ -40,4 +46,7 @@ test("invalid storage is ignored and checks toggle independently", () => {
     updateProgress(unchecked, "openSourceChecks", "branch").openSourceChecks,
     ["branch"],
   );
+  const questDone = updateProgress(base, "quests", "hello-world");
+  assert.deepEqual(questDone.quests, ["hello-world"]);
+  assert.deepEqual(questDone.completed, base.completed);
 });

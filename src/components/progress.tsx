@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import { openSourceChecklist, openSourceLessons } from "@/lib/open-source";
+import { lessons } from "@/lib/curriculum";
 import {
   PROGRESS_EVENT,
   PROGRESS_KEY,
@@ -32,8 +33,15 @@ export function useProgress() {
   return parseProgress(snapshot);
 }
 
-function toggle(
-  kind: "completed" | "bookmarks" | "projects" | "openSourceChecks",
+export function toggleProgress(
+  kind:
+    | "completed"
+    | "bookmarks"
+    | "projects"
+    | "openSourceChecks"
+    | "quests"
+    | "exercises"
+    | "tracks",
   id: string,
 ) {
   try {
@@ -52,7 +60,8 @@ function toggle(
 export function ProgressSummary({ total }: { total: number }) {
   const progress = useProgress();
   const count = Math.min(
-    progress.completed.filter((id) => !id.startsWith("open-source/")).length,
+    progress.completed.filter((id) => lessons.some((item) => item.id === id))
+      .length,
     total,
   );
   const percent = total ? Math.round((count / total) * 100) : 0;
@@ -107,7 +116,7 @@ export function LessonActions({ id }: { id: string }) {
         type="button"
         aria-pressed={complete}
         onClick={() => {
-          toggle("completed", id);
+          toggleProgress("completed", id);
           setAnnouncement(complete ? "" : "Lesson complete");
           if (timer.current) clearTimeout(timer.current);
           timer.current = setTimeout(() => setAnnouncement(""), 1800);
@@ -119,7 +128,7 @@ export function LessonActions({ id }: { id: string }) {
         className="button button-secondary"
         type="button"
         aria-pressed={bookmarked}
-        onClick={() => toggle("bookmarks", id)}
+        onClick={() => toggleProgress("bookmarks", id)}
       >
         {bookmarked ? "★ Bookmarked" : "☆ Bookmark"}
       </button>
@@ -138,7 +147,7 @@ export function ProjectAction({ id }: { id: string }) {
       className={`button button-primary ${complete ? "button-done" : ""}`}
       type="button"
       aria-pressed={complete}
-      onClick={() => toggle("projects", id)}
+      onClick={() => toggleProgress("projects", id)}
     >
       {complete ? "✓ Project complete" : "Mark project complete"}
     </button>
@@ -223,7 +232,7 @@ export function OpenSourceChecklist() {
             <button
               type="button"
               aria-pressed={progress.openSourceChecks.includes(item.id)}
-              onClick={() => toggle("openSourceChecks", item.id)}
+              onClick={() => toggleProgress("openSourceChecks", item.id)}
               aria-label={`${progress.openSourceChecks.includes(item.id) ? "Uncheck" : "Check"}: ${item.label}`}
             >
               <span aria-hidden="true">

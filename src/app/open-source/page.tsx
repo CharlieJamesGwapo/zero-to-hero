@@ -63,9 +63,9 @@ export default function OpenSourcePage() {
               </Link>
               <Link
                 className="button button-secondary"
-                href="/open-source/project"
+                href="/quests/first-contribution"
               >
-                Contribute to this project →
+                Take the contribution quest →
               </Link>
             </div>
             <div className="hero-proof">
@@ -76,7 +76,7 @@ export default function OpenSourcePage() {
           </div>
           <div className="os-hero-art">
             <Image
-              src="/zero-to-hero-logo.png"
+              src="/logo.png"
               alt="ZERO → HERO logo with an upward blue arrow and Learn. Build. Ship. tagline"
               width={330}
               height={330}

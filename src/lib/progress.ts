@@ -3,13 +3,24 @@ export type Progress = {
   bookmarks: string[];
   projects: string[];
   openSourceChecks: string[];
+  quests: string[];
+  exercises: string[];
+  tracks: string[];
 };
 export const PROGRESS_KEY = "zero-to-hero-progress-v1";
 export const PROGRESS_EVENT = "zero-to-hero-progress-update";
 
 export function parseProgress(value: string | null): Progress {
   if (!value)
-    return { completed: [], bookmarks: [], projects: [], openSourceChecks: [] };
+    return {
+      completed: [],
+      bookmarks: [],
+      projects: [],
+      openSourceChecks: [],
+      quests: [],
+      exercises: [],
+      tracks: [],
+    };
   try {
     const data: unknown = JSON.parse(value);
     if (!data || typeof data !== "object")
@@ -18,6 +29,9 @@ export function parseProgress(value: string | null): Progress {
         bookmarks: [],
         projects: [],
         openSourceChecks: [],
+        quests: [],
+        exercises: [],
+        tracks: [],
       };
     const record = data as Record<string, unknown>;
     const strings = (input: unknown) =>
@@ -33,9 +47,20 @@ export function parseProgress(value: string | null): Progress {
       bookmarks: strings(record.bookmarks),
       projects: strings(record.projects),
       openSourceChecks: strings(record.openSourceChecks),
+      quests: strings(record.quests),
+      exercises: strings(record.exercises),
+      tracks: strings(record.tracks),
     };
   } catch {
-    return { completed: [], bookmarks: [], projects: [], openSourceChecks: [] };
+    return {
+      completed: [],
+      bookmarks: [],
+      projects: [],
+      openSourceChecks: [],
+      quests: [],
+      exercises: [],
+      tracks: [],
+    };
   }
 }
 

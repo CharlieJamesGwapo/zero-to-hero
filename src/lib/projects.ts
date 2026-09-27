@@ -14,6 +14,7 @@ export type Project = {
   testing: string[];
   deployment: string;
   contribution: string;
+  recommendedExercises?: string[];
 };
 
 export const projects: Project[] = [
@@ -61,6 +62,7 @@ export const projects: Project[] = [
       "Publish the static site, then verify every link on the live URL.",
     contribution:
       "Invite a documentation or accessibility PR; review it with specific, kind feedback.",
+    recommendedExercises: ["semantic-card"],
   },
   {
     slug: "task-manager",
@@ -108,6 +110,11 @@ export const projects: Project[] = [
       "Deploy a static build and disclose that tasks remain on the current device.",
     contribution:
       "Turn each phase into a small issue, then review one change through a PR before adding the next feature.",
+    recommendedExercises: [
+      "reverse-string",
+      "largest-number",
+      "normalize-email",
+    ],
   },
   {
     slug: "auth-app",
@@ -155,6 +162,7 @@ export const projects: Project[] = [
       "Set server secrets in the host, run migrations deliberately, and test private routes after release.",
     contribution:
       "Separate auth, validation, and UI issues so reviewers can inspect each security boundary.",
+    recommendedExercises: ["normalize-email", "fizzbuzz"],
   },
   {
     slug: "commerce",
@@ -203,6 +211,7 @@ export const projects: Project[] = [
       "Use provider test mode until the full order lifecycle is verified; keep webhook secrets on the server.",
     contribution:
       "Write issues with testable payment-state outcomes and ask for focused review of price and webhook rules.",
+    recommendedExercises: ["largest-number", "normalize-email"],
   },
   {
     slug: "saas",
@@ -254,6 +263,7 @@ export const projects: Project[] = [
       "Release through CI and a preview, document migrations and rollback, then monitor one signal tied to the core flow.",
     contribution:
       "Publish small issues for docs, tests, accessibility, and operations; review external changes against the product rules.",
+    recommendedExercises: ["sql-filter", "normalize-email"],
   },
 ];
 

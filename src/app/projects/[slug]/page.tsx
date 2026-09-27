@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getProject, projects } from "@/lib/projects";
 import { ProjectAction } from "@/components/progress";
+import { exercises } from "@/lib/challenges";
 
 type Props = { params: Promise<{ slug: string }> };
 export function generateStaticParams() {
@@ -67,6 +68,27 @@ export default async function ProjectPage({ params }: Props) {
               ))}
             </ol>
           </section>
+          {project.recommendedExercises?.length ? (
+            <section className="detail-section">
+              <span className="eyebrow">PRACTICE BEFORE BUILDING</span>
+              <h2>Warm up the skills this project needs.</h2>
+              <div className="project-exercise-list">
+                {project.recommendedExercises.map((slug) => {
+                  const exercise = exercises.find((item) => item.slug === slug);
+                  return (
+                    exercise && (
+                      <Link key={slug} href={`/exercises/${slug}`}>
+                        <strong>{exercise.title}</strong>
+                        <span>
+                          {exercise.difficulty} · {exercise.minutes} min ↗
+                        </span>
+                      </Link>
+                    )
+                  );
+                })}
+              </div>
+            </section>
+          ) : null}
           <section className="detail-section">
             <span className="eyebrow">04 / REVIEW</span>
             <h2>Questions before you call it done.</h2>

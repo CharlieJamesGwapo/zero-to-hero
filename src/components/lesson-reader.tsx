@@ -19,6 +19,7 @@ type Props = {
   previous?: ReaderLink;
   next?: ReaderLink;
   aside?: ReactNode;
+  practice?: { playground?: string; exercise: string; exerciseLabel: string };
 };
 
 export function LessonReader({
@@ -34,6 +35,7 @@ export function LessonReader({
   previous,
   next,
   aside,
+  practice,
 }: Props) {
   return (
     <div className="shell lesson-layout">
@@ -86,6 +88,29 @@ export function LessonReader({
         <div className="lesson-content">
           <Content />
         </div>
+        {practice && (
+          <div className="lesson-try">
+            <span className="eyebrow">TRY IT YOURSELF</span>
+            <h2>Turn this lesson into code.</h2>
+            <p>
+              Test a small example, then practice the idea in a focused
+              challenge.
+            </p>
+            <div className="hero-actions">
+              {practice.playground && (
+                <Link
+                  className="button button-secondary"
+                  href={practice.playground}
+                >
+                  Open example in playground ↗
+                </Link>
+              )}
+              <Link className="button button-primary" href={practice.exercise}>
+                {practice.exerciseLabel} →
+              </Link>
+            </div>
+          </div>
+        )}
         <div className="lesson-finish">
           <div>
             <span className="eyebrow">KEEP THE LOOP MOVING</span>

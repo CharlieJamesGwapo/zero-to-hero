@@ -13,6 +13,8 @@ import { lessons } from "../src/lib/curriculum";
 import { projects } from "../src/lib/projects";
 import { glossary } from "../src/lib/glossary";
 import { searchIndex } from "../src/lib/search-index";
+import { exercises, quests, validateChallenges } from "../src/lib/challenges";
+import { tracks } from "../content/tracks/paths";
 
 const root = process.cwd();
 const openSourcePaths = new Set(openSourceLessons.map((lesson) => lesson.path));
@@ -109,4 +111,38 @@ test("project briefs include engineering and contribution guidance", () => {
     assert.ok(project.deployment.length > 30);
     assert.ok(project.contribution.length > 30);
   }
+});
+
+test("interactive learning content resolves and has truthful execution modes", () => {
+  assert.deepEqual(validateChallenges(exercises), []);
+  assert.deepEqual(validateChallenges(quests), []);
+  for (const quest of quests) {
+    if (quest.nextQuest)
+      assert.ok(quests.some((item) => item.slug === quest.nextQuest));
+  }
+  for (const item of [...exercises, ...quests]) {
+    const href = item.relatedLesson.href;
+    const trackStage = tracks.some((track) =>
+      track.stages.some(
+        (stage) => href === `/tracks/${track.slug}/${stage.slug}`,
+      ),
+    );
+    assert.ok(
+      webPaths.has(href) ||
+        openSourcePaths.has(href) ||
+        trackStage ||
+        href.startsWith("/projects/") ||
+        href.startsWith("/exercises/"),
+      `${item.slug} links to missing learning content`,
+    );
+  }
+  const python = tracks.find((track) => track.slug === "python");
+  const cpp = tracks.find((track) => track.slug === "cpp");
+  assert.equal(python?.stages.length, 15);
+  assert.equal(cpp?.stages.length, 15);
+  for (const track of tracks)
+    assert.equal(
+      new Set(track.stages.map((item) => item.slug)).size,
+      track.stages.length,
+    );
 });
