@@ -1,7 +1,22 @@
-import { parseProgress, type Progress } from "./progress";
+import {
+  parseProgress,
+  type Progress,
+  type ProgressListKind,
+} from "./progress";
 
 const backupFormat = "zero-to-hero-progress";
 const backupVersion = 1;
+const listKinds: ProgressListKind[] = [
+  "completed",
+  "bookmarks",
+  "projects",
+  "openSourceChecks",
+  "quests",
+  "exercises",
+  "tracks",
+  "htmlChecks",
+  "resources",
+];
 
 export function exportProgress(progress: Progress, exportedAt = new Date()) {
   return JSON.stringify(
@@ -37,10 +52,17 @@ export function importProgress(input: string, current: Progress): Progress {
     throw new Error("This is not a supported ZERO → HERO progress backup.");
   }
   const saved = parseProgress(JSON.stringify(record.progress));
-  return Object.fromEntries(
-    (Object.keys(current) as (keyof Progress)[]).map((key) => [
+  const lists = Object.fromEntries(
+    listKinds.map((key) => [
       key,
       [...new Set([...current[key], ...saved[key]])],
     ]),
-  ) as Progress;
+  ) as Pick<Progress, ProgressListKind>;
+  const projectReviews = { ...current.projectReviews };
+  for (const [slug, review] of Object.entries(saved.projectReviews)) {
+    const existing = projectReviews[slug];
+    if (!existing || review.updatedAt > existing.updatedAt)
+      projectReviews[slug] = review;
+  }
+  return { ...lists, projectReviews };
 }

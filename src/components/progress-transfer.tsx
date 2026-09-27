@@ -52,10 +52,10 @@ export function ProgressTransfer() {
         <span className="eyebrow">YOUR DATA</span>
         <h2 id="backup-title">Take your progress with you.</h2>
         <p>
-          Lessons, exercises, quests, HTML milestones, and saved resources live
-          in this browser. Download a backup, then import it on another device.
-          Import merges progress with what is already saved. Download your HTML
-          workshop file separately from the workshop.
+          Lessons, exercises, quests, project reviews, HTML milestones, and
+          saved resources live in this browser. Download a backup, then import
+          it on another device. Import merges progress with what is already
+          saved. Download your HTML workshop file separately from the workshop.
         </p>
       </div>
       <div className="progress-transfer-actions">

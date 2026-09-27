@@ -4,6 +4,7 @@
 
 ### Guided HTML and practical tools
 
+- Added a local project review workspace with source and demo links, self-checked tests, engineering notes, a mentor-ready Markdown export, and dashboard resume links. Progress backups include these drafts and preserve existing project completions.
 - Added visual guide and course previews, clearer use-case labels, and quick filter reset to the resource library.
 - Added playable video previews and an in-page YouTube player to the resource library.
 - Expanded HTML into four connected lessons and a live portfolio workshop with structural checks, local draft saving, and HTML download.

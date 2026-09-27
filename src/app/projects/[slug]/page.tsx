@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getProject, projects } from "@/lib/projects";
-import { ProjectAction } from "@/components/progress";
+import { ProjectReviewWorkspace } from "@/components/project-review-workspace";
 import { exercises } from "@/lib/challenges";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -39,6 +39,9 @@ export default async function ProjectPage({ params }: Props) {
             <span key={tech}>{tech}</span>
           ))}
         </div>
+        <a className="text-link project-review-jump" href="#project-review">
+          Open your project review workspace ↓
+        </a>
       </div>
       <div className="project-detail-grid">
         <div className="project-detail-main">
@@ -147,6 +150,7 @@ export default async function ProjectPage({ params }: Props) {
             </div>
           </section>
           {slug === "saas" && <CapstoneTemplates />}
+          <ProjectReviewWorkspace project={project} />
           {next && (
             <Link className="next-project" href={`/projects/${next.slug}`}>
               <span>UP NEXT / PROJECT {next.number}</span>
@@ -154,14 +158,6 @@ export default async function ProjectPage({ params }: Props) {
               <b aria-hidden="true">↗</b>
             </Link>
           )}
-          <div className="project-completion">
-            <span className="eyebrow">READY TO MOVE ON?</span>
-            <p>
-              Complete the review questions and verify the main flow before
-              recording this project as done.
-            </p>
-            <ProjectAction id={project.slug} />
-          </div>
         </div>
         <aside className="project-detail-aside">
           <div className="aside-note">
@@ -174,6 +170,9 @@ export default async function ProjectPage({ params }: Props) {
           <Link className="text-link" href="/workflow">
             Follow the workflow →
           </Link>
+          <a className="text-link" href="#project-review">
+            Save your project review ↓
+          </a>
         </aside>
       </div>
     </div>

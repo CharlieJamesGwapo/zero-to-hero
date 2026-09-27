@@ -20,6 +20,7 @@ test("existing saved progress migrates without losing lessons", () => {
     tracks: [],
     htmlChecks: [],
     resources: [],
+    projectReviews: {},
   });
 });
 
@@ -34,6 +35,7 @@ test("invalid storage is ignored and checks toggle independently", () => {
     tracks: [],
     htmlChecks: [],
     resources: [],
+    projectReviews: {},
   });
   const base = parseProgress(
     JSON.stringify({

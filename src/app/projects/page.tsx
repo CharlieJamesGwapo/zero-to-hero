@@ -19,7 +19,8 @@ export default function ProjectsPage() {
         <p>
           Build progressively from a personal page to an organization-based
           product. Each brief defines what a real user must be able to do and
-          how to review the result.
+          how to review the result. Save your source and demo links, work
+          through the checks, and export a summary for feedback.
         </p>
       </div>
       <div className="projects-list">

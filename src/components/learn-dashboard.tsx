@@ -6,6 +6,7 @@ import { lessons } from "@/lib/curriculum";
 import { openSourceLessons } from "@/lib/open-source";
 import { quests, exercises } from "@/lib/challenges";
 import { projects } from "@/lib/projects";
+import { hasProjectReviewContent } from "@/lib/project-review";
 import { tracks } from "../../content/tracks/paths";
 import { toggleProgress, useProgress } from "./progress";
 
@@ -56,6 +57,16 @@ export function LearnDashboard() {
     .reverse()
     .map((slug) => exercises.find((item) => item.slug === slug))
     .filter((item) => item !== undefined);
+  const reviewDrafts = projects.filter(
+    (project) =>
+      progress.projectReviews[project.slug] &&
+      hasProjectReviewContent(progress.projectReviews[project.slug]) &&
+      !progress.projects.includes(project.slug),
+  );
+  const reviewTarget =
+    reviewDrafts[0] ??
+    projects.find((project) => !progress.projects.includes(project.slug)) ??
+    projects[0];
   return (
     <>
       <section className="dashboard-start">
@@ -211,8 +222,16 @@ export function LearnDashboard() {
           <h2>Build something real</h2>
           <p>
             {progress.projects.length} / {projects.length} project briefs marked
-            complete.
+            complete · {reviewDrafts.length} review drafts saved on this device.
           </p>
+          <Link
+            className="text-link"
+            href={`/projects/${reviewTarget.slug}#project-review`}
+          >
+            {reviewDrafts.length
+              ? `Continue ${reviewTarget.title} review →`
+              : "Start a project review →"}
+          </Link>
           <Link className="text-link" href="/projects">
             Explore projects ↗
           </Link>

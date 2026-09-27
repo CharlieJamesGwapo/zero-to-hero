@@ -9,7 +9,9 @@ import {
   PROGRESS_KEY,
   parseProgress,
   updateProgress,
+  updateProjectReview,
 } from "@/lib/progress";
+import type { ProjectReview } from "@/lib/project-review";
 
 function subscribe(callback: () => void) {
   window.addEventListener("storage", callback);
@@ -56,6 +58,21 @@ export function toggleProgress(
     window.dispatchEvent(new Event(PROGRESS_EVENT));
   } catch {
     // The lesson remains usable when storage is disabled.
+  }
+}
+
+export function saveProjectReview(slug: string, review: ProjectReview) {
+  try {
+    const next = updateProjectReview(
+      parseProgress(localStorage.getItem(PROGRESS_KEY)),
+      slug,
+      review,
+    );
+    localStorage.setItem(PROGRESS_KEY, JSON.stringify(next));
+    window.dispatchEvent(new Event(PROGRESS_EVENT));
+    return true;
+  } catch {
+    return false;
   }
 }
 
@@ -138,21 +155,6 @@ export function LessonActions({ id }: { id: string }) {
         {announcement}
       </span>
     </div>
-  );
-}
-
-export function ProjectAction({ id }: { id: string }) {
-  const progress = useProgress();
-  const complete = progress.projects.includes(id);
-  return (
-    <button
-      className={`button button-primary ${complete ? "button-done" : ""}`}
-      type="button"
-      aria-pressed={complete}
-      onClick={() => toggleProgress("projects", id)}
-    >
-      {complete ? "✓ Project complete" : "Mark project complete"}
-    </button>
   );
 }
 

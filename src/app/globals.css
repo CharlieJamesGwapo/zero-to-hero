@@ -1906,16 +1906,196 @@ a:hover {
     transition-duration: 0.01ms !important;
   }
 }
-.project-completion {
-  margin-top: 30px;
-  background: #edf4ec;
-  border: 1px solid #c6ddca;
-  padding: 23px;
+.project-review-jump {
+  display: inline-block;
+  margin-top: 22px;
 }
-.project-completion p {
-  font-size: 13px;
+.project-review-workspace {
+  margin: 38px 0;
+  padding: 32px;
+  border: 1px solid var(--line-dark);
+  border-top: 4px solid var(--accent);
+  background: #fff;
+  scroll-margin-top: 86px;
+}
+.project-review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--line);
+}
+.project-review-header h2 {
+  margin: 11px 0 10px;
+  font-size: clamp(27px, 3vw, 38px);
+  line-height: 1.08;
+  letter-spacing: -0.055em;
+}
+.project-review-header p {
+  max-width: 630px;
+  margin: 0;
   color: var(--muted);
-  margin: 9px 0 17px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.project-review-score {
+  display: grid;
+  gap: 2px;
+  flex: 0 0 auto;
+  min-width: 104px;
+  padding: 13px;
+  border: 1px solid #c7d6f1;
+  background: #f0f5ff;
+  text-align: center;
+}
+.project-review-score strong {
+  color: var(--accent-dark);
+  font-size: 26px;
+  line-height: 1;
+}
+.project-review-score span {
+  color: var(--muted);
+  font-size: 10px;
+}
+.project-review-fields,
+.project-review-checks {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 26px;
+}
+.project-review-field,
+.project-review-notes label {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  min-width: 0;
+  font-size: 12px;
+  font-weight: 700;
+}
+.project-review-field label {
+  font-size: 12px;
+  font-weight: 700;
+}
+.project-review-fields input,
+.project-review-notes textarea {
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  padding: 11px 12px;
+  border: 1px solid var(--line-dark);
+  border-radius: 0;
+  background: #fff;
+  color: var(--ink);
+  font: inherit;
+  font-weight: 400;
+}
+.project-review-notes textarea {
+  resize: vertical;
+  line-height: 1.5;
+}
+.project-review-fields input:focus-visible,
+.project-review-notes textarea:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.project-review-fields a {
+  justify-self: start;
+  color: var(--accent-dark);
+  font-size: 11px;
+  font-weight: 700;
+}
+.project-review-checks fieldset {
+  min-width: 0;
+  margin: 0;
+  padding: 15px 16px 12px;
+  border: 1px solid var(--line);
+}
+.project-review-checks legend {
+  padding: 0 6px;
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 800;
+}
+.project-review-checks label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+.project-review-checks label:last-child {
+  border-bottom: 0;
+}
+.project-review-checks input {
+  flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  accent-color: var(--accent);
+}
+.project-review-notes {
+  display: grid;
+  gap: 18px;
+  margin-top: 26px;
+}
+.project-review-notes label > span {
+  color: var(--muted);
+  font-weight: 400;
+}
+.project-review-result {
+  margin-top: 26px;
+  padding: 17px 19px;
+  border: 1px solid #c7d6f1;
+  background: #f0f5ff;
+}
+.project-review-result p {
+  margin: 5px 0 0;
+  color: var(--ink);
+  font-size: 13px;
+}
+.project-review-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+.project-review-actions .button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.project-review-disclaimer,
+.project-review-save-status {
+  margin: 15px 0 0;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.5;
+}
+.project-review-save-status {
+  min-height: 17px;
+  color: var(--accent-dark);
+}
+@media (max-width: 700px) {
+  .project-review-workspace {
+    padding: 22px 18px;
+  }
+  .project-review-header,
+  .project-review-fields,
+  .project-review-checks {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .project-review-score {
+    justify-self: start;
+  }
+  .project-review-actions .button {
+    flex: 1 1 100%;
+    justify-content: center;
+  }
 }
 .mobile-curriculum {
   display: none;
