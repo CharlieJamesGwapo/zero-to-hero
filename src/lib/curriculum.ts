@@ -68,6 +68,15 @@ export const levels: Level[] = [
     project: "portfolio",
     lessons: [
       {
+        id: "html/first-document",
+        slug: "first-document",
+        title: "Your first HTML document",
+        summary:
+          "Write a complete document, from doctype and metadata to readable content.",
+        readingMinutes: 12,
+        headings: [],
+      },
+      {
         id: "html/semantic-page",
         slug: "semantic-page",
         title: "A page with a clear structure",
@@ -80,6 +89,24 @@ export const levels: Level[] = [
           { id: "practice", title: "Practice" },
           { id: "checkpoint", title: "Checkpoint" },
         ],
+      },
+      {
+        id: "html/forms-and-feedback",
+        slug: "forms-and-feedback",
+        title: "Forms people can complete",
+        summary:
+          "Connect labels and controls, choose input types, and explain what happens on submit.",
+        readingMinutes: 13,
+        headings: [],
+      },
+      {
+        id: "html/accessible-publishing",
+        slug: "accessible-publishing",
+        title: "Accessible publishing checks",
+        summary:
+          "Review links, images, page language, keyboard order, and metadata before sharing.",
+        readingMinutes: 12,
+        headings: [],
       },
     ],
   },

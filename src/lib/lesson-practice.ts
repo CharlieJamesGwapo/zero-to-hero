@@ -19,6 +19,18 @@ export const lessonPractice: Record<
     exercise: "/exercises/semantic-card",
     exerciseLabel: "Build a semantic card",
   },
+  "html/first-document": {
+    exercise: "/learn/html/workshop?focus=document",
+    exerciseLabel: "Build your first document",
+  },
+  "html/forms-and-feedback": {
+    exercise: "/learn/html/workshop?focus=forms",
+    exerciseLabel: "Build a labeled contact form",
+  },
+  "html/accessible-publishing": {
+    exercise: "/learn/html/workshop?focus=publish",
+    exerciseLabel: "Run the publishing checks",
+  },
   "css/layout-with-intent": {
     language: "html",
     code: '<style>\n  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; }\n</style>\n<div class="cards"><article>One</article><article>Two</article><article>Three</article></div>',

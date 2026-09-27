@@ -6,6 +6,8 @@ export type Progress = {
   quests: string[];
   exercises: string[];
   tracks: string[];
+  htmlChecks: string[];
+  resources: string[];
 };
 export const PROGRESS_KEY = "zero-to-hero-progress-v1";
 export const PROGRESS_EVENT = "zero-to-hero-progress-update";
@@ -20,6 +22,8 @@ export function parseProgress(value: string | null): Progress {
       quests: [],
       exercises: [],
       tracks: [],
+      htmlChecks: [],
+      resources: [],
     };
   try {
     const data: unknown = JSON.parse(value);
@@ -32,6 +36,8 @@ export function parseProgress(value: string | null): Progress {
         quests: [],
         exercises: [],
         tracks: [],
+        htmlChecks: [],
+        resources: [],
       };
     const record = data as Record<string, unknown>;
     const strings = (input: unknown) =>
@@ -50,6 +56,8 @@ export function parseProgress(value: string | null): Progress {
       quests: strings(record.quests),
       exercises: strings(record.exercises),
       tracks: strings(record.tracks),
+      htmlChecks: strings(record.htmlChecks),
+      resources: strings(record.resources),
     };
   } catch {
     return {
@@ -60,6 +68,8 @@ export function parseProgress(value: string | null): Progress {
       quests: [],
       exercises: [],
       tracks: [],
+      htmlChecks: [],
+      resources: [],
     };
   }
 }

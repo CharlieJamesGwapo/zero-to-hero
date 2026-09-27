@@ -88,6 +88,31 @@ export const searchItems: SearchItem[] = [
     category: "Playground",
   },
   {
+    title: "Guided HTML module",
+    description: "Four HTML lessons and a hands-on portfolio workshop.",
+    href: "/learn/html",
+    category: "Guide",
+  },
+  {
+    title: "HTML workshop",
+    description: "Edit HTML, preview your page, and complete guided checks.",
+    href: "/learn/html/workshop",
+    category: "Playground",
+  },
+  {
+    title: "Learning resources",
+    description:
+      "Search and save official guides and selected free video tutorials.",
+    href: "/resources",
+    category: "Guide",
+  },
+  {
+    title: "AI learning workflows",
+    description: "Codex, Claude Code, OpenRouter, GLM, and a prompt builder.",
+    href: "/ai",
+    category: "Guide",
+  },
+  {
     title: "Open Source Development",
     description:
       "Git, GitHub, issues, pull requests, reviews, CI, licenses, and contributing.",

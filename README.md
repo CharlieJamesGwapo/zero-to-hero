@@ -2,17 +2,19 @@
 
 **Learn. Build. Ship.** A practical, open-source path from your first web page to building, deploying, and contributing to full-stack software.
 
-[Live site](https://zerotoherodev.vercel.app) · [Learn](https://zerotoherodev.vercel.app/learn) · [Quests](https://zerotoherodev.vercel.app/quests) · [Exercises](https://zerotoherodev.vercel.app/exercises) · [Playground](https://zerotoherodev.vercel.app/playground)
+[Live site](https://zerotoherodev.vercel.app) · [Learn](https://zerotoherodev.vercel.app/learn) · [HTML module](https://zerotoherodev.vercel.app/learn/html) · [Resources](https://zerotoherodev.vercel.app/resources) · [AI guides](https://zerotoherodev.vercel.app/ai) · [Playground](https://zerotoherodev.vercel.app/playground)
 
 Created by **Charlie James Z. Abejo**, AI Developer · Full-Stack Engineer. [GitHub](https://github.com/CharlieJamesGwapo) · [Portfolio](https://portfoliobboy.vercel.app/) · [Email](mailto:capstonee2@gmail.com).
 
 ## Learn, build, contribute
 
-- **Learn:** Twelve connected web-development levels and focused MDX lessons from foundations to architecture. Each level currently has one anchor lesson; its topic list maps further study and contributions.
+- **Learn:** Twelve connected web-development levels and focused MDX lessons from foundations to architecture. HTML has four guided lessons and a live workshop; other levels currently have one anchor lesson each.
 - **Build:** Five project briefs grow from a portfolio to an organization-based application. Each brief includes requirements, architecture, issues, tests, deployment, and review questions.
 - **Contribute:** The Open Source track teaches Git, GitHub, issues, forks, pull requests, reviews, CI, releases, licenses, and a real contribution to this repository.
 
-The site also has a glossary, architecture diagrams, a development workflow guide, local progress and bookmarks, a start recommendation, and `Cmd/Ctrl + K` search. Progress stays in your browser; there is no account or cloud sync.
+The site also has a glossary, architecture diagrams, a development workflow guide, local progress and bookmarks, a start recommendation, and `Cmd/Ctrl + K` search. Progress stays in your browser; there is no account or cloud sync. Download a JSON progress backup from `/learn` and import it on another device; importing merges saved completion and bookmarks. The HTML workshop draft is separate and can be downloaded as an HTML file.
+
+The learning resource directory links to official documentation and selected free videos. Resource metadata is original; third-party content remains on its publisher's site. The AI guide offers workflows for coding agents and model APIs plus a client-side prompt builder. It does not make model calls or require an API key.
 
 Eight free learning paths now connect the existing web and open-source curriculum to new Programming Fundamentals, Python, C++, JavaScript, TypeScript, and Computer Science stages. Python and C++ each include 15 beginner stages. Quests and exercises provide visible checks, hints, and reference solutions. The code playground runs JavaScript, TypeScript, and Python in browser workers and previews HTML/CSS in an isolated frame. C++ and SQL practice requires local tools; the interface says so plainly. Python loads from a pinned Pyodide CDN only when selected. See [learning platform architecture](docs/learning-platform.md) for runtime and content details.
 

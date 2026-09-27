@@ -1,0 +1,52 @@
+## The problem
+
+A page can pass a quick visual review while leaving some people unable to understand an image, locate navigation, or use a keyboard. A few publishing checks catch common problems before anyone visits.
+
+## Concept
+
+Accessibility begins with the document: descriptive links, useful image alternatives, meaningful headings, a language on `html`, and controls that work with a keyboard. Metadata gives the browser and other tools a concise description of the page. Automated checks help you notice omissions; they cannot judge every real user experience.
+
+## Example
+
+```html
+<a href="#main">Skip to main content</a>
+<header>
+  <nav aria-label="Primary navigation">
+    <a href="/projects">Browse projects</a>
+    <a href="/contact">Contact Mina</a>
+  </nav>
+</header>
+<main id="main">
+  <h1>Projects by Mina</h1>
+  <img
+    src="directory-preview.png"
+    alt="Directory results with filters for neighborhood and service type"
+  />
+  <p>Explore a directory built for local volunteers.</p>
+</main>
+```
+
+## How it works
+
+The skip link gives keyboard users a route past repeated navigation. The navigation region has a name. The image alternative communicates the useful information in the screenshot. If an image is purely decorative, use an empty `alt=""` instead. The link labels describe what happens when selected.
+
+Test at a narrow width and at 200% zoom. Follow every link. Navigate from the address bar using only the keyboard. Read headings in order and check the page with CSS disabled. These checks find issues that a source-code linter cannot.
+
+## Common mistakes
+
+- Writing “image” or “photo” as the whole alternative text.
+- Hiding keyboard focus outlines without a visible replacement.
+- Using “click here” for several unrelated destinations.
+- Assuming a green automated result proves full accessibility.
+
+## Practice
+
+Ask someone unfamiliar with your portfolio to find your strongest project and contact method. Watch where they hesitate. Rewrite labels, headings, and text based on what you observe. Repeat the task with a keyboard.
+
+## Build
+
+Finish all milestones in the [HTML workshop](/learn/html/workshop?focus=publish), download the page, and open the file in a browser. The workshop checks a few structural rules; the manual review above remains part of publishing.
+
+## Checkpoint
+
+The page has a specific title and description, meaningful links, useful image alternatives, labeled controls, and a keyboard path through all actions. You can describe what each automated check does and does not prove.

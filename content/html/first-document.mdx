@@ -1,0 +1,58 @@
+## The problem
+
+A browser may display a few loose HTML tags, but a dependable page needs a complete document. Without a language, title, or viewport setting, people and devices lose useful context.
+
+## Concept
+
+HTML is a tree of elements. The `html` element contains `head` (information about the page) and `body` (what readers see). A start tag, content, and end tag form most elements. Nesting tells the browser which content belongs together.
+
+## Example
+
+```html
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mina's portfolio</title>
+    <meta
+      name="description"
+      content="Selected projects and contact details for Mina."
+    />
+  </head>
+  <body>
+    <h1>Mina builds useful websites</h1>
+    <p>Explore selected work and get in touch.</p>
+    <a href="#projects">See projects</a>
+    <section id="projects">
+      <h2>Projects</h2>
+      <p>A neighborhood resource directory.</p>
+    </section>
+  </body>
+</html>
+```
+
+## How it works
+
+The doctype tells the browser to use modern HTML parsing. `lang` identifies the document language. The character set lets the browser decode text correctly. The viewport meta tag supports a device-width layout. The title appears in tabs and other browser surfaces; it should describe this page specifically.
+
+The link uses `href="#projects"` to jump to an element with the matching `id`. Try following it with a keyboard. Then change the ID and see what breaks: small experiments make the rule memorable.
+
+## Common mistakes
+
+- Putting visible headings or paragraphs in `head` instead of `body`.
+- Using the same vague title on every page.
+- Writing multiple `h1` elements just to make text look large.
+- Forgetting that a link needs a meaningful destination.
+
+## Practice
+
+Start from an empty file and reproduce the document structure without copying the example. Replace the name and project with your own. Add one more section with a working in-page link. Inspect the element tree in your browser's developer tools.
+
+## Build
+
+Open the [HTML workshop](/learn/html/workshop?focus=document). Make the document milestone pass, then add real content for a simple portfolio. The checker verifies structure; you still decide whether your writing is clear.
+
+## Checkpoint
+
+Explain the purpose of `head`, `body`, `title`, `lang`, and `viewport` without notes. Your page opens from a local file, its title describes the content, and its in-page link works.

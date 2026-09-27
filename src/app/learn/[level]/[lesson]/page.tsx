@@ -49,12 +49,17 @@ export default async function LessonPage({ params }: Props) {
           exerciseLabel: practice.exerciseLabel,
         }
       }
-      navigation={levels.map((entry) => ({
-        href: `/learn/${entry.slug}/${entry.lessons[0].slug}`,
-        number: entry.number,
-        title: entry.title,
-        current: entry.slug === level,
-      }))}
+      navigation={levels.flatMap((entry) =>
+        entry.lessons.map((entryLesson, lessonIndex) => ({
+          href: `/learn/${entry.slug}/${entryLesson.slug}`,
+          number:
+            entry.lessons.length > 1
+              ? `${entry.number}.${lessonIndex + 1}`
+              : entry.number,
+          title: entry.lessons.length > 1 ? entryLesson.title : entry.title,
+          current: entryLesson.id === item.id,
+        })),
+      )}
       previous={
         previous && {
           href: `/learn/${previous.levelSlug}/${previous.slug}`,

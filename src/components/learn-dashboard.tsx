@@ -218,6 +218,41 @@ export function LearnDashboard() {
           </Link>
         </div>
       </section>
+      <section
+        className="dashboard-section learning-tool-links"
+        aria-labelledby="learning-tools-title"
+      >
+        <div className="section-heading">
+          <div>
+            <span className="eyebrow">LEARN BY DOING</span>
+            <h2 id="learning-tools-title">Your next useful tools.</h2>
+          </div>
+          <p>
+            Build a page, find a clear reference, and use AI to review what you
+            learned.
+          </p>
+        </div>
+        <div className="module-grid">
+          <Link className="module-card" href="/learn/html">
+            <span className="eyebrow">GUIDED COURSE</span>
+            <h3>HTML from first page to portfolio</h3>
+            <p>Four lessons and a live, saved workshop.</p>
+            <span className="text-link">Open module ↗</span>
+          </Link>
+          <Link className="module-card" href="/resources">
+            <span className="eyebrow">REFERENCE LIBRARY</span>
+            <h3>Guides and videos</h3>
+            <p>Filter by topic, format, and saved resources.</p>
+            <span className="text-link">Browse resources ↗</span>
+          </Link>
+          <Link className="module-card" href="/ai">
+            <span className="eyebrow">AI WORKFLOWS</span>
+            <h3>Learn with coding agents</h3>
+            <p>Practical guides and a prompt builder.</p>
+            <span className="text-link">Explore AI guide ↗</span>
+          </Link>
+        </div>
+      </section>
     </>
   );
 }

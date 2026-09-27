@@ -1,5 +1,8 @@
 import Foundations from "../../content/foundations/how-the-web-works.mdx";
 import Html from "../../content/html/semantic-page.mdx";
+import HtmlFirst from "../../content/html/first-document.mdx";
+import HtmlForms from "../../content/html/forms-and-feedback.mdx";
+import HtmlPublish from "../../content/html/accessible-publishing.mdx";
 import Css from "../../content/css/layout-with-intent.mdx";
 import Javascript from "../../content/javascript/state-and-events.mdx";
 import Typescript from "../../content/typescript/types-at-boundaries.mdx";
@@ -14,6 +17,9 @@ import Architecture from "../../content/architecture/growing-a-system.mdx";
 export const lessonContent: Record<string, React.ComponentType> = {
   "foundations/how-the-web-works": Foundations,
   "html/semantic-page": Html,
+  "html/first-document": HtmlFirst,
+  "html/forms-and-feedback": HtmlForms,
+  "html/accessible-publishing": HtmlPublish,
   "css/layout-with-intent": Css,
   "javascript/state-and-events": Javascript,
   "typescript/types-at-boundaries": Typescript,

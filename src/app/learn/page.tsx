@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { LearnDashboard } from "@/components/learn-dashboard";
+import { ProgressTransfer } from "@/components/progress-transfer";
 
 export const metadata: Metadata = {
   title: "Learn",
@@ -20,6 +21,7 @@ export default function LearnPage() {
         </p>
       </div>
       <LearnDashboard />
+      <ProgressTransfer />
     </div>
   );
 }

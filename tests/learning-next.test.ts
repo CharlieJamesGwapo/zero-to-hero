@@ -17,8 +17,8 @@ test("a selected language path resumes at its first unfinished stage", () => {
 test("web and open-source paths resume at real lesson routes", () => {
   assert.deepEqual(nextLearningStep("web", ["foundations/how-the-web-works"]), {
     pathTitle: "Web Development",
-    title: "A page with a clear structure",
-    href: "/learn/html/semantic-page",
+    title: "Your first HTML document",
+    href: "/learn/html/first-document",
   });
   assert.deepEqual(nextLearningStep("open-source", []), {
     pathTitle: "Git & Open Source",

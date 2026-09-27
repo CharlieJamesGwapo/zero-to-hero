@@ -12,6 +12,8 @@ const navigation = [
   { href: "/projects", label: "Projects" },
   { href: "/architecture", label: "Architecture" },
   { href: "/open-source", label: "Open Source" },
+  { href: "/resources", label: "Resources" },
+  { href: "/ai", label: "AI Guides" },
 ];
 
 export function SiteHeader() {
@@ -89,6 +91,8 @@ export function SiteFooter() {
           <Link href="/workflow">Workflow</Link>
           <Link href="/open-source">Open Source</Link>
           <Link href="/glossary">Glossary</Link>
+          <Link href="/resources">Resources</Link>
+          <Link href="/ai">AI Guides</Link>
           <Link href="/contribute">Contribute</Link>
         </nav>
         <div className="footer-creator">

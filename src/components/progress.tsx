@@ -41,7 +41,9 @@ export function toggleProgress(
     | "openSourceChecks"
     | "quests"
     | "exercises"
-    | "tracks",
+    | "tracks"
+    | "htmlChecks"
+    | "resources",
   id: string,
 ) {
   try {

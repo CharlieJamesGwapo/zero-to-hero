@@ -74,18 +74,25 @@ export default function CurriculumPage() {
                     ))}
                   </div>
                   <div className="level-lessons">
-                    {level.lessons.map((lesson) => (
+                    {level.lessons.map((lesson, lessonIndex) => (
                       <Link
                         href={`/learn/${level.slug}/${lesson.slug}`}
                         key={lesson.id}
                       >
-                        <span>LESSON 01</span>
+                        <span>
+                          LESSON {String(lessonIndex + 1).padStart(2, "0")}
+                        </span>
                         <strong>{lesson.title}</strong>
                         <small>{lesson.readingMinutes} min read</small>
                         <b aria-hidden="true">↗</b>
                       </Link>
                     ))}
                   </div>
+                  {level.slug === "html" && (
+                    <Link className="text-link" href="/learn/html">
+                      Explore the guided HTML module and workshop ↗
+                    </Link>
+                  )}
                   <div className="checkpoint">
                     <strong>Checkpoint</strong>
                     <p>{level.checkpoint}</p>

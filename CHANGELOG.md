@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+### Guided HTML and practical tools
+
+- Expanded HTML into four connected lessons and a live portfolio workshop with structural checks, local draft saving, and HTML download.
+- Added a searchable, saveable directory of official learning references and selected free video tutorials.
+- Added AI learning workflows for Codex, Claude Code, OpenRouter, and GLM, plus a local prompt builder.
+- Added progress export and merge import for lessons, projects, quests, exercises, workshop milestones, and saved resources.
+- Connected the new pages through navigation, the Learn dashboard, search, and the sitemap, with layouts for narrow screens.
+
 ### Learning experience and accessibility
 
 - Added favicon, app icon, and Apple touch icon assets cropped from the supplied ZERO → HERO logo; the same clear mark now appears in the header and footer.
