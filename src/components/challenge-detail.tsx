@@ -111,6 +111,7 @@ export function ChallengeDetail({
               <CodeWorkbench
                 language={item.language}
                 starter={item.starter}
+                draftId={`${kind}:${item.slug}`}
                 tests={inlineChecks ? item.tests : undefined}
                 completion={inlineChecks ? { kind, id: item.slug } : undefined}
                 solution={item.solution}

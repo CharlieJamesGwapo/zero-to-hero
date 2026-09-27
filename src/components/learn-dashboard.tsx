@@ -57,6 +57,23 @@ export function LearnDashboard() {
     .reverse()
     .map((slug) => exercises.find((item) => item.slug === slug))
     .filter((item) => item !== undefined);
+  const codeDrafts = Object.entries(progress.codeDrafts)
+    .map(([id, draft]) => {
+      const [kind, slug] = id.split(":");
+      const item = (kind === "quests" ? quests : exercises).find(
+        (challenge) => challenge.slug === slug,
+      );
+      return item && (kind === "quests" || kind === "exercises")
+        ? {
+            id,
+            title: item.title,
+            href: `/${kind}/${slug}`,
+            updatedAt: draft.updatedAt,
+          }
+        : null;
+    })
+    .filter((draft) => draft !== null)
+    .sort((a, b) => b.updatedAt.localeCompare(a.updatedAt));
   const reviewDrafts = projects.filter(
     (project) =>
       progress.projectReviews[project.slug] &&
@@ -178,6 +195,17 @@ export function LearnDashboard() {
             {progress.quests.length} / {quests.length} quests complete ·{" "}
             {progress.exercises.length} / {exercises.length} exercises complete
           </p>
+          {codeDrafts.length > 0 && (
+            <p className="dashboard-draft-link">
+              <Link className="text-link" href={codeDrafts[0].href}>
+                Continue your draft: {codeDrafts[0].title} →
+              </Link>
+              <small>
+                {codeDrafts.length} coding draft
+                {codeDrafts.length === 1 ? "" : "s"} saved on this device
+              </small>
+            </p>
+          )}
           {activeExercise ? (
             <Link
               className="text-link"

@@ -8,6 +8,8 @@ import {
   PROGRESS_EVENT,
   PROGRESS_KEY,
   parseProgress,
+  removeCodeDraft,
+  updateCodeDraft,
   updateProgress,
   updateProjectReview,
 } from "@/lib/progress";
@@ -67,6 +69,35 @@ export function saveProjectReview(slug: string, review: ProjectReview) {
       parseProgress(localStorage.getItem(PROGRESS_KEY)),
       slug,
       review,
+    );
+    localStorage.setItem(PROGRESS_KEY, JSON.stringify(next));
+    window.dispatchEvent(new Event(PROGRESS_EVENT));
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+export function saveCodeDraft(id: string, code: string) {
+  try {
+    const next = updateCodeDraft(
+      parseProgress(localStorage.getItem(PROGRESS_KEY)),
+      id,
+      code,
+    );
+    localStorage.setItem(PROGRESS_KEY, JSON.stringify(next));
+    window.dispatchEvent(new Event(PROGRESS_EVENT));
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+export function clearCodeDraft(id: string) {
+  try {
+    const next = removeCodeDraft(
+      parseProgress(localStorage.getItem(PROGRESS_KEY)),
+      id,
     );
     localStorage.setItem(PROGRESS_KEY, JSON.stringify(next));
     window.dispatchEvent(new Event(PROGRESS_EVENT));

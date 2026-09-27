@@ -26,7 +26,7 @@ export function ProgressTransfer() {
   async function restore(file: File | undefined) {
     if (!file) return;
     try {
-      if (file.size > 100_000) throw new Error("Backup file is too large.");
+      if (file.size > 1_000_000) throw new Error("Backup file is too large.");
       const next = importProgress(
         await file.text(),
         parseProgress(localStorage.getItem(PROGRESS_KEY)),
@@ -52,10 +52,11 @@ export function ProgressTransfer() {
         <span className="eyebrow">YOUR DATA</span>
         <h2 id="backup-title">Take your progress with you.</h2>
         <p>
-          Lessons, exercises, quests, project reviews, HTML milestones, and
-          saved resources live in this browser. Download a backup, then import
-          it on another device. Import merges progress with what is already
-          saved. Download your HTML workshop file separately from the workshop.
+          Lessons, exercises, quests, code drafts, project reviews, HTML
+          milestones, and saved resources live in this browser. Download a
+          backup, then import it on another device. Import merges progress with
+          what is already saved. Download your HTML workshop file separately
+          from the workshop.
         </p>
       </div>
       <div className="progress-transfer-actions">

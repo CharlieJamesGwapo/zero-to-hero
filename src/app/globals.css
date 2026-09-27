@@ -2963,6 +2963,32 @@ a:hover {
 .workbench-actions > div button:hover {
   color: #fff;
 }
+.workbench-save-status {
+  margin: 9px 2px 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+.test-feedback {
+  margin: 0 12px 12px;
+  padding: 12px 14px;
+  background: #e8f0ff;
+  border-left: 3px solid var(--accent);
+  color: #18335f;
+  font-size: 12px;
+  line-height: 1.6;
+}
+.test-feedback strong {
+  font-weight: 800;
+}
+.dashboard-draft-link {
+  display: grid;
+  gap: 5px;
+  padding: 12px 0;
+}
+.dashboard-draft-link small {
+  color: var(--muted);
+  font-size: 11px;
+}
 .workbench-output {
   display: flex;
   flex-direction: column;

@@ -32,7 +32,7 @@ export function exportProgress(progress: Progress, exportedAt = new Date()) {
 }
 
 export function importProgress(input: string, current: Progress): Progress {
-  if (input.length > 100_000) throw new Error("Backup file is too large.");
+  if (input.length > 1_000_000) throw new Error("Backup file is too large.");
   let data: unknown;
   try {
     data = JSON.parse(input);
@@ -64,5 +64,11 @@ export function importProgress(input: string, current: Progress): Progress {
     if (!existing || review.updatedAt > existing.updatedAt)
       projectReviews[slug] = review;
   }
-  return { ...lists, projectReviews };
+  const codeDrafts = { ...current.codeDrafts };
+  for (const [id, draft] of Object.entries(saved.codeDrafts)) {
+    const existing = codeDrafts[id];
+    if (!existing || draft.updatedAt > existing.updatedAt)
+      codeDrafts[id] = draft;
+  }
+  return { ...lists, projectReviews, codeDrafts };
 }
