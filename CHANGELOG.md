@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+### Learning experience and accessibility
+
+- Added favicon, app icon, and Apple touch icon assets cropped from the supplied ZERO → HERO logo.
+- Made the dashboard continue button open the next unfinished lesson in a selected path and the practice link open the next unfinished exercise.
+- Added a keyboard skip link and refined dashboard motion with restrained depth, staggered reveals, and reduced-motion support.
+
 ### Identity and presentation
 
 - Renamed the public brand to ZERO → HERO DEV, keeping ZERO → HERO as its short form.

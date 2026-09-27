@@ -19,6 +19,9 @@ const revealSelector = [
   ".os-workflow a",
   ".glossary-entry",
   ".detail-section",
+  ".dashboard-start",
+  ".path-card",
+  ".dashboard-panels > div",
 ].join(", ");
 
 function clamp(value: number) {
@@ -52,7 +55,7 @@ export function MotionController() {
     elements.forEach((element) => {
       if (!observer) return;
       const order = element.matches(
-        ".curriculum-level, .workflow-list li, .os-stages li, .os-workflow a",
+        ".curriculum-level, .workflow-list li, .os-stages li, .os-workflow a, .path-card, .dashboard-panels > div",
       )
         ? Array.from(element.parentElement?.children ?? []).indexOf(element) % 6
         : 0;

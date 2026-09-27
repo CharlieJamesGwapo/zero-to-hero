@@ -1,6 +1,6 @@
 import { tracks } from "../../content/tracks/paths";
 import { openSourceLessons } from "./open-source";
-import { levels } from "./curriculum";
+import { levels, lessons } from "./curriculum";
 
 export const learningPaths = [
   {
@@ -30,3 +30,50 @@ export const learningPaths = [
     label: "Git to contribution",
   },
 ];
+
+export type NextLearningStep = {
+  pathTitle: string;
+  title: string;
+  href: string;
+};
+
+export function nextLearningStep(
+  pathSlug: string,
+  completed: readonly string[],
+): NextLearningStep | null {
+  const pathTitle = learningPaths.find((path) => path.slug === pathSlug)?.title;
+  if (!pathTitle) return null;
+  const done = new Set(completed);
+
+  if (pathSlug === "web") {
+    const lesson = lessons.find((item) => !done.has(item.id));
+    return lesson
+      ? {
+          pathTitle,
+          title: lesson.title,
+          href: `/learn/${lesson.levelSlug}/${lesson.slug}`,
+        }
+      : null;
+  }
+
+  if (pathSlug === "open-source") {
+    const lesson = openSourceLessons.find(
+      (item) => !done.has(item.path.slice(1)),
+    );
+    return lesson
+      ? { pathTitle, title: lesson.title, href: lesson.path }
+      : null;
+  }
+
+  const track = tracks.find((item) => item.slug === pathSlug);
+  const stage = track?.stages.find(
+    (item) => !done.has(`track/${pathSlug}/${item.slug}`),
+  );
+  return stage
+    ? {
+        pathTitle,
+        title: stage.title,
+        href: `/tracks/${pathSlug}/${stage.slug}`,
+      }
+    : null;
+}

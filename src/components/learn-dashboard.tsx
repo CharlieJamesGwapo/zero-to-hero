@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { learningPaths } from "@/lib/learning-paths";
+import { learningPaths, nextLearningStep } from "@/lib/learning-paths";
 import { lessons } from "@/lib/curriculum";
 import { openSourceLessons } from "@/lib/open-source";
 import { quests, exercises } from "@/lib/challenges";
@@ -19,11 +19,19 @@ function pathIds(slug: string) {
 
 export function LearnDashboard() {
   const progress = useProgress();
-  const selected = learningPaths.filter((path) =>
-    progress.tracks.includes(path.slug),
-  );
+  const selected = progress.tracks
+    .map((slug) => learningPaths.find((path) => path.slug === slug))
+    .filter((path) => path !== undefined);
+  const nextStep = selected.length
+    ? selected
+        .map((path) => nextLearningStep(path.slug, progress.completed))
+        .find((step) => step !== null)
+    : nextLearningStep("fundamentals", progress.completed);
   const activeQuest = quests.find(
     (quest) => !progress.quests.includes(quest.slug),
+  );
+  const activeExercise = exercises.find(
+    (exercise) => !progress.exercises.includes(exercise.slug),
   );
   const saved = progress.bookmarks
     .map((id) => {
@@ -51,29 +59,45 @@ export function LearnDashboard() {
   return (
     <>
       <section className="dashboard-start">
-        <span className="eyebrow">CONTINUE LEARNING</span>
-        <h2>
-          {selected.length
-            ? "Pick up where you left off."
-            : "Start from absolute zero."}
-        </h2>
-        <p>
-          {selected.length
-            ? "Your path is saved in this browser. Choose a track below to continue."
-            : "No account or setup is required. Start with a program, then take a small practice step."}
-        </p>
-        <div className="hero-actions">
-          <Link
-            className="button button-primary"
-            href={selected[0]?.href ?? "/tracks/fundamentals"}
-          >
-            {selected.length
-              ? `Continue ${selected[0].title} ↗`
-              : "Start with fundamentals ↗"}
-          </Link>
-          <Link className="button button-secondary" href="/playground">
-            Try the playground →
-          </Link>
+        <div className="dashboard-start-copy">
+          <span className="eyebrow">CONTINUE LEARNING</span>
+          <h2>
+            {nextStep
+              ? selected.length
+                ? "Pick up where you left off."
+                : "Start from absolute zero."
+              : "You finished your selected paths."}
+          </h2>
+          <p>
+            {nextStep
+              ? selected.length
+                ? "Your progress is saved in this browser. Continue with your next unfinished step."
+                : "No account or setup is required. Start with a program, then take a small practice step."
+              : "Explore another path or revisit a lesson to keep building."}
+          </p>
+          <div className="hero-actions">
+            <Link
+              className="button button-primary"
+              href={nextStep?.href ?? "/curriculum"}
+            >
+              {nextStep ? "Continue learning ↗" : "Explore more paths ↗"}
+            </Link>
+            <Link className="button button-secondary" href="/playground">
+              Try the playground →
+            </Link>
+          </div>
+        </div>
+        <div className="dashboard-next-card">
+          <span className="dashboard-next-label">
+            {nextStep ? "YOUR NEXT STEP" : "KEEP BUILDING"}
+          </span>
+          <span className="dashboard-next-path">
+            {nextStep?.pathTitle ?? "Explore the curriculum"}
+          </span>
+          <strong>{nextStep?.title ?? "Choose a new direction"}</strong>
+          <span className="dashboard-next-foot">
+            {nextStep ? "Learn · practice · build" : "New lessons await"}
+          </span>
         </div>
       </section>
       <section className="dashboard-section">
@@ -143,9 +167,16 @@ export function LearnDashboard() {
             {progress.quests.length} / {quests.length} quests complete ·{" "}
             {progress.exercises.length} / {exercises.length} exercises complete
           </p>
-          <Link className="text-link" href="/exercises/favorite-language">
-            5-minute exercise: create a variable ↗
-          </Link>
+          {activeExercise ? (
+            <Link
+              className="text-link"
+              href={`/exercises/${activeExercise.slug}`}
+            >
+              Next exercise: {activeExercise.title} ↗
+            </Link>
+          ) : (
+            <p>All current exercises complete.</p>
+          )}
           {recentExercises.length > 0 && (
             <div className="dashboard-recent">
               <strong>Completed exercises</strong>

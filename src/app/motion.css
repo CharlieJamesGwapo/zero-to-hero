@@ -173,6 +173,26 @@
 .os-workflow a[data-reveal] {
   transition-delay: calc(var(--reveal-order, 0) * 40ms);
 }
+.path-card[data-reveal],
+.dashboard-panels > div[data-reveal] {
+  transition-delay: calc(var(--reveal-order, 0) * 35ms);
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .dashboard-next-card {
+    transition:
+      transform var(--motion-slow) var(--ease-standard),
+      box-shadow var(--motion-slow) var(--ease-standard);
+  }
+  .dashboard-start:hover .dashboard-next-card {
+    transform: perspective(900px) rotateY(-3deg) rotateX(2deg) translateY(-3px);
+    box-shadow: 16px 19px 0 #0c1b34a6;
+  }
+  #main-content .path-card:hover {
+    transform: perspective(900px) rotateX(1.5deg) translateY(-5px);
+    border-color: #b9c9e9;
+    box-shadow: 0 15px 28px #152a4a12;
+  }
+}
 #main-content[data-route-enter="true"] {
   animation: route-enter 250ms var(--ease-enter) both;
 }

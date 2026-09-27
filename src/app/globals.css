@@ -60,6 +60,19 @@ a:hover {
   white-space: nowrap;
   border: 0;
 }
+.skip-link {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 100;
+  padding: 10px 14px;
+  color: #fff;
+  background: #162743;
+  transform: translateY(-160%);
+}
+.skip-link:focus-visible {
+  transform: translateY(0);
+}
 .shell {
   width: min(1240px, calc(100% - 64px));
   margin-inline: auto;
@@ -3077,10 +3090,27 @@ a:hover {
 }
 
 .dashboard-start {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(255px, 360px);
+  align-items: center;
+  gap: clamp(25px, 5vw, 70px);
+  overflow: hidden;
   background: #162743;
   color: #fff;
   padding: 38px 42px;
   border: 1px solid #253e68;
+}
+.dashboard-start::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at 94% 4%, #3164bd45, transparent 48%);
+}
+.dashboard-start-copy,
+.dashboard-next-card {
+  position: relative;
 }
 .dashboard-start .eyebrow {
   color: #a6c2ff;
@@ -3097,6 +3127,37 @@ a:hover {
 .dashboard-start .button-secondary {
   color: #fff;
   border-color: #6780ab;
+}
+.dashboard-next-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 220px;
+  padding: 22px 23px;
+  border: 1px solid #7195d269;
+  background: linear-gradient(135deg, #254472 0%, #1c3357 58%, #162743 100%);
+  box-shadow: 12px 14px 0 #0c1b34a6;
+}
+.dashboard-next-label {
+  color: #a6c2ff;
+  font: 600 10px/1.4 var(--mono);
+  letter-spacing: 0.1em;
+}
+.dashboard-next-path {
+  margin-top: 30px;
+  color: #c6d7f5;
+  font-size: 12px;
+}
+.dashboard-next-card strong {
+  margin-top: 2px;
+  font-size: clamp(21px, 2.4vw, 29px);
+  line-height: 1.2;
+  letter-spacing: -0.045em;
+}
+.dashboard-next-foot {
+  margin-top: auto;
+  padding-top: 20px;
+  color: #b7c6e0;
+  font: 11px/1.5 var(--mono);
 }
 .dashboard-section {
   margin-top: 75px;
@@ -3415,6 +3476,15 @@ a:hover {
   }
 }
 @media (max-width: 760px) {
+  .dashboard-start {
+    grid-template-columns: 1fr;
+  }
+  .dashboard-next-card {
+    min-height: 175px;
+  }
+  .dashboard-next-path {
+    margin-top: 20px;
+  }
   .home-feature-grid,
   .dashboard-panels,
   .challenge-detail-grid,
